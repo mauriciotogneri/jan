@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class Prefix
 {
+	private static final String PROMPT = "> ";
+	
 	public void run(String filePath)
 	{
 		Program program = new Program();
@@ -11,20 +13,27 @@ public class Prefix
 		
 		if (program.isValid())
 		{
-			Object result = program.run();
-			System.out.println(result);
+			if (program.hasEntryPoint())
+			{
+				Value result = program.run();
+				System.out.println(result);
+			}
 			
 			Scanner scanner = new Scanner(System.in);
 			
 			while (true)
 			{
-				System.out.print("\n> ");
+				System.out.print("\n" + PROMPT);
 				String expression = scanner.nextLine();
 				
 				if (!expression.isEmpty())
 				{
-					Object output = program.evaluate(expression);
-					System.out.println(output);
+					Value output = program.evaluate(expression);
+					
+					if (output.isNumber())
+					{
+						System.out.println(output.getInt());
+					}
 				}
 				else
 				{
