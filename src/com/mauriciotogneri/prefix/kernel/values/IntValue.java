@@ -1,4 +1,6 @@
-package com.mauriciotogneri.prefix;
+package com.mauriciotogneri.prefix.kernel.values;
+
+import com.mauriciotogneri.prefix.kernel.Value;
 
 public class IntValue extends Value
 {

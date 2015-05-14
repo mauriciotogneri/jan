@@ -1,4 +1,4 @@
-package com.mauriciotogneri.prefix;
+package com.mauriciotogneri.prefix.kernel;
 
 import java.util.Stack;
 import com.mauriciotogneri.prefix.primitive.PrimitiveAdd;

@@ -1,15 +1,16 @@
-package com.mauriciotogneri.prefix;
+package com.mauriciotogneri.prefix.kernel;
 
 import java.util.Scanner;
+import com.mauriciotogneri.prefix.compiler.Compiler;
 
 public class Prefix
 {
 	private static final String PROMPT = "> ";
 	
-	public void run(String filePath)
+	public void run(String sourcePath)
 	{
-		Program program = new Program();
-		program.parse(filePath);
+		Compiler compiler = new Compiler();
+		Program program = compiler.compile(sourcePath);
 		
 		if (program.hasEntryPoint())
 		{
@@ -22,10 +23,11 @@ public class Prefix
 		while (true)
 		{
 			System.out.print("\n" + PROMPT);
-			String expression = scanner.nextLine();
+			String line = scanner.nextLine();
 			
-			if (!expression.isEmpty())
+			if (!line.isEmpty())
 			{
+				Expression expression = compiler.getExpression(line);
 				Value output = program.evaluate(expression);
 				printResult(output);
 			}
@@ -52,7 +54,14 @@ public class Prefix
 	
 	public static void main(String[] args)
 	{
-		Prefix prefix = new Prefix();
-		prefix.run(""); // TODO: args[0]
+		if (args.length > 0)
+		{
+			Prefix prefix = new Prefix();
+			prefix.run(args[0]);
+		}
+		else
+		{
+			System.err.println("Usage: java -jar prefix.jar [SOURCE_PATH]");
+		}
 	}
 }

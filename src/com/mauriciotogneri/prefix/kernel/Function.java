@@ -1,4 +1,4 @@
-package com.mauriciotogneri.prefix;
+package com.mauriciotogneri.prefix.kernel;
 
 import java.util.ArrayList;
 import java.util.HashMap;

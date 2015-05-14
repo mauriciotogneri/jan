@@ -1,9 +1,9 @@
 package com.mauriciotogneri.prefix.primitive;
 
 import java.util.Stack;
-import com.mauriciotogneri.prefix.FloatValue;
-import com.mauriciotogneri.prefix.IntValue;
-import com.mauriciotogneri.prefix.Value;
+import com.mauriciotogneri.prefix.kernel.Value;
+import com.mauriciotogneri.prefix.kernel.values.FloatValue;
+import com.mauriciotogneri.prefix.kernel.values.IntValue;
 
 public class PrimitiveMultiply implements PrimitiveFunction
 {

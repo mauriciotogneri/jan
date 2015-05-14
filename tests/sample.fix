@@ -1,0 +1,14 @@
+factorial n
+	? (< n 2) 1
+	* n (factorial -- n)
+
+fibonacci n
+	? (= n 0) 0
+	? (= n 1) 1
+	+ (fibonacci -- n) (fibonacci - n 2)
+
+even n
+	= 0 (% n 2)
+
+pi
+	3.1415

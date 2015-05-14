@@ -1,4 +1,5 @@
-package com.mauriciotogneri.prefix;
+package com.mauriciotogneri.prefix.kernel;
+
 
 public abstract class Value implements ExpressionElement
 {
