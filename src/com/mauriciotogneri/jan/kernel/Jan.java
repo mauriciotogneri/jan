@@ -51,6 +51,14 @@ public class Jan
 		{
 			System.out.println(operand.getFloat());
 		}
+		else if (operand.isBoolean())
+		{
+			System.out.println(operand.getBoolean());
+		}
+		else if (operand.isString())
+		{
+			System.out.println(operand.getString());
+		}
 	}
 	
 	public static void main(String[] args)

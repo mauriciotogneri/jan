@@ -37,13 +37,14 @@ public class Function
 		Operand[] actualParameters = getOperands(stack, this.formalParameters.size());
 		
 		int initialStackSize = stack.size();
+		int conditionalExpressions = this.expressions.size() - 1;
 		
 		for (int i = 0; i < this.expressions.size(); i++)
 		{
 			Expression expression = this.expressions.get(i);
 			evaluate(expression, stack, actualParameters, functions);
 			
-			if (i < (this.expressions.size() - 1))
+			if (i < conditionalExpressions)
 			{
 				// if expression
 				
@@ -78,7 +79,7 @@ public class Function
 	
 	private void evaluate(Expression expression, Stack<Operand> stack, Operand[] actualParameters, Map<String, Function> functions)
 	{
-		List<Symbol> symbols = expression.getSymbol();
+		List<Symbol> symbols = expression.getSymbols();
 		
 		for (Symbol symbol : symbols)
 		{

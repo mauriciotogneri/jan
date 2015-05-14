@@ -13,7 +13,7 @@ public class Expression
 		this.symbols.add(0, symbol);
 	}
 	
-	public List<Symbol> getSymbol()
+	public List<Symbol> getSymbols()
 	{
 		return this.symbols;
 	}
