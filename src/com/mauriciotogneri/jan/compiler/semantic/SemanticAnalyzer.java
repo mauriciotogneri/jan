@@ -1,7 +1,7 @@
 package com.mauriciotogneri.jan.compiler.semantic;
 
 import com.mauriciotogneri.jan.kernel.Program;
-import com.mauriciotogneri.jan.kernel.Operand.Type;
+import com.mauriciotogneri.jan.kernel.symbols.Operand.Type;
 
 public class SemanticAnalyzer
 {

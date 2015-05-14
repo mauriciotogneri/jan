@@ -2,6 +2,7 @@ package com.mauriciotogneri.jan.kernel;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.mauriciotogneri.jan.kernel.symbols.Symbol;
 
 public class Expression
 {

@@ -2,6 +2,7 @@ package com.mauriciotogneri.jan.kernel;
 
 import java.util.Scanner;
 import com.mauriciotogneri.jan.compiler.Compiler;
+import com.mauriciotogneri.jan.kernel.symbols.Operand;
 
 public class Jan
 {

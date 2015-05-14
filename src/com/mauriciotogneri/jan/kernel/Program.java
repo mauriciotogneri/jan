@@ -2,6 +2,7 @@ package com.mauriciotogneri.jan.kernel;
 
 import java.util.Map;
 import java.util.Stack;
+import com.mauriciotogneri.jan.kernel.symbols.Operand;
 
 public class Program
 {

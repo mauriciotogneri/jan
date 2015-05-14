@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import com.mauriciotogneri.jan.kernel.symbols.Operand;
+import com.mauriciotogneri.jan.kernel.symbols.Operator;
+import com.mauriciotogneri.jan.kernel.symbols.Parameter;
+import com.mauriciotogneri.jan.kernel.symbols.Primitive;
+import com.mauriciotogneri.jan.kernel.symbols.Symbol;
 
 public class Function
 {
@@ -53,7 +58,7 @@ public class Function
 		
 		if (finalStackSize <= initialStackSize)
 		{
-			throw new RuntimeException("Function '" + this.name + "' must return a single value");
+			throw new RuntimeException("Function '" + this.name + "' must return a value");
 		}
 	}
 	
@@ -81,38 +86,35 @@ public class Function
 			{
 				stack.add((Operand)symbol);
 			}
-			else if (symbol instanceof Operator)
+			else if (symbol instanceof Parameter)
 			{
-				applyOperator((Operator)symbol, stack, actualParameters, functions);
+				Parameter parameter = (Parameter)symbol;
+				
+				stack.add(actualParameters[parameter.index]);
+			}
+			else if (symbol instanceof Primitive)
+			{
+				Primitive primitive = (Primitive)symbol;
+				
+				primitive.apply(stack);
+			}
+			else
+			{
+				applyOperator((Operator)symbol, stack, functions);
 			}
 		}
 	}
 	
-	private void applyOperator(Operator operator, Stack<Operand> stack, Operand[] actualParameters, Map<String, Function> functions)
+	private void applyOperator(Operator operator, Stack<Operand> stack, Map<String, Function> functions)
 	{
-		if (operator.isPrimitive())
+		Function function = functions.get(operator.name);
+		
+		if (function == null)
 		{
-			operator.apply(stack);
+			// TODO: check at compiling time
+			throw new RuntimeException("Function '" + operator.name + "' not defined");
 		}
-		else
-		{
-			Parameter formalParameter = this.formalParameters.get(operator.name);
-			
-			if (formalParameter != null)
-			{
-				stack.add(actualParameters[formalParameter.index]);
-			}
-			else
-			{
-				Function function = functions.get(operator.name);
-				
-				if (function == null)
-				{
-					throw new RuntimeException("Function '" + operator.name + "' not defined");
-				}
-				
-				function.apply(stack, functions);
-			}
-		}
+		
+		function.apply(stack, functions);
 	}
 }
