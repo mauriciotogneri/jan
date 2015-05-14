@@ -1,15 +1,17 @@
 package com.mauriciotogneri.prefix;
 
 import java.util.Stack;
+import com.mauriciotogneri.prefix.primitive.PrimitiveAdd;
 import com.mauriciotogneri.prefix.primitive.PrimitiveFunction;
-import com.mauriciotogneri.prefix.primitive.PrimitivePlus;
+import com.mauriciotogneri.prefix.primitive.PrimitiveMultiply;
 
 public class Symbol implements ExpressionElement
 {
 	public final String name;
 	public final PrimitiveFunction primitiveFunction;
 	
-	private static final PrimitiveFunction primitivePlus = new PrimitivePlus();
+	private static final PrimitiveFunction primitiveAdd = new PrimitiveAdd();
+	private static final PrimitiveFunction primitiveMultiply = new PrimitiveMultiply();
 	
 	public Symbol(String name)
 	{
@@ -29,9 +31,13 @@ public class Symbol implements ExpressionElement
 	
 	private PrimitiveFunction getPrimitiveFunction(String name)
 	{
-		if (name.equals("+"))
+		if (name.equals(PrimitiveAdd.SYMBOL))
 		{
-			return primitivePlus;
+			return primitiveAdd;
+		}
+		else if (name.equals(PrimitiveMultiply.SYMBOL))
+		{
+			return primitiveMultiply;
 		}
 		else
 		{

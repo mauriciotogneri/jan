@@ -8,18 +8,14 @@ public class Expression
 {
 	private final List<ExpressionElement> elements = new ArrayList<>();
 	
-	public Expression(String line)
-	{
-		this.elements.add(new Symbol("+"));
-		this.elements.add(new IntValue(2));
-		this.elements.add(new IntValue(3));
-		
-		Collections.reverse(this.elements);
-	}
-	
 	public void add(ExpressionElement element)
 	{
 		this.elements.add(element);
+	}
+	
+	public void closeExpression()
+	{
+		Collections.reverse(this.elements);
 	}
 	
 	public List<ExpressionElement> getElements()

@@ -5,16 +5,12 @@ import com.mauriciotogneri.prefix.FloatValue;
 import com.mauriciotogneri.prefix.IntValue;
 import com.mauriciotogneri.prefix.Value;
 
-public class PrimitivePlus implements PrimitiveFunction
+public class PrimitiveAdd implements PrimitiveFunction
 {
+	public static final String SYMBOL = "+";
+	
 	@Override
 	public void apply(Stack<Value> stack)
-	{
-		Value result = applyOperationPlus(stack);
-		stack.push(result);
-	}
-	
-	private Value applyOperationPlus(Stack<Value> stack)
 	{
 		if (stack.size() < 2)
 		{
@@ -31,21 +27,21 @@ public class PrimitivePlus implements PrimitiveFunction
 		
 		if (operand1.isInt() || operand2.isInt())
 		{
-			return new IntValue(operand1.getInt() + operand2.getInt());
+			stack.push(new IntValue(operand1.getInt() + operand2.getInt()));
 		}
 		else
 		{
 			if (operand1.isInt() && operand2.isFloat())
 			{
-				return new FloatValue(operand1.getInt() + operand2.getFloat());
+				stack.push(new FloatValue(operand1.getInt() + operand2.getFloat()));
 			}
 			else if (operand1.isFloat() && operand2.isInt())
 			{
-				return new FloatValue(operand1.getFloat() + operand2.getInt());
+				stack.push(new FloatValue(operand1.getFloat() + operand2.getInt()));
 			}
 			else
 			{
-				return new FloatValue(operand1.getFloat() + operand2.getFloat());
+				stack.push(new FloatValue(operand1.getFloat() + operand2.getFloat()));
 			}
 		}
 	}

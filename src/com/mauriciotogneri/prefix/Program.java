@@ -1,22 +1,47 @@
 package com.mauriciotogneri.prefix;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Stack;
+import com.mauriciotogneri.prefix.Value.Type;
 
 public class Program
 {
 	private final Map<String, Function> functions = new HashMap<>();
+	private Expression entryPoint;
 	
 	public void parse(String filePath)
 	{
 		// TODO
+		
+		Function function = new Function("double");
+		function.addParameter(new Parameter("a", 0, Type.INT));
+		
+		Expression e = new Expression();
+		e.add(new Symbol("*"));
+		e.add(new Symbol("a"));
+		e.add(new Symbol("a"));
+		e.closeExpression();
+		
+		function.addExpression(e);
+		
+		this.functions.put(function.name, function);
+		
+		this.entryPoint = new Expression();
+		
+		this.entryPoint.add(new Symbol("double"));
+		this.entryPoint.add(new Symbol("+"));
+		this.entryPoint.add(new IntValue(3));
+		this.entryPoint.add(new IntValue(2));
+		
+		this.entryPoint.closeExpression();
 	}
 	
 	public Value evaluate(String line)
 	{
-		Expression expression = new Expression(line);
+		// TODO: parse line and get constructed expression
+		
+		Expression expression = new Expression();
 		
 		return evaluate(expression);
 	}
@@ -25,19 +50,9 @@ public class Program
 	{
 		Stack<Value> stack = new Stack<>();
 		
-		List<ExpressionElement> elements = expression.getElements();
-		
-		for (ExpressionElement element : elements)
-		{
-			if (element instanceof Value)
-			{
-				stack.add((Value)element);
-			}
-			else if (element instanceof Symbol)
-			{
-				applySymbol((Symbol)element, stack);
-			}
-		}
+		Function function = new Function("");
+		function.addExpression(expression);
+		function.apply(stack, this.functions);
 		
 		if (stack.size() != 1)
 		{
@@ -47,37 +62,13 @@ public class Program
 		return stack.pop();
 	}
 	
-	private void applySymbol(Symbol symbol, Stack<Value> stack)
-	{
-		if (symbol.isPrimitive())
-		{
-			symbol.apply(stack);
-		}
-		else
-		{
-			Function function = this.functions.get(symbol.name);
-			
-			if (function == null)
-			{
-				throw new RuntimeException("Function '" + symbol.name + "' not defined");
-			}
-			
-			// TODO
-		}
-	}
-	
-	public boolean isValid()
-	{
-		return true;
-	}
-	
 	public Value run()
 	{
-		return null;
+		return evaluate(this.entryPoint);
 	}
 	
 	public boolean hasEntryPoint()
 	{
-		return false;
+		return this.entryPoint != null;
 	}
 }

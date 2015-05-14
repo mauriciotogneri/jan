@@ -11,37 +11,42 @@ public class Prefix
 		Program program = new Program();
 		program.parse(filePath);
 		
-		if (program.isValid())
+		if (program.hasEntryPoint())
 		{
-			if (program.hasEntryPoint())
+			Value result = program.run();
+			printResult(result);
+		}
+		
+		Scanner scanner = new Scanner(System.in);
+		
+		while (true)
+		{
+			System.out.print("\n" + PROMPT);
+			String expression = scanner.nextLine();
+			
+			if (!expression.isEmpty())
 			{
-				Value result = program.run();
-				System.out.println(result);
+				Value output = program.evaluate(expression);
+				printResult(output);
 			}
-			
-			Scanner scanner = new Scanner(System.in);
-			
-			while (true)
+			else
 			{
-				System.out.print("\n" + PROMPT);
-				String expression = scanner.nextLine();
-				
-				if (!expression.isEmpty())
-				{
-					Value output = program.evaluate(expression);
-					
-					if (output.isNumber())
-					{
-						System.out.println(output.getInt());
-					}
-				}
-				else
-				{
-					break;
-				}
+				break;
 			}
-			
-			scanner.close();
+		}
+		
+		scanner.close();
+	}
+	
+	private void printResult(Value value)
+	{
+		if (value.isInt())
+		{
+			System.out.println(value.getInt());
+		}
+		else if (value.isFloat())
+		{
+			System.out.println(value.getFloat());
 		}
 	}
 	
