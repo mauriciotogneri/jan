@@ -1,18 +1,19 @@
 package com.mauriciotogneri.jan.kernel;
 
-
 public abstract class Value implements ExpressionElement
 {
-	public final Type type;
+	private final Type type;
+	private final Object value;
 	
 	public enum Type
 	{
 		INT, FLOAT, BOOLEAN, STRING, LIST, UNDEFINED;
 	}
 	
-	public Value(Type type)
+	public Value(Type type, Object value)
 	{
 		this.type = type;
+		this.value = value;
 	}
 	
 	public boolean isInt()
@@ -25,6 +26,16 @@ public abstract class Value implements ExpressionElement
 		return this.type == Type.FLOAT;
 	}
 	
+	public boolean isBoolean()
+	{
+		return this.type == Type.BOOLEAN;
+	}
+	
+	public boolean isString()
+	{
+		return this.type == Type.STRING;
+	}
+	
 	public boolean isNumber()
 	{
 		return isInt() || isFloat();
@@ -32,17 +43,21 @@ public abstract class Value implements ExpressionElement
 	
 	public long getInt()
 	{
-		Long value = (Long)getValue();
-		
-		return value.longValue();
+		return (Long)this.value;
 	}
 	
 	public double getFloat()
 	{
-		Double value = (Double)getValue();
-		
-		return value.doubleValue();
+		return (Double)this.value;
 	}
 	
-	protected abstract Object getValue();
+	public boolean getBoolean()
+	{
+		return (Boolean)this.value;
+	}
+	
+	public String getString()
+	{
+		return (String)this.value;
+	}
 }

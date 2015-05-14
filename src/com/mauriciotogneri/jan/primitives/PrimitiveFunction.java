@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jan.primitive;
+package com.mauriciotogneri.jan.primitives;
 
 import java.util.Stack;
 import com.mauriciotogneri.jan.kernel.Value;

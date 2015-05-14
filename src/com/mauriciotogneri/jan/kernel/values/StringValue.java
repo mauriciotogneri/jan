@@ -2,10 +2,10 @@ package com.mauriciotogneri.jan.kernel.values;
 
 import com.mauriciotogneri.jan.kernel.Value;
 
-public class IntValue extends Value
+public class StringValue extends Value
 {
-	public IntValue(long value)
+	public StringValue(String value)
 	{
-		super(Type.INT, value);
+		super(Type.STRING, value);
 	}
 }
