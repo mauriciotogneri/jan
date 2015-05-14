@@ -14,9 +14,9 @@ public class Program
 		this.entryPoint = entryPoint;
 	}
 	
-	public Value evaluate(Expression expression)
+	public Operand evaluate(Expression expression)
 	{
-		Stack<Value> stack = new Stack<>();
+		Stack<Operand> stack = new Stack<>();
 		
 		Function function = new Function("");
 		function.addExpression(expression);
@@ -24,13 +24,13 @@ public class Program
 		
 		if (stack.size() != 1)
 		{
-			throw new RuntimeException("Stack should have only one element at the end of a program");
+			throw new RuntimeException("Stack should have only one symbol at the end of a program");
 		}
 		
 		return stack.pop();
 	}
 	
-	public Value run()
+	public Operand run()
 	{
 		return evaluate(this.entryPoint);
 	}

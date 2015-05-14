@@ -1,7 +1,7 @@
 package com.mauriciotogneri.jan.primitives.arithmetic.operations;
 
-import com.mauriciotogneri.jan.kernel.values.FloatValue;
-import com.mauriciotogneri.jan.kernel.values.IntValue;
+import com.mauriciotogneri.jan.kernel.operands.FloatOperand;
+import com.mauriciotogneri.jan.kernel.operands.IntOperand;
 import com.mauriciotogneri.jan.primitives.arithmetic.base.PrimitiveArithmeticUnary;
 
 public class PrimitiveIncrement extends PrimitiveArithmeticUnary
@@ -14,14 +14,14 @@ public class PrimitiveIncrement extends PrimitiveArithmeticUnary
 	}
 	
 	@Override
-	protected IntValue apply(long operand)
+	protected IntOperand apply(long operand)
 	{
-		return new IntValue(operand + 1);
+		return new IntOperand(operand + 1);
 	}
 	
 	@Override
-	protected FloatValue apply(double operand)
+	protected FloatOperand apply(double operand)
 	{
-		return new FloatValue(operand + 1);
+		return new FloatOperand(operand + 1);
 	}
 }

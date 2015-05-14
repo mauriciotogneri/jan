@@ -1,6 +1,6 @@
 package com.mauriciotogneri.jan.primitives.logic.operations;
 
-import com.mauriciotogneri.jan.kernel.values.BoolValue;
+import com.mauriciotogneri.jan.kernel.operands.BoolOperand;
 import com.mauriciotogneri.jan.primitives.logic.base.PrimitiveLogicBinaryNumeric;
 
 public class PrimitiveGreaterThanOrEqual extends PrimitiveLogicBinaryNumeric
@@ -13,8 +13,8 @@ public class PrimitiveGreaterThanOrEqual extends PrimitiveLogicBinaryNumeric
 	}
 	
 	@Override
-	protected BoolValue apply(double operand1, double operand2)
+	protected BoolOperand apply(double operand1, double operand2)
 	{
-		return new BoolValue(operand1 >= operand2);
+		return new BoolOperand(operand1 >= operand2);
 	}
 }

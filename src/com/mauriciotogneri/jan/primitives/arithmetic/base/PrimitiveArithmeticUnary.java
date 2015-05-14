@@ -1,9 +1,9 @@
 package com.mauriciotogneri.jan.primitives.arithmetic.base;
 
 import java.util.Stack;
-import com.mauriciotogneri.jan.kernel.Value;
-import com.mauriciotogneri.jan.kernel.values.FloatValue;
-import com.mauriciotogneri.jan.kernel.values.IntValue;
+import com.mauriciotogneri.jan.kernel.Operand;
+import com.mauriciotogneri.jan.kernel.operands.FloatOperand;
+import com.mauriciotogneri.jan.kernel.operands.IntOperand;
 
 public abstract class PrimitiveArithmeticUnary extends PrimitiveArithmetic
 {
@@ -13,14 +13,14 @@ public abstract class PrimitiveArithmeticUnary extends PrimitiveArithmetic
 	}
 	
 	@Override
-	public void apply(Stack<Value> stack)
+	public void apply(Stack<Operand> stack)
 	{
 		if (stack.size() < 1)
 		{
 			throw new RuntimeException("Insufficient operands in stack to perform " + this.symbol);
 		}
 		
-		Value operand = stack.pop();
+		Operand operand = stack.pop();
 		
 		if (!operand.isNumber())
 		{
@@ -37,7 +37,7 @@ public abstract class PrimitiveArithmeticUnary extends PrimitiveArithmetic
 		}
 	}
 	
-	protected abstract IntValue apply(long operand);
+	protected abstract IntOperand apply(long operand);
 	
-	protected abstract FloatValue apply(double operand);
+	protected abstract FloatOperand apply(double operand);
 }

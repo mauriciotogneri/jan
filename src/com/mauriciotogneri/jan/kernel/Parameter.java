@@ -1,6 +1,6 @@
 package com.mauriciotogneri.jan.kernel;
 
-import com.mauriciotogneri.jan.kernel.Value.Type;
+import com.mauriciotogneri.jan.kernel.Operand.Type;
 
 public class Parameter
 {

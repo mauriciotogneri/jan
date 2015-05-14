@@ -1,25 +1,19 @@
 package com.mauriciotogneri.jan.kernel;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Expression
 {
-	private final List<ExpressionElement> elements = new ArrayList<>();
+	private final List<Symbol> symbols = new ArrayList<>();
 	
-	public void add(ExpressionElement element)
+	public void add(Symbol symbol)
 	{
-		this.elements.add(element);
+		this.symbols.add(0, symbol);
 	}
 	
-	public void closeExpression()
+	public List<Symbol> getSymbol()
 	{
-		Collections.reverse(this.elements);
-	}
-	
-	public List<ExpressionElement> getElements()
-	{
-		return this.elements;
+		return this.symbols;
 	}
 }

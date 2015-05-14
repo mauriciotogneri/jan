@@ -27,9 +27,9 @@ public class Function
 		this.expressions.add(expression);
 	}
 	
-	public void apply(Stack<Value> stack, Map<String, Function> functions)
+	public void apply(Stack<Operand> stack, Map<String, Function> functions)
 	{
-		Value[] actualParameters = getValues(stack, this.formalParameters.size());
+		Operand[] actualParameters = getOperands(stack, this.formalParameters.size());
 		
 		int initialStackSize = stack.size();
 		
@@ -57,9 +57,9 @@ public class Function
 		}
 	}
 	
-	private Value[] getValues(Stack<Value> stack, int size)
+	private Operand[] getOperands(Stack<Operand> stack, int size)
 	{
-		Value[] result = new Value[size];
+		Operand[] result = new Operand[size];
 		
 		int index = 0;
 		
@@ -71,32 +71,32 @@ public class Function
 		return result;
 	}
 	
-	private void evaluate(Expression expression, Stack<Value> stack, Value[] actualParameters, Map<String, Function> functions)
+	private void evaluate(Expression expression, Stack<Operand> stack, Operand[] actualParameters, Map<String, Function> functions)
 	{
-		List<ExpressionElement> elements = expression.getElements();
+		List<Symbol> symbols = expression.getSymbol();
 		
-		for (ExpressionElement element : elements)
+		for (Symbol symbol : symbols)
 		{
-			if (element instanceof Value)
+			if (symbol instanceof Operand)
 			{
-				stack.add((Value)element);
+				stack.add((Operand)symbol);
 			}
-			else if (element instanceof Symbol)
+			else if (symbol instanceof Operator)
 			{
-				applySymbol((Symbol)element, stack, actualParameters, functions);
+				applyOperator((Operator)symbol, stack, actualParameters, functions);
 			}
 		}
 	}
 	
-	private void applySymbol(Symbol symbol, Stack<Value> stack, Value[] actualParameters, Map<String, Function> functions)
+	private void applyOperator(Operator operator, Stack<Operand> stack, Operand[] actualParameters, Map<String, Function> functions)
 	{
-		if (symbol.isPrimitive())
+		if (operator.isPrimitive())
 		{
-			symbol.apply(stack);
+			operator.apply(stack);
 		}
 		else
 		{
-			Parameter formalParameter = this.formalParameters.get(symbol.name);
+			Parameter formalParameter = this.formalParameters.get(operator.name);
 			
 			if (formalParameter != null)
 			{
@@ -104,11 +104,11 @@ public class Function
 			}
 			else
 			{
-				Function function = functions.get(symbol.name);
+				Function function = functions.get(operator.name);
 				
 				if (function == null)
 				{
-					throw new RuntimeException("Function '" + symbol.name + "' not defined");
+					throw new RuntimeException("Function '" + operator.name + "' not defined");
 				}
 				
 				function.apply(stack, functions);

@@ -1,8 +1,8 @@
 package com.mauriciotogneri.jan.primitives.logic.base;
 
 import java.util.Stack;
-import com.mauriciotogneri.jan.kernel.Value;
-import com.mauriciotogneri.jan.kernel.values.BoolValue;
+import com.mauriciotogneri.jan.kernel.Operand;
+import com.mauriciotogneri.jan.kernel.operands.BoolOperand;
 
 public abstract class PrimitiveLogicBinaryNumeric extends PrimitiveLogic
 {
@@ -12,15 +12,15 @@ public abstract class PrimitiveLogicBinaryNumeric extends PrimitiveLogic
 	}
 	
 	@Override
-	public void apply(Stack<Value> stack)
+	public void apply(Stack<Operand> stack)
 	{
 		if (stack.size() < 2)
 		{
 			throw new RuntimeException("Insufficient operands in stack to perform " + this.symbol);
 		}
 		
-		Value operand1 = stack.pop();
-		Value operand2 = stack.pop();
+		Operand operand1 = stack.pop();
+		Operand operand2 = stack.pop();
 		
 		if (!operand1.isNumber() || !operand2.isNumber())
 		{
@@ -48,5 +48,5 @@ public abstract class PrimitiveLogicBinaryNumeric extends PrimitiveLogic
 		}
 	}
 	
-	protected abstract BoolValue apply(double operand1, double operand2);
+	protected abstract BoolOperand apply(double operand1, double operand2);
 }

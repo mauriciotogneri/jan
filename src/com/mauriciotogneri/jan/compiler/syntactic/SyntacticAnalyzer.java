@@ -8,9 +8,9 @@ import com.mauriciotogneri.jan.kernel.Expression;
 import com.mauriciotogneri.jan.kernel.Function;
 import com.mauriciotogneri.jan.kernel.Parameter;
 import com.mauriciotogneri.jan.kernel.Program;
-import com.mauriciotogneri.jan.kernel.Symbol;
-import com.mauriciotogneri.jan.kernel.Value.Type;
-import com.mauriciotogneri.jan.kernel.values.IntValue;
+import com.mauriciotogneri.jan.kernel.Operator;
+import com.mauriciotogneri.jan.kernel.Operand.Type;
+import com.mauriciotogneri.jan.kernel.operands.IntOperand;
 
 public class SyntacticAnalyzer
 {
@@ -26,10 +26,9 @@ public class SyntacticAnalyzer
 		function.addParameter(new Parameter("a", 0, Type.INT));
 		
 		Expression e = new Expression();
-		e.add(new Symbol("*"));
-		e.add(new Symbol("a"));
-		e.add(new Symbol("a"));
-		e.closeExpression();
+		e.add(new Operator("*"));
+		e.add(new Operator("a"));
+		e.add(new Operator("a"));
 		
 		function.addExpression(e);
 		
@@ -38,12 +37,10 @@ public class SyntacticAnalyzer
 		
 		Expression entryPoint = new Expression();
 		
-		entryPoint.add(new Symbol("double"));
-		entryPoint.add(new Symbol("+"));
-		entryPoint.add(new IntValue(3));
-		entryPoint.add(new IntValue(2));
-		
-		entryPoint.closeExpression();
+		entryPoint.add(new Operator("double"));
+		entryPoint.add(new Operator("+"));
+		entryPoint.add(new IntOperand(3));
+		entryPoint.add(new IntOperand(2));
 		
 		return new Program(functions, entryPoint);
 	}

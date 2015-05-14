@@ -1,6 +1,6 @@
 package com.mauriciotogneri.jan.primitives.logic.operations;
 
-import com.mauriciotogneri.jan.kernel.values.BoolValue;
+import com.mauriciotogneri.jan.kernel.operands.BoolOperand;
 import com.mauriciotogneri.jan.primitives.logic.base.PrimitiveLogicUnary;
 
 public class PrimitiveNegation extends PrimitiveLogicUnary
@@ -13,8 +13,8 @@ public class PrimitiveNegation extends PrimitiveLogicUnary
 	}
 	
 	@Override
-	protected BoolValue apply(boolean operand1)
+	protected BoolOperand apply(boolean operand1)
 	{
-		return new BoolValue(!operand1);
+		return new BoolOperand(!operand1);
 	}
 }

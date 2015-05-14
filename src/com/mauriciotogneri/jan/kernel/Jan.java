@@ -14,7 +14,7 @@ public class Jan
 		
 		if (program.hasEntryPoint())
 		{
-			Value result = program.run();
+			Operand result = program.run();
 			printResult(result);
 		}
 		
@@ -28,7 +28,7 @@ public class Jan
 			if (!line.isEmpty())
 			{
 				Expression expression = compiler.getExpression(line);
-				Value output = program.evaluate(expression);
+				Operand output = program.evaluate(expression);
 				printResult(output);
 			}
 			else
@@ -40,15 +40,15 @@ public class Jan
 		scanner.close();
 	}
 	
-	private void printResult(Value value)
+	private void printResult(Operand operand)
 	{
-		if (value.isInt())
+		if (operand.isInt())
 		{
-			System.out.println(value.getInt());
+			System.out.println(operand.getInt());
 		}
-		else if (value.isFloat())
+		else if (operand.isFloat())
 		{
-			System.out.println(value.getFloat());
+			System.out.println(operand.getFloat());
 		}
 	}
 	

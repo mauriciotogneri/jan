@@ -1,7 +1,7 @@
 package com.mauriciotogneri.jan.primitives.arithmetic.operations;
 
-import com.mauriciotogneri.jan.kernel.values.FloatValue;
-import com.mauriciotogneri.jan.kernel.values.IntValue;
+import com.mauriciotogneri.jan.kernel.operands.FloatOperand;
+import com.mauriciotogneri.jan.kernel.operands.IntOperand;
 import com.mauriciotogneri.jan.primitives.arithmetic.base.PrimitiveArithmeticBinary;
 
 public class PrimitiveMultiply extends PrimitiveArithmeticBinary
@@ -14,14 +14,14 @@ public class PrimitiveMultiply extends PrimitiveArithmeticBinary
 	}
 	
 	@Override
-	protected IntValue apply(long operand1, long operand2)
+	protected IntOperand apply(long operand1, long operand2)
 	{
-		return new IntValue(operand1 * operand2);
+		return new IntOperand(operand1 * operand2);
 	}
 	
 	@Override
-	protected FloatValue apply(double operand1, double operand2)
+	protected FloatOperand apply(double operand1, double operand2)
 	{
-		return new FloatValue(operand1 * operand2);
+		return new FloatOperand(operand1 * operand2);
 	}
 }

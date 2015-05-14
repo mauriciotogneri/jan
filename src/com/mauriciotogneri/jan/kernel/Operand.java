@@ -1,6 +1,6 @@
 package com.mauriciotogneri.jan.kernel;
 
-public abstract class Value implements ExpressionElement
+public abstract class Operand implements Symbol
 {
 	private final Type type;
 	private final Object value;
@@ -10,7 +10,7 @@ public abstract class Value implements ExpressionElement
 		INT, FLOAT, BOOLEAN, STRING, LIST, UNDEFINED;
 	}
 	
-	public Value(Type type, Object value)
+	public Operand(Type type, Object value)
 	{
 		this.type = type;
 		this.value = value;
