@@ -1,2 +1,2 @@
-# language
-A prefix notation programming language
+# Prefix
+A prefix notation programming language.
