@@ -1,12 +1,12 @@
-package com.mauriciotogneri.prefix.compiler;
+package com.mauriciotogneri.jan.compiler;
 
 import java.util.List;
-import com.mauriciotogneri.prefix.compiler.lexical.LexicalAnalyzer;
-import com.mauriciotogneri.prefix.compiler.lexical.Token;
-import com.mauriciotogneri.prefix.compiler.semantic.SemanticAnalyzer;
-import com.mauriciotogneri.prefix.compiler.syntactic.SyntacticAnalyzer;
-import com.mauriciotogneri.prefix.kernel.Expression;
-import com.mauriciotogneri.prefix.kernel.Program;
+import com.mauriciotogneri.jan.compiler.lexical.LexicalAnalyzer;
+import com.mauriciotogneri.jan.compiler.lexical.Token;
+import com.mauriciotogneri.jan.compiler.semantic.SemanticAnalyzer;
+import com.mauriciotogneri.jan.compiler.syntactic.SyntacticAnalyzer;
+import com.mauriciotogneri.jan.kernel.Expression;
+import com.mauriciotogneri.jan.kernel.Program;
 
 public class Compiler
 {

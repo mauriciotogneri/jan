@@ -1,4 +1,4 @@
-package com.mauriciotogneri.prefix.compiler.lexical;
+package com.mauriciotogneri.jan.compiler.lexical;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

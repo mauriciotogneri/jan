@@ -1,6 +1,6 @@
-package com.mauriciotogneri.prefix.kernel;
+package com.mauriciotogneri.jan.kernel;
 
-import com.mauriciotogneri.prefix.kernel.Value.Type;
+import com.mauriciotogneri.jan.kernel.Value.Type;
 
 public class Parameter
 {

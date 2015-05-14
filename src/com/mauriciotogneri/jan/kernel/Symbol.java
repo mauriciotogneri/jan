@@ -1,9 +1,9 @@
-package com.mauriciotogneri.prefix.kernel;
+package com.mauriciotogneri.jan.kernel;
 
 import java.util.Stack;
-import com.mauriciotogneri.prefix.primitive.PrimitiveAdd;
-import com.mauriciotogneri.prefix.primitive.PrimitiveFunction;
-import com.mauriciotogneri.prefix.primitive.PrimitiveMultiply;
+import com.mauriciotogneri.jan.primitive.PrimitiveAdd;
+import com.mauriciotogneri.jan.primitive.PrimitiveFunction;
+import com.mauriciotogneri.jan.primitive.PrimitiveMultiply;
 
 public class Symbol implements ExpressionElement
 {

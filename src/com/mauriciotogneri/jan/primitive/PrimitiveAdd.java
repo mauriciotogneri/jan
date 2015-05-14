@@ -1,9 +1,9 @@
-package com.mauriciotogneri.prefix.primitive;
+package com.mauriciotogneri.jan.primitive;
 
 import java.util.Stack;
-import com.mauriciotogneri.prefix.kernel.Value;
-import com.mauriciotogneri.prefix.kernel.values.FloatValue;
-import com.mauriciotogneri.prefix.kernel.values.IntValue;
+import com.mauriciotogneri.jan.kernel.Value;
+import com.mauriciotogneri.jan.kernel.values.FloatValue;
+import com.mauriciotogneri.jan.kernel.values.IntValue;
 
 public class PrimitiveAdd implements PrimitiveFunction
 {

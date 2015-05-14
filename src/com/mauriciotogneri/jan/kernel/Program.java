@@ -1,4 +1,4 @@
-package com.mauriciotogneri.prefix.kernel;
+package com.mauriciotogneri.jan.kernel;
 
 import java.util.Map;
 import java.util.Stack;

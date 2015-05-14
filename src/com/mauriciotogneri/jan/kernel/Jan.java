@@ -1,9 +1,9 @@
-package com.mauriciotogneri.prefix.kernel;
+package com.mauriciotogneri.jan.kernel;
 
 import java.util.Scanner;
-import com.mauriciotogneri.prefix.compiler.Compiler;
+import com.mauriciotogneri.jan.compiler.Compiler;
 
-public class Prefix
+public class Jan
 {
 	private static final String PROMPT = "> ";
 	
@@ -56,12 +56,12 @@ public class Prefix
 	{
 		if (args.length > 0)
 		{
-			Prefix prefix = new Prefix();
-			prefix.run(args[0]);
+			Jan jan = new Jan();
+			jan.run(args[0]);
 		}
 		else
 		{
-			System.err.println("Usage: java -jar prefix.jar [SOURCE_PATH]");
+			System.err.println("Usage: java -jar jan.jar [SOURCE_PATH]");
 		}
 	}
 }

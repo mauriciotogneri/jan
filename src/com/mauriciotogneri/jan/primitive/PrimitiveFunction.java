@@ -1,7 +1,7 @@
-package com.mauriciotogneri.prefix.primitive;
+package com.mauriciotogneri.jan.primitive;
 
 import java.util.Stack;
-import com.mauriciotogneri.prefix.kernel.Value;
+import com.mauriciotogneri.jan.kernel.Value;
 
 public interface PrimitiveFunction
 {

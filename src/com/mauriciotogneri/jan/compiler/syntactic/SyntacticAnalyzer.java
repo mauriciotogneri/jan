@@ -1,16 +1,16 @@
-package com.mauriciotogneri.prefix.compiler.syntactic;
+package com.mauriciotogneri.jan.compiler.syntactic;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.mauriciotogneri.prefix.compiler.lexical.Token;
-import com.mauriciotogneri.prefix.kernel.Expression;
-import com.mauriciotogneri.prefix.kernel.Function;
-import com.mauriciotogneri.prefix.kernel.Parameter;
-import com.mauriciotogneri.prefix.kernel.Program;
-import com.mauriciotogneri.prefix.kernel.Symbol;
-import com.mauriciotogneri.prefix.kernel.Value.Type;
-import com.mauriciotogneri.prefix.kernel.values.IntValue;
+import com.mauriciotogneri.jan.compiler.lexical.Token;
+import com.mauriciotogneri.jan.kernel.Expression;
+import com.mauriciotogneri.jan.kernel.Function;
+import com.mauriciotogneri.jan.kernel.Parameter;
+import com.mauriciotogneri.jan.kernel.Program;
+import com.mauriciotogneri.jan.kernel.Symbol;
+import com.mauriciotogneri.jan.kernel.Value.Type;
+import com.mauriciotogneri.jan.kernel.values.IntValue;
 
 public class SyntacticAnalyzer
 {

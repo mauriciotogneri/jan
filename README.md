@@ -1,2 +1,2 @@
-# Prefix
-A prefix notation programming language.
+# Jan
+A Polish notation programming language.
