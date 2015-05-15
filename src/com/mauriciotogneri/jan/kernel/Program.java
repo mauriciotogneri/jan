@@ -7,12 +7,10 @@ import com.mauriciotogneri.jan.kernel.symbols.Operand;
 public class Program
 {
 	private final Map<String, Function> functions;
-	private final Expression entryPoint;
 	
-	public Program(Map<String, Function> functions, Expression entryPoint)
+	public Program(Map<String, Function> functions)
 	{
 		this.functions = functions;
-		this.entryPoint = entryPoint;
 	}
 	
 	public Operand evaluate(Expression expression)
@@ -33,11 +31,11 @@ public class Program
 	
 	public Operand run()
 	{
-		return evaluate(this.entryPoint);
+		return evaluate(this.functions.get("").expressions.get(0));
 	}
 	
 	public boolean hasEntryPoint()
 	{
-		return this.entryPoint != null;
+		return this.functions.containsKey("");
 	}
 }

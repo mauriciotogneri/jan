@@ -61,15 +61,20 @@ public class SyntacticAnalyzer
 		
 		// ---------------------------
 		
+		Expression anonymousExpression = new Expression();
+		anonymousExpression.add(new Operator("fibonacci"));
+		anonymousExpression.add(new IntOperand(12));
+		
+		Function anonymousFunction = new Function("");
+		anonymousFunction.addExpression(anonymousExpression);
+		
+		// ---------------------------
+		
 		Map<String, Function> functions = new HashMap<>();
 		functions.put(function.name, function);
+		functions.put(anonymousFunction.name, anonymousFunction);
 		
-		Expression entryPoint = new Expression();
-		
-		entryPoint.add(new Operator("fibonacci"));
-		entryPoint.add(new IntOperand(12));
-		
-		return new Program(functions, entryPoint);
+		return new Program(functions);
 	}
 	
 	private Program getFactorialProgram()
@@ -101,15 +106,20 @@ public class SyntacticAnalyzer
 		
 		// ---------------------------
 		
+		Expression anonymousExpression = new Expression();
+		anonymousExpression.add(new Operator("factorial"));
+		anonymousExpression.add(new IntOperand(5));
+		
+		Function anonymousFunction = new Function("");
+		anonymousFunction.addExpression(anonymousExpression);
+		
+		// ---------------------------
+		
 		Map<String, Function> functions = new HashMap<>();
 		functions.put(function.name, function);
+		functions.put(anonymousFunction.name, anonymousFunction);
 		
-		Expression entryPoint = new Expression();
-		
-		entryPoint.add(new Operator("factorial"));
-		entryPoint.add(new IntOperand(5));
-		
-		return new Program(functions, entryPoint);
+		return new Program(functions);
 	}
 	
 	private Program getSampleProgram()
@@ -133,17 +143,22 @@ public class SyntacticAnalyzer
 		
 		// ---------------------------
 		
+		Expression anonymousExpression = new Expression();
+		anonymousExpression.add(new Operator("double"));
+		anonymousExpression.add(Primitive.getPrimitive("+"));
+		anonymousExpression.add(new IntOperand(3));
+		anonymousExpression.add(new IntOperand(2));
+		
+		Function anonymousFunction = new Function("");
+		anonymousFunction.addExpression(anonymousExpression);
+		
+		// ---------------------------
+		
 		Map<String, Function> functions = new HashMap<>();
 		functions.put(function.name, function);
+		functions.put(anonymousFunction.name, anonymousFunction);
 		
-		Expression entryPoint = new Expression();
-		
-		entryPoint.add(new Operator("double"));
-		entryPoint.add(Primitive.getPrimitive("+"));
-		entryPoint.add(new IntOperand(3));
-		entryPoint.add(new IntOperand(2));
-		
-		return new Program(functions, entryPoint);
+		return new Program(functions);
 	}
 	
 	private Program getEvenProgram()
@@ -167,14 +182,19 @@ public class SyntacticAnalyzer
 		
 		// ---------------------------
 		
+		Expression anonymousExpression = new Expression();
+		anonymousExpression.add(new Operator("even"));
+		anonymousExpression.add(new IntOperand(3));
+		
+		Function anonymousFunction = new Function("");
+		anonymousFunction.addExpression(anonymousExpression);
+		
+		// ---------------------------
+		
 		Map<String, Function> functions = new HashMap<>();
 		functions.put(function.name, function);
+		functions.put(anonymousFunction.name, anonymousFunction);
 		
-		Expression entryPoint = new Expression();
-		
-		entryPoint.add(new Operator("even"));
-		entryPoint.add(new IntOperand(3));
-		
-		return new Program(functions, entryPoint);
+		return new Program(functions);
 	}
 }
