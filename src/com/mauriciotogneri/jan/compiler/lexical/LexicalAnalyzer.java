@@ -1,43 +1,35 @@
 package com.mauriciotogneri.jan.compiler.lexical;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class LexicalAnalyzer
 {
 	public List<Token> analyze(String sourcePath)
 	{
-		List<Token> result = new ArrayList<>();
+		char[] characters = getCharacters(sourcePath);
 		
-		List<String> lines = getLines(sourcePath);
+		Automata automata = new Automata();
 		
-		for (String line : lines)
-		{
-			// System.out.println(line);
-		}
-		
-		return result;
+		return automata.getTokens(characters);
 	}
 	
-	private List<String> getLines(String sourcePath)
+	private char[] getCharacters(String sourcePath)
 	{
-		List<String> result = new ArrayList<>();
-		
+		char[] result = null;
 		BufferedReader bufferedReader = null;
 		
 		try
 		{
-			bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(sourcePath)));
-			String line = null;
+			bufferedReader = new BufferedReader(new FileReader(sourcePath));
 			
-			while ((line = bufferedReader.readLine()) != null)
-			{
-				result.add(line);
-			}
+			File file = new File(sourcePath);
+			
+			result = new char[(int)file.length()];
+			bufferedReader.read(result);
 		}
 		catch (Exception e)
 		{
