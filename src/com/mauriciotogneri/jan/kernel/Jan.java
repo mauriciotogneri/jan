@@ -43,13 +43,9 @@ public class Jan
 	
 	private void printResult(Operand operand)
 	{
-		if (operand.isInt())
+		if (operand.isNumber())
 		{
-			System.out.println(operand.getInt());
-		}
-		else if (operand.isFloat())
-		{
-			System.out.println(operand.getFloat());
+			System.out.println(operand.getNumber());
 		}
 		else if (operand.isBoolean())
 		{

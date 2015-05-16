@@ -11,7 +11,7 @@ import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.symbols.Operator;
 import com.mauriciotogneri.jan.kernel.symbols.Parameter;
 import com.mauriciotogneri.jan.kernel.symbols.Primitive;
-import com.mauriciotogneri.jan.kernel.symbols.operands.IntOperand;
+import com.mauriciotogneri.jan.kernel.symbols.operands.NumberOperand;
 
 public class SyntacticAnalyzer
 {
@@ -21,7 +21,7 @@ public class SyntacticAnalyzer
 		ProgramDefinition program = stateMachine.getProgram(tokens);
 		
 		// TODO
-		return getSampleProgram();
+		return getFactorialProgram();
 	}
 	
 	private Program getFibonacciProgram()
@@ -40,16 +40,16 @@ public class SyntacticAnalyzer
 		e1.add(Primitive.getPrimitive("?"));
 		e1.add(Primitive.getPrimitive("="));
 		e1.add(n);
-		e1.add(new IntOperand(0));
-		e1.add(new IntOperand(0));
+		e1.add(new NumberOperand(0));
+		e1.add(new NumberOperand(0));
 		function.addExpression(e1);
 		
 		Expression e2 = new Expression();
 		e2.add(Primitive.getPrimitive("?"));
 		e2.add(Primitive.getPrimitive("="));
 		e2.add(n);
-		e2.add(new IntOperand(1));
-		e2.add(new IntOperand(1));
+		e2.add(new NumberOperand(1));
+		e2.add(new NumberOperand(1));
 		function.addExpression(e2);
 		
 		Expression e3 = new Expression();
@@ -60,14 +60,14 @@ public class SyntacticAnalyzer
 		e3.add(new Operator("fibonacci"));
 		e3.add(Primitive.getPrimitive("-"));
 		e3.add(n);
-		e3.add(new IntOperand(2));
+		e3.add(new NumberOperand(2));
 		function.addExpression(e3);
 		
 		// ---------------------------
 		
 		Expression anonymousExpression = new Expression();
 		anonymousExpression.add(new Operator("fibonacci"));
-		anonymousExpression.add(new IntOperand(12));
+		anonymousExpression.add(new NumberOperand(12));
 		
 		Function anonymousFunction = new Function("");
 		anonymousFunction.addExpression(anonymousExpression);
@@ -96,8 +96,8 @@ public class SyntacticAnalyzer
 		e1.add(Primitive.getPrimitive("?"));
 		e1.add(Primitive.getPrimitive("<"));
 		e1.add(n);
-		e1.add(new IntOperand(2));
-		e1.add(new IntOperand(1));
+		e1.add(new NumberOperand(2));
+		e1.add(new NumberOperand(1));
 		function.addExpression(e1);
 		
 		Expression e2 = new Expression();
@@ -112,7 +112,7 @@ public class SyntacticAnalyzer
 		
 		Expression anonymousExpression = new Expression();
 		anonymousExpression.add(new Operator("factorial"));
-		anonymousExpression.add(new IntOperand(5));
+		anonymousExpression.add(new NumberOperand(5));
 		
 		Function anonymousFunction = new Function("");
 		anonymousFunction.addExpression(anonymousExpression);
@@ -150,8 +150,8 @@ public class SyntacticAnalyzer
 		Expression anonymousExpression = new Expression();
 		anonymousExpression.add(new Operator("double"));
 		anonymousExpression.add(Primitive.getPrimitive("+"));
-		anonymousExpression.add(new IntOperand(3));
-		anonymousExpression.add(new IntOperand(2));
+		anonymousExpression.add(new NumberOperand(3));
+		anonymousExpression.add(new NumberOperand(2));
 		
 		Function anonymousFunction = new Function("");
 		anonymousFunction.addExpression(anonymousExpression);
@@ -177,10 +177,10 @@ public class SyntacticAnalyzer
 		
 		Expression e = new Expression();
 		e.add(Primitive.getPrimitive("="));
-		e.add(new IntOperand(0));
+		e.add(new NumberOperand(0));
 		e.add(Primitive.getPrimitive("%"));
 		e.add(n);
-		e.add(new IntOperand(2));
+		e.add(new NumberOperand(2));
 		
 		function.addExpression(e);
 		
@@ -188,7 +188,7 @@ public class SyntacticAnalyzer
 		
 		Expression anonymousExpression = new Expression();
 		anonymousExpression.add(new Operator("even"));
-		anonymousExpression.add(new IntOperand(3));
+		anonymousExpression.add(new NumberOperand(3));
 		
 		Function anonymousFunction = new Function("");
 		anonymousFunction.addExpression(anonymousExpression);

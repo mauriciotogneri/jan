@@ -1,5 +1,7 @@
 package com.mauriciotogneri.jan.kernel.symbols;
 
+import java.math.BigDecimal;
+
 public abstract class Operand implements Symbol
 {
 	private final Type type;
@@ -7,7 +9,7 @@ public abstract class Operand implements Symbol
 	
 	public enum Type
 	{
-		INT, FLOAT, BOOLEAN, STRING, LIST, UNDEFINED;
+		NUMBER, BOOLEAN, STRING, LIST, UNDEFINED;
 	}
 	
 	public Operand(Type type, Object value)
@@ -16,14 +18,9 @@ public abstract class Operand implements Symbol
 		this.value = value;
 	}
 	
-	public boolean isInt()
+	public boolean isNumber()
 	{
-		return this.type == Type.INT;
-	}
-	
-	public boolean isFloat()
-	{
-		return this.type == Type.FLOAT;
+		return this.type == Type.NUMBER;
 	}
 	
 	public boolean isBoolean()
@@ -36,19 +33,9 @@ public abstract class Operand implements Symbol
 		return this.type == Type.STRING;
 	}
 	
-	public boolean isNumber()
+	public BigDecimal getNumber()
 	{
-		return isInt() || isFloat();
-	}
-	
-	public long getInt()
-	{
-		return (Long)this.value;
-	}
-	
-	public double getFloat()
-	{
-		return (Double)this.value;
+		return (BigDecimal)this.value;
 	}
 	
 	public boolean getBoolean()

@@ -1,7 +1,7 @@
 package com.mauriciotogneri.jan.kernel.symbols.primitives.arithmetic.operations;
 
-import com.mauriciotogneri.jan.kernel.symbols.operands.FloatOperand;
-import com.mauriciotogneri.jan.kernel.symbols.operands.IntOperand;
+import java.math.BigDecimal;
+import com.mauriciotogneri.jan.kernel.symbols.operands.NumberOperand;
 import com.mauriciotogneri.jan.kernel.symbols.primitives.arithmetic.base.PrimitiveArithmeticBinary;
 
 public class PrimitiveModule extends PrimitiveArithmeticBinary
@@ -14,14 +14,8 @@ public class PrimitiveModule extends PrimitiveArithmeticBinary
 	}
 	
 	@Override
-	protected IntOperand apply(long operand1, long operand2)
+	protected NumberOperand apply(BigDecimal operand1, BigDecimal operand2)
 	{
-		return new IntOperand(operand1 % operand2);
-	}
-	
-	@Override
-	protected FloatOperand apply(double operand1, double operand2)
-	{
-		return new FloatOperand(operand1 % operand2);
+		return new NumberOperand(operand1.remainder(operand2));
 	}
 }

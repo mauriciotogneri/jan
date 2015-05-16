@@ -1,9 +1,9 @@
 package com.mauriciotogneri.jan.kernel.symbols.primitives.arithmetic.base;
 
+import java.math.BigDecimal;
 import java.util.Stack;
 import com.mauriciotogneri.jan.kernel.symbols.Operand;
-import com.mauriciotogneri.jan.kernel.symbols.operands.FloatOperand;
-import com.mauriciotogneri.jan.kernel.symbols.operands.IntOperand;
+import com.mauriciotogneri.jan.kernel.symbols.operands.NumberOperand;
 
 public abstract class PrimitiveArithmeticUnary extends PrimitiveArithmetic
 {
@@ -27,17 +27,8 @@ public abstract class PrimitiveArithmeticUnary extends PrimitiveArithmetic
 			throw new RuntimeException("Invalid operands to perfom " + this.symbol);
 		}
 		
-		if (operand.isInt())
-		{
-			stack.push(apply(operand.getInt()));
-		}
-		else
-		{
-			stack.push(apply(operand.getFloat()));
-		}
+		stack.push(apply(operand.getNumber()));
 	}
 	
-	protected abstract IntOperand apply(long operand);
-	
-	protected abstract FloatOperand apply(double operand);
+	protected abstract NumberOperand apply(BigDecimal operand);
 }

@@ -1,7 +1,7 @@
 package com.mauriciotogneri.jan.kernel.symbols.primitives.arithmetic.operations;
 
-import com.mauriciotogneri.jan.kernel.symbols.operands.FloatOperand;
-import com.mauriciotogneri.jan.kernel.symbols.operands.IntOperand;
+import java.math.BigDecimal;
+import com.mauriciotogneri.jan.kernel.symbols.operands.NumberOperand;
 import com.mauriciotogneri.jan.kernel.symbols.primitives.arithmetic.base.PrimitiveArithmeticUnary;
 
 public class PrimitiveIncrement extends PrimitiveArithmeticUnary
@@ -14,14 +14,8 @@ public class PrimitiveIncrement extends PrimitiveArithmeticUnary
 	}
 	
 	@Override
-	protected IntOperand apply(long operand)
+	protected NumberOperand apply(BigDecimal operand)
 	{
-		return new IntOperand(operand + 1);
-	}
-	
-	@Override
-	protected FloatOperand apply(double operand)
-	{
-		return new FloatOperand(operand + 1);
+		return new NumberOperand(operand.add(BigDecimal.ONE));
 	}
 }

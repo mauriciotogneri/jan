@@ -1,9 +1,9 @@
 package com.mauriciotogneri.jan.kernel.symbols.primitives.arithmetic.base;
 
+import java.math.BigDecimal;
 import java.util.Stack;
 import com.mauriciotogneri.jan.kernel.symbols.Operand;
-import com.mauriciotogneri.jan.kernel.symbols.operands.FloatOperand;
-import com.mauriciotogneri.jan.kernel.symbols.operands.IntOperand;
+import com.mauriciotogneri.jan.kernel.symbols.operands.NumberOperand;
 
 public abstract class PrimitiveArithmeticBinary extends PrimitiveArithmetic
 {
@@ -28,28 +28,8 @@ public abstract class PrimitiveArithmeticBinary extends PrimitiveArithmetic
 			throw new RuntimeException("Invalid operands to perfom " + this.symbol);
 		}
 		
-		if (operand1.isInt() || operand2.isInt())
-		{
-			stack.push(apply(operand1.getInt(), operand2.getInt()));
-		}
-		else
-		{
-			if (operand1.isInt() && operand2.isFloat())
-			{
-				stack.push(apply(operand1.getInt(), operand2.getFloat()));
-			}
-			else if (operand1.isFloat() && operand2.isInt())
-			{
-				stack.push(apply(operand1.getFloat(), operand2.getInt()));
-			}
-			else
-			{
-				stack.push(apply(operand1.getFloat(), operand2.getFloat()));
-			}
-		}
+		stack.push(apply(operand1.getNumber(), operand2.getNumber()));
 	}
 	
-	protected abstract IntOperand apply(long operand1, long operand2);
-	
-	protected abstract FloatOperand apply(double operand1, double operand2);
+	protected abstract NumberOperand apply(BigDecimal operand1, BigDecimal operand2);
 }
