@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 
@@ -12,11 +13,11 @@ public class CommentState extends State
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if ((character == NEW_LINE) || (character == CARRIAGE_RETURN))
+		if (character.isNewLine())
 		{
-			addToken(getDelimiterType(character), character, line, column);
+			addToken(character.getDelimiterType(), character, line, column);
 			
 			return new InitialState(getTokens(), line, column);
 		}

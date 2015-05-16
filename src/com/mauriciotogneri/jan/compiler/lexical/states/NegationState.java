@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -12,17 +13,17 @@ public class NegationState extends State
 	{
 		super(tokens, line, column);
 		
-		addCharacter(EXCLAMATION);
+		addCharacter(Character.EXCLAMATION);
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if (character == EQUAL)
+		if (character == Character.EQUAL)
 		{
 			return new NotEqualState(getTokens(), line, column);
 		}
-		else if (isDelimiter(character))
+		else if (character.isDelimiter())
 		{
 			return createToken(character, Type.LOGIC_NEGATION, line, column);
 		}

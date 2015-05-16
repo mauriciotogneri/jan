@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -12,13 +13,13 @@ public class GreaterEqualState extends State
 	{
 		super(tokens, line, column);
 		
-		setLexeme(String.valueOf(GREATER) + String.valueOf(EQUAL));
+		setLexeme(Character.GREATER.toString() + Character.EQUAL.toString());
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if (isDelimiter(character))
+		if (character.isDelimiter())
 		{
 			return createToken(character, Type.LOGIC_GREATER_EQUAL, line, column);
 		}

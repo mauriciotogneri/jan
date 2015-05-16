@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -12,17 +13,17 @@ public class AddState extends State
 	{
 		super(tokens, line, column);
 		
-		addCharacter(PLUS);
+		addCharacter(Character.PLUS);
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if (character == PLUS)
+		if (character == Character.PLUS)
 		{
 			return new IncrementState(getTokens(), line, column);
 		}
-		else if (isDelimiter(character))
+		else if (character.isDelimiter())
 		{
 			return createToken(character, Type.ARITHMETIC_ADD, line, column);
 		}

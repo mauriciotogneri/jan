@@ -14,34 +14,38 @@ public class Automata
 		List<Token> tokens = new ArrayList<Token>();
 		State state = new InitialState(tokens, this.line, this.column);
 		
-		for (char character : characters)
+		for (char chr : characters)
 		{
-			if (character == State.NEW_LINE)
-			{
-				this.line++;
-				this.column = 1;
-			}
+			Character character = Character.get(chr);
 			
-			if (character == State.TAB)
+			if (character != null)
 			{
-				this.column += 3;
+				if (character == Character.NEW_LINE)
+				{
+					this.line++;
+					this.column = 1;
+				}
+				
+				if (character == Character.TAB)
+				{
+					this.column += 3;
+				}
+				
+				if (!character.isNewLine())
+				{
+					this.column++;
+				}
+				
+				state = state.process(character, this.line, this.column);
 			}
-			
-			if (!isNewLine(character))
+			else
 			{
-				this.column++;
+				throw new LexicalException(chr, this.line, this.column);
 			}
-			
-			state = state.process(character, this.line, this.column);
 		}
 		
-		state.process(State.NEW_LINE, this.line, this.column);
+		state.process(Character.NEW_LINE, this.line, this.column);
 		
 		return tokens;
-	}
-	
-	private boolean isNewLine(char character)
-	{
-		return (character == State.CARRIAGE_RETURN) || (character == State.NEW_LINE);
 	}
 }

@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -20,19 +21,19 @@ public class StringState extends State
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if (character == DOUBLE_QUOTES)
+		if (character == Character.DOUBLE_QUOTES)
 		{
 			return new StringEndState(getTokens(), getLexeme(), line, column);
 		}
-		else if (character == BACK_SLASH)
+		else if (character == Character.BACK_SLASH)
 		{
 			addCharacter(character);
 			
 			return new StringEscapeState(getTokens(), getLexeme(), line, column);
 		}
-		else if ((character == NEW_LINE) || (character == CARRIAGE_RETURN))
+		else if (character.isNewLine())
 		{
 			throw new LexicalException(character, line, column);
 		}

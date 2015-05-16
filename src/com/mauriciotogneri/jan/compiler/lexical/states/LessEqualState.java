@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -12,13 +13,13 @@ public class LessEqualState extends State
 	{
 		super(tokens, line, column);
 		
-		setLexeme(String.valueOf(LESS) + String.valueOf(EQUAL));
+		setLexeme(Character.LESS.toString() + Character.EQUAL.toString());
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if (isDelimiter(character))
+		if (character.isDelimiter())
 		{
 			return createToken(character, Type.LOGIC_LESS_EQUAL, line, column);
 		}

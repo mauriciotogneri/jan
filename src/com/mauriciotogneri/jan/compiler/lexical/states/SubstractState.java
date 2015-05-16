@@ -1,6 +1,7 @@
 package com.mauriciotogneri.jan.compiler.lexical.states;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.lexical.Character;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -12,23 +13,23 @@ public class SubstractState extends State
 	{
 		super(tokens, line, column);
 		
-		addCharacter(MINUS);
+		addCharacter(Character.MINUS);
 	}
 	
 	@Override
-	public State process(char character, int line, int column)
+	public State process(Character character, int line, int column)
 	{
-		if (character == MINUS)
+		if (character == Character.MINUS)
 		{
 			return new DecrementState(getTokens(), line, column);
 		}
-		else if (isDigit(character))
+		else if (character.isDigit())
 		{
 			addCharacter(character);
 			
 			return new IntegerState(getTokens(), getLexeme(), line, column);
 		}
-		else if (isDelimiter(character))
+		else if (character.isDelimiter())
 		{
 			return createToken(character, Type.ARITHMETIC_SUBSTRACT, line, column);
 		}

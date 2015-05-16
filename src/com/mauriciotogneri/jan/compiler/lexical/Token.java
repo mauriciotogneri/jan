@@ -66,26 +66,6 @@ public class Token
 	@Override
 	public String toString()
 	{
-		return this.type.toString() + ":\t" + ((this.lexeme.length() > 1) ? this.lexeme : getCharacter(this.lexeme.charAt(0)));
-	}
-	
-	public static String getCharacter(char character)
-	{
-		if (character == State.TAB)
-		{
-			return "\\t";
-		}
-		else if (character == State.CARRIAGE_RETURN)
-		{
-			return "\\r";
-		}
-		else if (character == State.NEW_LINE)
-		{
-			return "\\n";
-		}
-		else
-		{
-			return String.valueOf(character);
-		}
+		return this.type.toString() + ":\t" + this.lexeme;
 	}
 }
