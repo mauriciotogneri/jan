@@ -2,17 +2,18 @@ package com.mauriciotogneri.jan.compiler.lexical;
 
 import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
+import com.mauriciotogneri.jan.compiler.lexical.states.InitialState;
 
 public abstract class State
 {
 	private final int line;
 	private final int column;
 	private final StringBuilder lexeme = new StringBuilder();
+	private final List<Token> tokens;
 	
 	protected static final char TAB = '\t'; // 9
 	protected static final char NEW_LINE = '\n'; // 10
 	protected static final char CARRIAGE_RETURN = '\r'; // 13
-	
 	protected static final char SPACE = ' '; // 32
 	protected static final char EXCLAMATION = '!'; // 33
 	protected static final char DOUBLE_QUOTES = '"'; // 34
@@ -47,10 +48,21 @@ public abstract class State
 	protected static final char CLOSE_BRACES = '}'; // 125
 	protected static final char TILDE = '~'; // 126
 	
-	public State(int line, int column)
+	public State(List<Token> tokens, int line, int column)
 	{
+		this.tokens = tokens;
 		this.line = line;
 		this.column = column;
+	}
+	
+	protected int getLine()
+	{
+		return this.line;
+	}
+	
+	protected int getColumn()
+	{
+		return this.column;
 	}
 	
 	protected boolean isNewLine(char character)
@@ -73,6 +85,26 @@ public abstract class State
 		return (((character >= 'a') && (character <= 'z')) || ((character >= 'A') && (character <= 'Z')));
 	}
 	
+	protected Type getType(char character)
+	{
+		if (character == SPACE)
+		{
+			return Type.SPACE;
+		}
+		else if (character == TAB)
+		{
+			return Type.TAB;
+		}
+		else if (character == NEW_LINE)
+		{
+			return Type.NEW_LINE;
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
 	protected void addCharacter(char character)
 	{
 		this.lexeme.append(character);
@@ -84,16 +116,33 @@ public abstract class State
 		this.lexeme.append(lexeme);
 	}
 	
-	// TODO: unused?
-	protected void addToken(List<Token> tokens, Type type, char character, int line, int column)
+	protected String getLexeme()
 	{
-		tokens.add(new Token(String.valueOf(character), type, line, column));
+		return this.lexeme.toString();
 	}
 	
-	protected void addToken(List<Token> tokens, Type type)
+	protected List<Token> getTokens()
 	{
-		tokens.add(new Token(this.lexeme.toString(), type, this.line, this.column));
+		return this.tokens;
 	}
 	
-	public abstract State process(List<Token> tokens, char character, int line, int column);
+	protected void addToken(Type type, char character, int line, int column)
+	{
+		this.tokens.add(new Token(String.valueOf(character), type, line, column));
+	}
+	
+	protected void addToken(Type type)
+	{
+		this.tokens.add(new Token(getLexeme(), type, this.line, this.column));
+	}
+	
+	protected State createToken(char character, Type type, int line, int column)
+	{
+		addToken(type);
+		addToken(getType(character), character, line, column);
+		
+		return new InitialState(this.tokens, line, column);
+	}
+	
+	public abstract State process(char character, int line, int column);
 }

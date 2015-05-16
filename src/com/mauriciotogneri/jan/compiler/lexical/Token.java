@@ -11,6 +11,17 @@ public class Token
 	{
 		SYMBOL,
 		
+		// delimiters
+		SPACE, //
+		TAB, //
+		NEW_LINE, //
+		
+		// literals
+		INTEGER, //
+		FLOAT, //
+		STRING, //
+		BOOLEAN, //
+		
 		// arithmetic
 		ARITHMETIC_ADD, //
 		ARITHMETIC_SUBSTRACT

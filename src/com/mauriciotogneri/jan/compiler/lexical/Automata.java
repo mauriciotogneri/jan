@@ -11,8 +11,8 @@ public class Automata
 	
 	public List<Token> getTokens(char[] characters)
 	{
-		State state = new InitialState(this.line, this.column);
 		List<Token> tokens = new ArrayList<Token>();
+		State state = new InitialState(tokens, this.line, this.column);
 		
 		for (char character : characters)
 		{
@@ -32,7 +32,7 @@ public class Automata
 				this.column++;
 			}
 			
-			state = state.process(tokens, character, this.line, this.column);
+			state = state.process(character, this.line, this.column);
 		}
 		
 		return tokens;
