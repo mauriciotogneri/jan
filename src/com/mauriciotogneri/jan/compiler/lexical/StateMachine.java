@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.states.InitialState;
 
-public class Automata
+public class StateMachine
 {
 	private int line = 1;
 	private int column = 1;

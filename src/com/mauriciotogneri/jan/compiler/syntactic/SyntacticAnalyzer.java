@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
+import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.kernel.Expression;
 import com.mauriciotogneri.jan.kernel.Function;
 import com.mauriciotogneri.jan.kernel.Program;
@@ -16,6 +17,9 @@ public class SyntacticAnalyzer
 {
 	public Program analyze(List<Token> tokens)
 	{
+		StateMachine stateMachine = new StateMachine();
+		ProgramDefinition program = stateMachine.getProgram(tokens);
+		
 		// TODO
 		return getSampleProgram();
 	}

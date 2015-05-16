@@ -7,7 +7,7 @@ public class Token
 	public final int line;
 	public final int column;
 	
-	public static enum Type
+	public enum Type
 	{
 		// general
 		SYMBOL, //

@@ -17,9 +17,7 @@ public class CommentState extends State
 	{
 		if (character.isNewLine())
 		{
-			addToken(character.getDelimiterType(), character, line, column);
-			
-			return new InitialState(getTokens(), line, column);
+			return createToken(character, line, column);
 		}
 		else
 		{

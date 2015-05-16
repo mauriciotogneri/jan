@@ -59,6 +59,13 @@ public abstract class State
 		this.tokens.add(new Token(getLexeme(), type, this.line, this.column));
 	}
 	
+	protected State createToken(Character character, int line, int column)
+	{
+		addToken(character.getDelimiterType(), character, line, column);
+		
+		return new InitialState(this.tokens, line, column);
+	}
+	
 	protected State createToken(Character character, Type type, int line, int column)
 	{
 		addToken(type);

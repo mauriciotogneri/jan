@@ -12,9 +12,9 @@ public class LexicalAnalyzer
 	{
 		char[] characters = getCharacters(sourcePath);
 		
-		Automata automata = new Automata();
+		StateMachine stateMachine = new StateMachine();
 		
-		return automata.getTokens(characters);
+		return stateMachine.getTokens(characters);
 	}
 	
 	private char[] getCharacters(String sourcePath)

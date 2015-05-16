@@ -5,7 +5,7 @@ import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.syntactic.states.InitialState;
 
-public class Automata
+public class StateMachine
 {
 	public ProgramDefinition getProgram(List<Token> tokens)
 	{

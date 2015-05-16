@@ -20,6 +20,10 @@ public class InitialState extends State
 		{
 			return this;
 		}
+		if (token.type == Type.IMPORT)
+		{
+			return new InitialState(getProgram());
+		}
 		else
 		{
 			throw new SyntacticException(token);
