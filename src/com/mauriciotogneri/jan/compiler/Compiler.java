@@ -15,6 +15,11 @@ public class Compiler
 		LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
 		List<Token> tokens = lexicalAnalyzer.analyze(sourcePath);
 		
+		for (Token token : tokens)
+		{
+			System.out.println(token);
+		}
+		
 		SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzer();
 		Program program = syntacticAnalyzer.analyze(tokens);
 		

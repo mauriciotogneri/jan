@@ -4,6 +4,7 @@ import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalException;
 import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
+import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 
 public class AddState extends State
 {
@@ -17,23 +18,17 @@ public class AddState extends State
 	@Override
 	public State process(char character, int line, int column)
 	{
-		State state = this;
-		
-		if (isDigit(character))
+		if (character == PLUS)
 		{
-			// addToken(tokens, Type.ARITHMETIC_ADD);
-			// state = new IntegerState(this.automata, line, column, character);
+			return new IncrementState(getTokens(), line, column);
 		}
-		else if (isLetter(character))
+		else if (isDelimiter(character))
 		{
-			// addToken(tokens, Type.ARITHMETIC_ADD);
-			// state = new IdentifierState(this.automata, line, column, character);
+			return createToken(character, Type.ARITHMETIC_ADD, line, column);
 		}
 		else
 		{
-			throw new LexicalException(line, column);
+			throw new LexicalException(character, line, column);
 		}
-		
-		return state;
 	}
 }

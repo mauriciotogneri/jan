@@ -6,27 +6,21 @@ import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 
-public class FloatState extends State
+public class IncrementState extends State
 {
-	public FloatState(List<Token> tokens, String lexeme, int line, int column)
+	public IncrementState(List<Token> tokens, int line, int column)
 	{
 		super(tokens, line, column);
 		
-		setLexeme(lexeme);
+		setLexeme(String.valueOf(PLUS) + String.valueOf(PLUS));
 	}
 	
 	@Override
 	public State process(char character, int line, int column)
 	{
-		if (isDigit(character))
+		if (isDelimiter(character))
 		{
-			addCharacter(character);
-			
-			return this;
-		}
-		else if (isDelimiter(character))
-		{
-			return createToken(character, Type.FLOAT, line, column);
+			return createToken(character, Type.ARITHMETIC_INCREMENT, line, column);
 		}
 		else
 		{

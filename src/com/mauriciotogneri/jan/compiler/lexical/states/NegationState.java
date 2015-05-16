@@ -6,27 +6,25 @@ import com.mauriciotogneri.jan.compiler.lexical.State;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 
-public class FloatState extends State
+public class NegationState extends State
 {
-	public FloatState(List<Token> tokens, String lexeme, int line, int column)
+	public NegationState(List<Token> tokens, int line, int column)
 	{
 		super(tokens, line, column);
 		
-		setLexeme(lexeme);
+		addCharacter(EXCLAMATION);
 	}
 	
 	@Override
 	public State process(char character, int line, int column)
 	{
-		if (isDigit(character))
+		if (character == EQUAL)
 		{
-			addCharacter(character);
-			
-			return this;
+			return new NotEqualState(getTokens(), line, column);
 		}
 		else if (isDelimiter(character))
 		{
-			return createToken(character, Type.FLOAT, line, column);
+			return createToken(character, Type.LOGIC_NEGATION, line, column);
 		}
 		else
 		{

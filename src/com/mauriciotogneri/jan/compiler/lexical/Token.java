@@ -9,7 +9,10 @@ public class Token
 	
 	public static enum Type
 	{
-		SYMBOL,
+		// general
+		SYMBOL, //
+		IMPORT, //
+		COMMENT, //
 		
 		// delimiters
 		SPACE, //
@@ -24,7 +27,32 @@ public class Token
 		
 		// arithmetic
 		ARITHMETIC_ADD, //
-		ARITHMETIC_SUBSTRACT
+		ARITHMETIC_SUBSTRACT, //
+		ARITHMETIC_MULTIPLICATION, //
+		ARITHMETIC_DIVISION, //
+		ARITHMETIC_POWER, //
+		ARITHMETIC_MODULE, //
+		ARITHMETIC_INCREMENT, //
+		ARITHMETIC_DECREMENT, //
+		
+		// logic
+		LOGIC_EQUAL, //
+		LOGIC_NOT_EQUAL, //
+		LOGIC_GREATER, //
+		LOGIC_GREATER_EQUAL, //
+		LOGIC_LESS, //
+		LOGIC_LESS_EQUAL, //
+		LOGIC_AND, //
+		LOGIC_OR, //
+		LOGIC_NEGATION, //
+		
+		// conditional
+		CONDITIONAL_IF, //
+		
+		// arrays
+		ARRAY_INDEX, //
+		ARRAY_OPEN, //
+		ARRAY_CLOSE, //
 	}
 	
 	public Token(String lexeme, Type type, int line, int column)
@@ -33,5 +61,31 @@ public class Token
 		this.type = type;
 		this.line = line;
 		this.column = column;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.type.toString() + ":\t" + ((this.lexeme.length() > 1) ? this.lexeme : getCharacter(this.lexeme.charAt(0)));
+	}
+	
+	public static String getCharacter(char character)
+	{
+		if (character == State.TAB)
+		{
+			return "\\t";
+		}
+		else if (character == State.CARRIAGE_RETURN)
+		{
+			return "\\r";
+		}
+		else if (character == State.NEW_LINE)
+		{
+			return "\\n";
+		}
+		else
+		{
+			return String.valueOf(character);
+		}
 	}
 }

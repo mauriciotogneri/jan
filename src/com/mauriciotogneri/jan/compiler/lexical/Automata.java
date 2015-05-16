@@ -16,13 +16,13 @@ public class Automata
 		
 		for (char character : characters)
 		{
-			if (character == '\n')
+			if (character == State.NEW_LINE)
 			{
 				this.line++;
 				this.column = 1;
 			}
 			
-			if (character == '\t')
+			if (character == State.TAB)
 			{
 				this.column += 3;
 			}
@@ -35,11 +35,13 @@ public class Automata
 			state = state.process(character, this.line, this.column);
 		}
 		
+		state.process(State.NEW_LINE, this.line, this.column);
+		
 		return tokens;
 	}
 	
 	private boolean isNewLine(char character)
 	{
-		return (character == '\r') || (character == '\n');
+		return (character == State.CARRIAGE_RETURN) || (character == State.NEW_LINE);
 	}
 }

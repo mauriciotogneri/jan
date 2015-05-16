@@ -25,25 +25,25 @@ public class IntegerState extends State
 	@Override
 	public State process(char character, int line, int column)
 	{
-		State state = this;
-		
 		if (isDigit(character))
 		{
 			addCharacter(character);
+			
+			return this;
 		}
 		else if (character == DOT)
 		{
-			state = new FloatState(getTokens(), getLexeme(), getLine(), getColumn());
+			addCharacter(DOT);
+			
+			return new FloatState(getTokens(), getLexeme(), getLine(), getColumn());
 		}
 		else if (isDelimiter(character))
 		{
-			state = createToken(character, Type.INTEGER, line, column);
+			return createToken(character, Type.INTEGER, line, column);
 		}
 		else
 		{
-			throw new LexicalException(line, column);
+			throw new LexicalException(character, line, column);
 		}
-		
-		return state;
 	}
 }

@@ -4,8 +4,16 @@ public class LexicalException extends RuntimeException
 {
 	private static final long serialVersionUID = -1999285208964229934L;
 	
-	public LexicalException(int line, int column)
+	public final char character;
+	public final int line;
+	public final int column;
+	
+	public LexicalException(char character, int line, int column)
 	{
-		super("Lexical error at: [" + line + ", " + column + "]");
+		super("Lexical error. Invalid character '" + Token.getCharacter(character) + "' at: [" + line + ", " + column + "]");
+		
+		this.character = character;
+		this.line = line;
+		this.column = column;
 	}
 }

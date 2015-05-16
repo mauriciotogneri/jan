@@ -18,21 +18,19 @@ public class SymbolState extends State
 	@Override
 	public State process(char character, int line, int column)
 	{
-		State state = this;
-		
 		if (isLetter(character) || isDigit(character) || (character == UNDERSCORE))
 		{
 			addCharacter(character);
+			
+			return this;
 		}
 		else if (isDelimiter(character))
 		{
-			state = createToken(character, Type.SYMBOL, line, column);
+			return createToken(character, Type.SYMBOL, line, column);
 		}
 		else
 		{
-			throw new LexicalException(line, column);
+			throw new LexicalException(character, line, column);
 		}
-		
-		return state;
 	}
 }
