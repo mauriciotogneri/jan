@@ -12,7 +12,7 @@ public class Token
 		// general
 		SYMBOL, //
 		IMPORT, //
-		COMMENT, //
+		ANONYMOUS_FUNCTION, //
 		
 		// delimiters
 		SPACE, //
@@ -51,6 +51,7 @@ public class Token
 		
 		// arrays
 		ARRAY_INDEX, //
+		ARRAY_LENGTH, //
 		ARRAY_OPEN, //
 		ARRAY_CLOSE, //
 	}
@@ -66,6 +67,6 @@ public class Token
 	@Override
 	public String toString()
 	{
-		return this.type.toString() + ":\t" + this.lexeme;
+		return this.type.toString() + ": " + this.lexeme;
 	}
 }

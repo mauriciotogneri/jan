@@ -264,7 +264,15 @@ public enum Character
 		}
 		else if (this == DOLLAR)
 		{
+			return Type.IMPORT;
+		}
+		else if (this == AT)
+		{
 			return Type.ARRAY_INDEX;
+		}
+		else if (this == SHARP)
+		{
+			return Type.ARRAY_LENGTH;
 		}
 		else if (this == OPEN_BRACKETS)
 		{
@@ -274,13 +282,13 @@ public enum Character
 		{
 			return Type.ARRAY_CLOSE;
 		}
-		else if (this == AT)
-		{
-			return Type.IMPORT;
-		}
 		else if ((this == DOT) || (this == COLON))
 		{
 			return Type.BOOLEAN;
+		}
+		else if (this == BACK_SLASH)
+		{
+			return Type.ANONYMOUS_FUNCTION;
 		}
 		else
 		{

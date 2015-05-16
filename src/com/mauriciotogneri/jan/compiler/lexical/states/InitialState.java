@@ -62,12 +62,13 @@ public class InitialState extends State
 					state = new LessState(getTokens(), line, column);
 					break;
 				
-				case SHARP:
+				case SEMICOLON:
 					state = new CommentState(getTokens(), line, column);
 					break;
 				
 				case STAR:
 				case SLASH:
+				case SHARP:
 				case CARET:
 				case PERCENT:
 				case EQUAL:
@@ -75,6 +76,7 @@ public class InitialState extends State
 				case VERTICAL_BAR:
 				case QUESTION:
 				case DOLLAR:
+				case BACK_SLASH:
 				case OPEN_BRACKETS:
 				case CLOSE_BRACKETS:
 				case AT:
@@ -82,9 +84,7 @@ public class InitialState extends State
 				case COLON:
 					
 					// case COMMA:
-					// case SEMICOLON:
 					// case APOSTROPHE:
-					// case BACK_SLASH:
 					// case UNDERSCORE:
 					// case GRAVE_ACCENT:
 					// case TILDE:
