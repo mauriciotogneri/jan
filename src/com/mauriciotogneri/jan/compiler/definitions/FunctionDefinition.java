@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.semantic.SemanticException;
+import com.mauriciotogneri.jan.kernel.Value;
+import com.mauriciotogneri.jan.kernel.symbols.Context;
 
 public class FunctionDefinition
 {
@@ -32,9 +34,10 @@ public class FunctionDefinition
 		{
 			ExpressionDefinition expression = this.expressions.get(i);
 			
+			boolean isLastExpression = (i == (this.expressions.size() - 1));
 			boolean conditional = expression.setTree(this.parameters, program);
 			
-			if (((i < (this.expressions.size() - 1)) && !conditional) || ((i == (this.expressions.size() - 1)) && conditional))
+			if (isLastExpression == conditional)
 			{
 				throw new SemanticException("Function '" + this.name.lexeme + "' must end with a non conditional expression");
 			}
@@ -54,5 +57,20 @@ public class FunctionDefinition
 	public void addExpression(ExpressionDefinition expression)
 	{
 		this.expressions.add(expression);
+	}
+	
+	public Value evaluate(ProgramDefinition program, Context context)
+	{
+		for (ExpressionDefinition expression : this.expressions)
+		{
+			Value result = expression.evaluate(program, context);
+			
+			if (result != null)
+			{
+				return result;
+			}
+		}
+		
+		throw new RuntimeException("Function '" + this.name.lexeme + "' didn't return any value");
 	}
 }

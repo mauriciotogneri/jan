@@ -14,6 +14,8 @@ import com.mauriciotogneri.jan.compiler.semantic.nodes.ParameterNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.PrimitiveNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.conditional.IfNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.list.ListCloseNode;
+import com.mauriciotogneri.jan.kernel.Value;
+import com.mauriciotogneri.jan.kernel.symbols.Context;
 
 public class ExpressionDefinition
 {
@@ -162,14 +164,13 @@ public class ExpressionDefinition
 		stack.push(node);
 	}
 	
-	public boolean isConditional()
+	private boolean isConditional()
 	{
 		return (this.root instanceof IfNode);
 	}
 	
-	// TODO
-	public Object evaluate()
+	public Value evaluate(ProgramDefinition program, Context context)
 	{
-		return this.root;
+		return this.root.evaluate(program, context);
 	}
 }

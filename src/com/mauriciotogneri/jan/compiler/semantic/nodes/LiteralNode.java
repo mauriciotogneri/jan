@@ -1,14 +1,16 @@
 package com.mauriciotogneri.jan.compiler.semantic.nodes;
 
 import java.math.BigDecimal;
+import java.util.List;
+import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.semantic.Node;
-import com.mauriciotogneri.jan.kernel.symbols.Operand.Type;
+import com.mauriciotogneri.jan.kernel.Value;
+import com.mauriciotogneri.jan.kernel.symbols.Context;
 
 public class LiteralNode extends Node
 {
-	public final Type type;
-	private final Object value;
+	private final Value value;
 	
 	public LiteralNode(Token token)
 	{
@@ -16,31 +18,32 @@ public class LiteralNode extends Node
 		
 		if ((token.type == Token.Type.INTEGER) || (token.type == Token.Type.FLOAT))
 		{
-			this.type = Type.NUMBER;
-			this.value = new BigDecimal(token.lexeme);
+			this.value = Value.numberValue(new BigDecimal(token.lexeme));
 		}
 		else if (token.type == Token.Type.STRING)
 		{
-			this.type = Type.STRING;
-			this.value = token.lexeme;
+			this.value = Value.stringValue(token.lexeme);
 		}
 		else if (token.type == Token.Type.BOOLEAN)
 		{
-			this.type = Type.BOOLEAN;
-			this.value = Boolean.valueOf(token.lexeme.equals("."));
+			this.value = Value.booleanValue(Boolean.valueOf(token.lexeme.equals(".")));
 		}
 		else
 		{
-			this.type = null;
 			this.value = null;
 		}
 	}
 	
-	public LiteralNode(Token token, Object value)
+	public LiteralNode(Token token, List<Node> value)
 	{
 		super(token);
 		
-		this.type = Type.LIST;
-		this.value = value;
+		this.value = Value.listValue(value);
+	}
+	
+	@Override
+	public Value evaluate(ProgramDefinition program, Context context)
+	{
+		return this.value;
 	}
 }

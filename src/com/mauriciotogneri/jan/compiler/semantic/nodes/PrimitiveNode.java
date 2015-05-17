@@ -25,7 +25,7 @@ import com.mauriciotogneri.jan.compiler.semantic.nodes.logic.NegationNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.logic.NotEqualNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.logic.OrNode;
 
-public class PrimitiveNode extends OperatorNode
+public abstract class PrimitiveNode extends OperatorNode
 {
 	public PrimitiveNode(Token token, int numberOfOperands)
 	{

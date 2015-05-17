@@ -1,12 +1,20 @@
 package com.mauriciotogneri.jan.compiler.semantic.nodes.logic;
 
+import java.math.BigDecimal;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
-import com.mauriciotogneri.jan.compiler.semantic.nodes.PrimitiveNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.operations.BinaryNumericNode;
+import com.mauriciotogneri.jan.kernel.Value;
 
-public class GreaterNode extends PrimitiveNode
+public class GreaterNode extends BinaryNumericNode
 {
 	public GreaterNode(Token token)
 	{
-		super(token, 2);
+		super(token);
+	}
+	
+	@Override
+	protected Value evaluate(BigDecimal operand1, BigDecimal operand2)
+	{
+		return Value.booleanValue(operand1.compareTo(operand2) > 0);
 	}
 }

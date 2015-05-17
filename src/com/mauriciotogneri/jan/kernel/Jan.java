@@ -2,7 +2,8 @@ package com.mauriciotogneri.jan.kernel;
 
 import java.util.Scanner;
 import com.mauriciotogneri.jan.compiler.Compiler;
-import com.mauriciotogneri.jan.kernel.symbols.Operand;
+import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
+import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 
 public class Jan
 {
@@ -10,38 +11,53 @@ public class Jan
 	
 	public void run(String sourcePath)
 	{
-		Compiler compiler = new Compiler();
-		Program program = compiler.compile(sourcePath);
-		
-		if (program.hasEntryPoint())
+		try
 		{
-			Operand result = program.run();
-			printResult(result);
-		}
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		while (true)
-		{
-			System.out.print("\n" + PROMPT);
-			String line = scanner.nextLine();
+			Compiler compiler = new Compiler();
+			ProgramDefinition program = compiler.compile(sourcePath);
 			
-			if (!line.isEmpty())
+			if (program.hasEntryPoint())
 			{
-				Expression expression = compiler.getExpression(line);
-				Operand output = program.evaluate(expression);
-				printResult(output);
+				Value result = program.run();
+				printResult(result);
 			}
-			else
+			
+			Scanner scanner = new Scanner(System.in);
+			
+			while (true)
 			{
-				break;
+				System.out.print("\n" + PROMPT);
+				String line = scanner.nextLine();
+				
+				if (!line.isEmpty())
+				{
+					try
+					{
+						FunctionDefinition function = compiler.getAnonymousFunction(line);
+						Value output = program.evaluate(function);
+						printResult(output);
+					}
+					catch (Exception e)
+					{
+						System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+					}
+				}
+				else
+				{
+					break;
+				}
 			}
+			
+			scanner.close();
+			
 		}
-		
-		scanner.close();
+		catch (Exception e)
+		{
+			System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+		}
 	}
 	
-	private void printResult(Operand operand)
+	private void printResult(Value operand)
 	{
 		if (operand.isNumber())
 		{

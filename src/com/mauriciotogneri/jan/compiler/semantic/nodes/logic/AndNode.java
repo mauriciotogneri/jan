@@ -1,12 +1,19 @@
 package com.mauriciotogneri.jan.compiler.semantic.nodes.logic;
 
 import com.mauriciotogneri.jan.compiler.lexical.Token;
-import com.mauriciotogneri.jan.compiler.semantic.nodes.PrimitiveNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.operations.BinaryBooleanNode;
+import com.mauriciotogneri.jan.kernel.Value;
 
-public class AndNode extends PrimitiveNode
+public class AndNode extends BinaryBooleanNode
 {
 	public AndNode(Token token)
 	{
-		super(token, 2);
+		super(token);
+	}
+	
+	@Override
+	protected Value evaluate(Boolean operand1, Boolean operand2)
+	{
+		return Value.booleanValue(operand1 && operand2);
 	}
 }

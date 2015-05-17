@@ -25,6 +25,16 @@ public abstract class State
 	
 	protected void addFunction(FunctionDefinition function)
 	{
+		if (function.isEmpty())
+		{
+			throw new SyntacticException("Function is empty", function.getName());
+		}
+		
+		if (containsFunction(function))
+		{
+			throw new SyntacticException("Function '" + function.getName().lexeme + "' already defined", function.getName().line, function.getName().column);
+		}
+		
 		this.program.addFunction(function);
 	}
 	

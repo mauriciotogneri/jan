@@ -3,7 +3,7 @@ package com.mauriciotogneri.jan.compiler.semantic.nodes;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.semantic.Node;
 
-public class OperatorNode extends Node
+public abstract class OperatorNode extends Node
 {
 	public final int numberOfOperands;
 	

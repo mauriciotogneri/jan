@@ -28,13 +28,13 @@ public class FunctionDefinedState extends State
 		}
 		else if (token.type == Type.SYMBOL)
 		{
-			checkFunction();
+			addFunction(this.function);
 			
 			return new FunctionDefinitionState(getProgram(), new FunctionDefinition(token));
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			checkFunction();
+			addFunction(this.function);
 			
 			return new InitialState(getProgram());
 		}
@@ -42,20 +42,5 @@ public class FunctionDefinedState extends State
 		{
 			throw new SyntacticException(token);
 		}
-	}
-	
-	private void checkFunction()
-	{
-		if (this.function.isEmpty())
-		{
-			throw new SyntacticException("Function is empty", this.function.getName());
-		}
-		
-		if (containsFunction(this.function))
-		{
-			throw new SyntacticException("Function already defined", this.function.getName());
-		}
-		
-		addFunction(this.function);
 	}
 }

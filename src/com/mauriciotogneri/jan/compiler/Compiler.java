@@ -3,6 +3,7 @@ package com.mauriciotogneri.jan.compiler;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
 import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.LexicalAnalyzer;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
@@ -18,7 +19,7 @@ import com.mauriciotogneri.jan.kernel.symbols.operands.NumberOperand;
 
 public class Compiler
 {
-	public Program compile(String sourcePath)
+	public ProgramDefinition compile(String sourcePath)
 	{
 		LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
 		List<Token> tokens = lexicalAnalyzer.analyze(sourcePath);
@@ -38,10 +39,10 @@ public class Compiler
 		
 		// System.out.println("TYPE: " + program.getReturnType());
 		
-		return getSampleProgram();
+		return program;
 	}
 	
-	public Expression getExpression(String line)
+	public FunctionDefinition getAnonymousFunction(String line)
 	{
 		return null;
 	}

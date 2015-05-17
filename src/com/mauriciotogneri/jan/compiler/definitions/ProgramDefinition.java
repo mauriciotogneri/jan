@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.mauriciotogneri.jan.kernel.Value;
+import com.mauriciotogneri.jan.kernel.symbols.Context;
 import com.mauriciotogneri.jan.kernel.symbols.Operand.Type;
 
 public class ProgramDefinition
@@ -55,5 +57,22 @@ public class ProgramDefinition
 	public FunctionDefinition getFunction(String name)
 	{
 		return this.functions.get(name);
+	}
+	
+	public Value evaluate(FunctionDefinition function)
+	{
+		Context context = new Context();
+		
+		return function.evaluate(this, context);
+	}
+	
+	public Value run()
+	{
+		return evaluate(this.functions.get("\\"));
+	}
+	
+	public boolean hasEntryPoint()
+	{
+		return this.functions.containsKey("\\");
 	}
 }
