@@ -3,18 +3,18 @@ $ "math.jan"
 $ "arrays.jan"
 
 factorial n
-	? < n 2 1
+	? < n 2 1 ; if (n < 2) return 1
 	* n factorial -- n
 
 ; this is line comment
 
-fibonacci n ; this is another comment
+fibonacci n ; returns the n-th number in the fibonacci sequence
 	? = n 0 0
 	? = n 1 1
 	+ fibonacci -- n fibonacci - n 2
 
 even n
-	; this comment doesn't cause a problem
+	; returns true if n is an even number
 	= 0 % n 2
 
 pi

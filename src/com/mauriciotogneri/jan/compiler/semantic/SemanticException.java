@@ -10,4 +10,9 @@ public class SemanticException extends RuntimeException
 	{
 		super(message + " => '" + token + "' at: [" + token.line + ", " + token.column + "]");
 	}
+	
+	public SemanticException(String message)
+	{
+		super(message);
+	}
 }

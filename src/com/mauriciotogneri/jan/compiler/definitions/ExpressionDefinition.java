@@ -12,11 +12,12 @@ import com.mauriciotogneri.jan.compiler.semantic.nodes.LiteralNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.OperatorNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.ParameterNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.PrimitiveNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.conditional.IfNode;
 
 public class ExpressionDefinition
 {
 	private final List<Token> elements = new ArrayList<>();
-	private Node node;
+	private Node root;
 	
 	public void addElement(Token token)
 	{
@@ -28,7 +29,7 @@ public class ExpressionDefinition
 		return this.elements.isEmpty();
 	}
 	
-	public void setTree(ParametersDefinition parameters, ProgramDefinition program)
+	public boolean setTree(ParametersDefinition parameters, ProgramDefinition program)
 	{
 		Stack<Node> stack = new Stack<>();
 		
@@ -87,12 +88,14 @@ public class ExpressionDefinition
 		
 		if (stack.size() == 1)
 		{
-			this.node = stack.pop();
+			this.root = stack.pop();
 		}
 		else
 		{
 			throw new SemanticException("Invalid expression. It should return only one value", this.elements.get(0));
 		}
+		
+		return isConditional();
 	}
 	
 	private void applyOperator(Token token, OperatorNode node, Stack<Node> stack)
@@ -113,8 +116,14 @@ public class ExpressionDefinition
 		stack.push(node);
 	}
 	
-	public Node getTree()
+	public boolean isConditional()
 	{
-		return this.node;
+		return (this.root instanceof IfNode);
+	}
+	
+	// TODO
+	public Object evaluate()
+	{
+		return this.root;
 	}
 }
