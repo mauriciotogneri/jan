@@ -131,6 +131,6 @@ public class Token
 	@Override
 	public String toString()
 	{
-		return this.type.toString() + ": " + this.lexeme;
+		return this.lexeme;
 	}
 }

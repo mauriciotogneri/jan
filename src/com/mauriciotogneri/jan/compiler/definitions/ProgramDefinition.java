@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.mauriciotogneri.jan.kernel.symbols.Operand.Type;
 
 public class ProgramDefinition
 {
+	private Type returnType;
 	private final List<String> imports = new ArrayList<>();
 	private final Map<String, FunctionDefinition> functions = new HashMap<>();
 	
@@ -16,7 +18,12 @@ public class ProgramDefinition
 		this.imports.add(path);
 	}
 	
-	public void setTree()
+	public Type getReturnType()
+	{
+		return this.returnType;
+	}
+	
+	private void setTree()
 	{
 		Collection<FunctionDefinition> list = this.functions.values();
 		
@@ -24,6 +31,15 @@ public class ProgramDefinition
 		{
 			function.setTree(this);
 		}
+	}
+	
+	public void analyzeTree()
+	{
+		setTree();
+		
+		// TODO
+		
+		this.returnType = Type.UNDEFINED;
 	}
 	
 	public void addFunction(FunctionDefinition function)

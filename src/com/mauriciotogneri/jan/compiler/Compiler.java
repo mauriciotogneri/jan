@@ -11,7 +11,6 @@ import com.mauriciotogneri.jan.compiler.syntactic.SyntacticAnalyzer;
 import com.mauriciotogneri.jan.kernel.Expression;
 import com.mauriciotogneri.jan.kernel.Function;
 import com.mauriciotogneri.jan.kernel.Program;
-import com.mauriciotogneri.jan.kernel.symbols.Operand.Type;
 import com.mauriciotogneri.jan.kernel.symbols.Operator;
 import com.mauriciotogneri.jan.kernel.symbols.Parameter;
 import com.mauriciotogneri.jan.kernel.symbols.Primitive;
@@ -35,9 +34,9 @@ public class Compiler
 		// System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(program).toString());
 		
 		SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
-		Type type = semanticAnalyzer.analyze(program);
+		semanticAnalyzer.analyze(program);
 		
-		System.out.println("TYPE: " + type);
+		// System.out.println("TYPE: " + program.getReturnType());
 		
 		return getSampleProgram();
 	}

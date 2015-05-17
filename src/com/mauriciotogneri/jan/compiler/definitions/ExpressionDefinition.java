@@ -125,7 +125,16 @@ public class ExpressionDefinition
 		
 		if (stack.size() == 1)
 		{
-			this.root = stack.pop();
+			Node node = stack.pop();
+			
+			if (node instanceof ListCloseNode)
+			{
+				throw new SemanticException("Invalid list definition", this.elements.get(0));
+			}
+			else
+			{
+				this.root = node;
+			}
 		}
 		else
 		{

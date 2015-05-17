@@ -23,6 +23,9 @@ pi
 name
 	"Arthur Vandelay"
 
+test
+	[ ]
+
 list
 	[ 1 2 3 factorial 4 ]
 
