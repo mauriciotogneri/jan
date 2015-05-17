@@ -13,6 +13,7 @@ import com.mauriciotogneri.jan.compiler.semantic.nodes.OperatorNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.ParameterNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.PrimitiveNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.conditional.IfNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.list.ListCloseNode;
 
 public class ExpressionDefinition
 {
@@ -73,7 +74,43 @@ public class ExpressionDefinition
 				
 				if (node != null)
 				{
-					applyOperator(token, node, stack);
+					if (token.type == Type.LIST_CLOSE)
+					{
+						stack.push(node);
+					}
+					else if (token.type == Type.LIST_OPEN)
+					{
+						List<Node> list = new ArrayList<>();
+						
+						LiteralNode listNode = null;
+						
+						while (!stack.isEmpty())
+						{
+							Node operand = stack.pop();
+							
+							if (operand instanceof ListCloseNode)
+							{
+								listNode = new LiteralNode(token, list);
+							}
+							else
+							{
+								list.add(operand);
+							}
+						}
+						
+						if (listNode != null)
+						{
+							stack.push(listNode);
+						}
+						else
+						{
+							throw new SemanticException("List close not found", token);
+						}
+					}
+					else
+					{
+						applyOperator(token, node, stack);
+					}
 				}
 				else
 				{

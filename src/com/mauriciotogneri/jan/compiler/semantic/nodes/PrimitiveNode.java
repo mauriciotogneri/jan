@@ -11,6 +11,10 @@ import com.mauriciotogneri.jan.compiler.semantic.nodes.arithmetic.Multiplication
 import com.mauriciotogneri.jan.compiler.semantic.nodes.arithmetic.PowerNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.arithmetic.SubstractNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.conditional.IfNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.list.IndexNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.list.LengthNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.list.ListCloseNode;
+import com.mauriciotogneri.jan.compiler.semantic.nodes.list.ListOpenNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.logic.AndNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.logic.EqualNode;
 import com.mauriciotogneri.jan.compiler.semantic.nodes.logic.GreaterEqualNode;
@@ -101,6 +105,22 @@ public class PrimitiveNode extends OperatorNode
 		else if (token.type == Type.CONDITIONAL_IF)
 		{
 			return new IfNode(token);
+		}
+		else if (token.type == Type.LIST_INDEX)
+		{
+			return new IndexNode(token);
+		}
+		else if (token.type == Type.LIST_LENGTH)
+		{
+			return new LengthNode(token);
+		}
+		else if (token.type == Type.LIST_OPEN)
+		{
+			return new ListOpenNode(token);
+		}
+		else if (token.type == Type.LIST_CLOSE)
+		{
+			return new ListCloseNode(token);
 		}
 		
 		return null;

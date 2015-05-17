@@ -268,19 +268,19 @@ public enum Character
 		}
 		else if (this == AT)
 		{
-			return Type.ARRAY_INDEX;
+			return Type.LIST_INDEX;
 		}
 		else if (this == SHARP)
 		{
-			return Type.ARRAY_LENGTH;
+			return Type.LIST_LENGTH;
 		}
 		else if (this == OPEN_BRACKETS)
 		{
-			return Type.ARRAY_OPEN;
+			return Type.LIST_OPEN;
 		}
 		else if (this == CLOSE_BRACKETS)
 		{
-			return Type.ARRAY_CLOSE;
+			return Type.LIST_CLOSE;
 		}
 		else if ((this == DOT) || (this == COLON))
 		{

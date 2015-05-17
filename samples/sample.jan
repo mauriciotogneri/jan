@@ -1,6 +1,6 @@
 $ "logic.jan"
 $ "math.jan"
-$ "arrays.jan"
+$ "list.jan"
 
 factorial n
 	? < n 2 1 ; if (n < 2) return 1
@@ -22,5 +22,8 @@ pi
 
 name
 	"Arthur Vandelay"
+
+list
+	[ 1 2 3 factorial 4 ]
 
 \ factorial 5

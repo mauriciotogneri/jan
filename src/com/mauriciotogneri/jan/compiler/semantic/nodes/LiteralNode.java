@@ -35,4 +35,12 @@ public class LiteralNode extends Node
 			this.value = null;
 		}
 	}
+	
+	public LiteralNode(Token token, Object value)
+	{
+		super(token);
+		
+		this.type = Type.LIST;
+		this.value = value;
+	}
 }

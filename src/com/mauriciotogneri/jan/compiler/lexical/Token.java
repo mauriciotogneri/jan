@@ -49,11 +49,11 @@ public class Token
 		// conditional
 		CONDITIONAL_IF, //
 		
-		// arrays
-		ARRAY_INDEX, //
-		ARRAY_LENGTH, //
-		ARRAY_OPEN, //
-		ARRAY_CLOSE;
+		// lists
+		LIST_INDEX, //
+		LIST_LENGTH, //
+		LIST_OPEN, //
+		LIST_CLOSE;
 		
 		public boolean isSeparator()
 		{
@@ -93,19 +93,20 @@ public class Token
 				(this == LOGIC_NEGATION);
 		}
 		
-		public boolean isArrayToken()
+		public boolean isListToken()
 		{
-			return (this == ARRAY_INDEX) || //
-				(this == ARRAY_LENGTH) || //
-				(this == ARRAY_OPEN) || //
-				(this == ARRAY_CLOSE);
+			return (this == LIST_INDEX) || //
+				(this == LIST_LENGTH) || //
+				(this == LIST_OPEN) || //
+				(this == LIST_CLOSE);
 		}
 		
 		public boolean isPrimitive()
 		{
 			return (this == CONDITIONAL_IF) || //
 				isArithmeticToken() || //
-				isLogicToken();
+				isLogicToken() || //
+				isListToken();
 		}
 		
 		public boolean isExpressionToken()
@@ -115,7 +116,7 @@ public class Token
 				isLiteral() || //
 				isArithmeticToken() || //
 				isLogicToken() || //
-				isArrayToken();
+				isListToken();
 		}
 	}
 	
