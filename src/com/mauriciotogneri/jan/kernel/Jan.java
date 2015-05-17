@@ -2,8 +2,6 @@ package com.mauriciotogneri.jan.kernel;
 
 import java.util.Scanner;
 import com.mauriciotogneri.jan.compiler.Compiler;
-import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
-import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 
 public class Jan
 {
@@ -14,7 +12,7 @@ public class Jan
 		try
 		{
 			Compiler compiler = new Compiler();
-			ProgramDefinition program = compiler.compile(sourcePath);
+			Program program = compiler.compile(sourcePath);
 			
 			if (program.hasEntryPoint())
 			{
@@ -33,7 +31,7 @@ public class Jan
 				{
 					try
 					{
-						FunctionDefinition function = compiler.getAnonymousFunction(line);
+						Function function = compiler.getAnonymousFunction(line);
 						Value output = program.evaluate(function);
 						printResult(output);
 					}

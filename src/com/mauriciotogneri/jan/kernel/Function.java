@@ -1,30 +1,55 @@
 package com.mauriciotogneri.jan.kernel;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Stack;
-import com.mauriciotogneri.jan.kernel.symbols.Operand;
-import com.mauriciotogneri.jan.kernel.symbols.Operator;
-import com.mauriciotogneri.jan.kernel.symbols.Parameter;
-import com.mauriciotogneri.jan.kernel.symbols.Primitive;
-import com.mauriciotogneri.jan.kernel.symbols.Symbol;
+import com.mauriciotogneri.jan.compiler.lexical.Token;
+import com.mauriciotogneri.jan.compiler.semantic.SemanticException;
 
 public class Function
 {
-	public final String name;
-	public final Map<String, Parameter> formalParameters = new HashMap<>();
-	public final List<Expression> expressions = new ArrayList<>();
+	private final Token name;
+	private final Parameters parameters = new Parameters();
+	private final List<Expression> expressions = new ArrayList<>();
 	
-	public Function(String name)
+	public Function(Token name)
 	{
 		this.name = name;
 	}
 	
-	public void addParameter(Parameter parameter)
+	public Token getName()
 	{
-		this.formalParameters.put(parameter.name, parameter);
+		return this.name;
+	}
+	
+	public int getNumberOfParameters()
+	{
+		return this.parameters.getSize();
+	}
+	
+	public void setTree(Program program)
+	{
+		for (int i = 0; i < this.expressions.size(); i++)
+		{
+			Expression expression = this.expressions.get(i);
+			
+			boolean isLastExpression = (i == (this.expressions.size() - 1));
+			boolean conditional = expression.setTree(this.parameters, program);
+			
+			if (isLastExpression == conditional)
+			{
+				throw new SemanticException("Function '" + this.name.lexeme + "' must end with a non conditional expression");
+			}
+		}
+	}
+	
+	public boolean isEmpty()
+	{
+		return this.expressions.isEmpty();
+	}
+	
+	public void addParameter(Token name)
+	{
+		this.parameters.add(name);
 	}
 	
 	public void addExpression(Expression expression)
@@ -32,90 +57,18 @@ public class Function
 		this.expressions.add(expression);
 	}
 	
-	public void apply(Stack<Operand> stack, Map<String, Function> functions)
+	public Value evaluate(Program program, Context context)
 	{
-		Operand[] actualParameters = getOperands(stack, this.formalParameters.size());
-		
-		int initialStackSize = stack.size();
-		int conditionalExpressions = this.expressions.size() - 1;
-		
-		for (int i = 0; i < this.expressions.size(); i++)
+		for (Expression expression : this.expressions)
 		{
-			Expression expression = this.expressions.get(i);
-			evaluate(expression, stack, actualParameters, functions);
+			Value result = expression.evaluate(program, context);
 			
-			if (i < conditionalExpressions)
+			if (result != null)
 			{
-				// if expression
-				
-				if (stack.size() > initialStackSize)
-				{
-					break;
-				}
+				return result;
 			}
 		}
 		
-		int finalStackSize = stack.size();
-		
-		if (finalStackSize <= initialStackSize)
-		{
-			throw new RuntimeException("Function '" + this.name + "' must return a value");
-		}
-	}
-	
-	private Operand[] getOperands(Stack<Operand> stack, int size)
-	{
-		Operand[] result = new Operand[size];
-		
-		int index = 0;
-		
-		while (index < size)
-		{
-			result[index++] = stack.pop();
-		}
-		
-		return result;
-	}
-	
-	private void evaluate(Expression expression, Stack<Operand> stack, Operand[] actualParameters, Map<String, Function> functions)
-	{
-		List<Symbol> symbols = expression.getSymbols();
-		
-		for (Symbol symbol : symbols)
-		{
-			if (symbol instanceof Operand)
-			{
-				stack.add((Operand)symbol);
-			}
-			else if (symbol instanceof Parameter)
-			{
-				Parameter parameter = (Parameter)symbol;
-				
-				stack.add(actualParameters[parameter.index]);
-			}
-			else if (symbol instanceof Primitive)
-			{
-				Primitive primitive = (Primitive)symbol;
-				
-				primitive.apply(stack);
-			}
-			else
-			{
-				applyOperator((Operator)symbol, stack, functions);
-			}
-		}
-	}
-	
-	private void applyOperator(Operator operator, Stack<Operand> stack, Map<String, Function> functions)
-	{
-		Function function = functions.get(operator.name);
-		
-		if (function == null)
-		{
-			// TODO: check at compiling time
-			throw new RuntimeException("Function '" + operator.name + "' not defined");
-		}
-		
-		function.apply(stack, functions);
+		throw new RuntimeException("Function '" + this.name.lexeme + "' didn't return any value");
 	}
 }

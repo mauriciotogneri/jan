@@ -2,7 +2,6 @@ package com.mauriciotogneri.jan.kernel;
 
 import java.math.BigDecimal;
 import java.util.List;
-import com.mauriciotogneri.jan.compiler.semantic.Node;
 
 public class Value
 {
@@ -75,6 +74,7 @@ public class Value
 		return (String)this.value;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Node> getList()
 	{
 		return (List<Node>)this.value;

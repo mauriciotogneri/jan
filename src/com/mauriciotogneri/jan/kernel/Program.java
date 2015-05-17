@@ -1,41 +1,76 @@
 package com.mauriciotogneri.jan.kernel;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Stack;
-import com.mauriciotogneri.jan.kernel.symbols.Operand;
+import com.mauriciotogneri.jan.kernel.Value.Type;
 
 public class Program
 {
-	private final Map<String, Function> functions;
+	private Type returnType;
+	private final List<String> imports = new ArrayList<>();
+	private final Map<String, Function> functions = new HashMap<>();
 	
-	public Program(Map<String, Function> functions)
+	public void addImport(String path)
 	{
-		this.functions = functions;
+		this.imports.add(path);
 	}
 	
-	public Operand evaluate(Expression expression)
+	public Type getReturnType()
 	{
-		Stack<Operand> stack = new Stack<>();
+		return this.returnType;
+	}
+	
+	private void setTree()
+	{
+		Collection<Function> list = this.functions.values();
 		
-		Function function = new Function("");
-		function.addExpression(expression);
-		function.apply(stack, this.functions);
-		
-		if (stack.size() != 1)
+		for (Function function : list)
 		{
-			throw new RuntimeException("Stack should have only one symbol at the end of a program");
+			function.setTree(this);
 		}
-		
-		return stack.pop();
 	}
 	
-	public Operand run()
+	public void analyzeTree()
 	{
-		return evaluate(this.functions.get("").expressions.get(0));
+		setTree();
+		
+		// TODO
+		
+		this.returnType = Type.UNDEFINED;
+	}
+	
+	public void addFunction(Function function)
+	{
+		this.functions.put(function.getName().lexeme, function);
+	}
+	
+	public boolean containsFunction(String name)
+	{
+		return this.functions.containsKey(name);
+	}
+	
+	public Function getFunction(String name)
+	{
+		return this.functions.get(name);
+	}
+	
+	public Value evaluate(Function function)
+	{
+		Context context = new Context();
+		
+		return function.evaluate(this, context);
+	}
+	
+	public Value run()
+	{
+		return evaluate(this.functions.get("\\"));
 	}
 	
 	public boolean hasEntryPoint()
 	{
-		return this.functions.containsKey("");
+		return this.functions.containsKey("\\");
 	}
 }

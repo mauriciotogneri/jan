@@ -1,10 +1,10 @@
 package com.mauriciotogneri.jan.compiler.semantic;
 
-import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
+import com.mauriciotogneri.jan.kernel.Program;
 
 public class SemanticAnalyzer
 {
-	public void analyze(ProgramDefinition program)
+	public void analyze(Program program)
 	{
 		program.analyzeTree();
 	}

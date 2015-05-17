@@ -1,19 +1,19 @@
 package com.mauriciotogneri.jan.compiler.syntactic;
 
-import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
-import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
+import com.mauriciotogneri.jan.kernel.Function;
+import com.mauriciotogneri.jan.kernel.Program;
 
 public abstract class State
 {
-	private final ProgramDefinition program;
+	private final Program program;
 	
-	public State(ProgramDefinition program)
+	public State(Program program)
 	{
 		this.program = program;
 	}
 	
-	protected ProgramDefinition getProgram()
+	protected Program getProgram()
 	{
 		return this.program;
 	}
@@ -23,7 +23,7 @@ public abstract class State
 		this.program.addImport(path);
 	}
 	
-	protected void addFunction(FunctionDefinition function)
+	protected void addFunction(Function function)
 	{
 		if (function.isEmpty())
 		{
@@ -38,7 +38,7 @@ public abstract class State
 		this.program.addFunction(function);
 	}
 	
-	protected boolean containsFunction(FunctionDefinition function)
+	protected boolean containsFunction(Function function)
 	{
 		return this.program.containsFunction(function.getName().lexeme);
 	}

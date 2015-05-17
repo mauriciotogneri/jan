@@ -1,15 +1,15 @@
 package com.mauriciotogneri.jan.compiler.syntactic;
 
 import java.util.List;
-import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.syntactic.states.InitialState;
+import com.mauriciotogneri.jan.kernel.Program;
 
 public class StateMachine
 {
-	public ProgramDefinition getProgram(List<Token> tokens)
+	public Program getProgram(List<Token> tokens)
 	{
-		ProgramDefinition program = new ProgramDefinition();
+		Program program = new Program();
 		
 		State state = new InitialState(program);
 		

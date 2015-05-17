@@ -1,18 +1,18 @@
 package com.mauriciotogneri.jan.compiler.syntactic.states;
 
-import com.mauriciotogneri.jan.compiler.definitions.ExpressionDefinition;
-import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
-import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.syntactic.State;
 import com.mauriciotogneri.jan.compiler.syntactic.SyntacticException;
+import com.mauriciotogneri.jan.kernel.Expression;
+import com.mauriciotogneri.jan.kernel.Function;
+import com.mauriciotogneri.jan.kernel.Program;
 
 public class FunctionDefinedState extends State
 {
-	private final FunctionDefinition function;
+	private final Function function;
 	
-	public FunctionDefinedState(ProgramDefinition program, FunctionDefinition function)
+	public FunctionDefinedState(Program program, Function function)
 	{
 		super(program);
 		
@@ -24,13 +24,13 @@ public class FunctionDefinedState extends State
 	{
 		if (token.type == Type.TAB)
 		{
-			return new ExpressionStartState(getProgram(), this.function, new ExpressionDefinition());
+			return new ExpressionStartState(getProgram(), this.function, new Expression());
 		}
 		else if (token.type == Type.SYMBOL)
 		{
 			addFunction(this.function);
 			
-			return new FunctionDefinitionState(getProgram(), new FunctionDefinition(token));
+			return new FunctionDefinitionState(getProgram(), new Function(token));
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
