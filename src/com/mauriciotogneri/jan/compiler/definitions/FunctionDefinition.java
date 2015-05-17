@@ -20,6 +20,11 @@ public class FunctionDefinition
 		return this.name;
 	}
 	
+	public int getNumberOfParameters()
+	{
+		return this.parameters.getSize();
+	}
+	
 	public void setTree(ProgramDefinition program)
 	{
 		for (ExpressionDefinition expression : this.expressions)

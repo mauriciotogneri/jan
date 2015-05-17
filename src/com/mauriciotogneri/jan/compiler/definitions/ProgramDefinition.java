@@ -31,8 +31,13 @@ public class ProgramDefinition
 		this.functions.put(function.getName().lexeme, function);
 	}
 	
-	public boolean containsFunction(FunctionDefinition function)
+	public boolean containsFunction(String name)
 	{
-		return this.functions.containsKey(function.getName().lexeme);
+		return this.functions.containsKey(name);
+	}
+	
+	public FunctionDefinition getFunction(String name)
+	{
+		return this.functions.get(name);
 	}
 }

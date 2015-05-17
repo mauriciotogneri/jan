@@ -101,9 +101,21 @@ public class Token
 				(this == ARRAY_CLOSE);
 		}
 		
+		public boolean isPrimitive()
+		{
+			return (this == CONDITIONAL_IF) || //
+				isArithmeticToken() || //
+				isLogicToken();
+		}
+		
 		public boolean isExpressionToken()
 		{
-			return (this == SYMBOL) || (this == CONDITIONAL_IF) || isLiteral() || isArithmeticToken() || isLogicToken() || isArrayToken();
+			return (this == SYMBOL) || //
+				(this == CONDITIONAL_IF) || //
+				isLiteral() || //
+				isArithmeticToken() || //
+				isLogicToken() || //
+				isArrayToken();
 		}
 	}
 	

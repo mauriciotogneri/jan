@@ -30,7 +30,7 @@ public abstract class State
 	
 	protected boolean containsFunction(FunctionDefinition function)
 	{
-		return this.program.containsFunction(function);
+		return this.program.containsFunction(function.getName().lexeme);
 	}
 	
 	public abstract State process(Token token);
