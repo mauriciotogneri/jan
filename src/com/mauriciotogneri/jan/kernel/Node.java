@@ -20,14 +20,14 @@ public abstract class Node
 		this.children.add(node);
 	}
 	
-	protected Value get(int index, Program program, Context context)
+	protected Value get(int index, Context context)
 	{
 		Node node = this.children.get(index);
 		
-		return node.evaluate(program, context);
+		return node.evaluate(context);
 	}
 	
-	protected Context getContext(Program program, Context context)
+	protected Context getContext(Context context)
 	{
 		Value[] values = new Value[this.children.size()];
 		
@@ -35,11 +35,11 @@ public abstract class Node
 		{
 			Node node = this.children.get(i);
 			
-			values[i] = node.evaluate(program, context);
+			values[i] = node.evaluate(context);
 		}
 		
 		return new Context(values);
 	}
 	
-	public abstract Value evaluate(Program program, Context context);
+	public abstract Value evaluate(Context context);
 }

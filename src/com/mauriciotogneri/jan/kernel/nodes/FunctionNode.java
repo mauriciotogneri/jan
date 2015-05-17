@@ -3,7 +3,6 @@ package com.mauriciotogneri.jan.kernel.nodes;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Function;
-import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.Value;
 
 public class FunctionNode extends OperatorNode
@@ -18,8 +17,8 @@ public class FunctionNode extends OperatorNode
 	}
 	
 	@Override
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
-		return this.function.evaluate(program, getContext(program, context));
+		return this.function.evaluate(getContext(context));
 	}
 }

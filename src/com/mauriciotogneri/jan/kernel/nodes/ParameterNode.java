@@ -3,7 +3,6 @@ package com.mauriciotogneri.jan.kernel.nodes;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Node;
-import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.Value;
 
 public class ParameterNode extends Node
@@ -18,7 +17,7 @@ public class ParameterNode extends Node
 	}
 	
 	@Override
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
 		return context.get(this.index);
 	}

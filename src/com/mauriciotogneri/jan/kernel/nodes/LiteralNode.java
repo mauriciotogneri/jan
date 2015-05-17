@@ -5,7 +5,6 @@ import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Node;
-import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.Value;
 
 public class LiteralNode extends Node
@@ -42,7 +41,7 @@ public class LiteralNode extends Node
 	}
 	
 	@Override
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
 		return this.value;
 	}

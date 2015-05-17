@@ -2,7 +2,6 @@ package com.mauriciotogneri.jan.kernel.nodes.operations;
 
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
-import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 
@@ -14,10 +13,10 @@ public abstract class BinaryBooleanNode extends PrimitiveNode
 	}
 	
 	@Override
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
-		Value operand1 = get(0, program, context);
-		Value operand2 = get(1, program, context);
+		Value operand1 = get(0, context);
+		Value operand2 = get(1, context);
 		
 		if (operand1.isBoolean() && operand2.isBoolean())
 		{

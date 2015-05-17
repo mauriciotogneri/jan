@@ -61,7 +61,7 @@ public class Program
 	{
 		Context context = new Context();
 		
-		return function.evaluate(this, context);
+		return function.evaluate(context);
 	}
 	
 	public Value run()

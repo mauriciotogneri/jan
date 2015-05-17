@@ -5,7 +5,6 @@ import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Node;
-import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 
@@ -17,10 +16,10 @@ public class IndexNode extends PrimitiveNode
 	}
 	
 	@Override
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
-		Value operand1 = get(0, program, context);
-		Value operand2 = get(1, program, context);
+		Value operand1 = get(0, context);
+		Value operand2 = get(1, context);
 		
 		if (operand1.isNumber() && operand2.isList())
 		{
@@ -29,7 +28,7 @@ public class IndexNode extends PrimitiveNode
 			
 			Node node = value2.get(value1.intValue());
 			
-			return node.evaluate(program, context);
+			return node.evaluate(context);
 		}
 		
 		// TODO: explain more

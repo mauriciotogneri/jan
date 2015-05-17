@@ -57,11 +57,11 @@ public class Function
 		this.expressions.add(expression);
 	}
 	
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
 		for (Expression expression : this.expressions)
 		{
-			Value result = expression.evaluate(program, context);
+			Value result = expression.evaluate(context);
 			
 			if (result != null)
 			{

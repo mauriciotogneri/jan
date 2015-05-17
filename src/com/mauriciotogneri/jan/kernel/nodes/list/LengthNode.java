@@ -5,7 +5,6 @@ import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Node;
-import com.mauriciotogneri.jan.kernel.Program;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 
@@ -17,9 +16,9 @@ public class LengthNode extends PrimitiveNode
 	}
 	
 	@Override
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
-		Value operand = get(0, program, context);
+		Value operand = get(0, context);
 		
 		if (operand.isList())
 		{

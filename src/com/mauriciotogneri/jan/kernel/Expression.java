@@ -166,8 +166,8 @@ public class Expression
 		return (this.root instanceof IfNode);
 	}
 	
-	public Value evaluate(Program program, Context context)
+	public Value evaluate(Context context)
 	{
-		return this.root.evaluate(program, context);
+		return this.root.evaluate(context);
 	}
 }
