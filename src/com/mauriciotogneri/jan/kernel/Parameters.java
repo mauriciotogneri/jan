@@ -1,16 +1,16 @@
 package com.mauriciotogneri.jan.kernel;
 
-import java.util.ArrayList;
-import java.util.List;
-import com.mauriciotogneri.jan.compiler.lexical.Token;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Parameters
 {
-	private final List<Token> parameters = new ArrayList<>();
+	private int index = 0;
+	private final Map<String, Integer> parameters = new HashMap<>();
 	
-	public void add(Token name)
+	public void add(String name)
 	{
-		this.parameters.add(name);
+		this.parameters.put(name, this.index++);
 	}
 	
 	public int getSize()
@@ -20,29 +20,13 @@ public class Parameters
 	
 	public boolean containsParameter(String name)
 	{
-		for (Token token : this.parameters)
-		{
-			if (token.lexeme.equals(name))
-			{
-				return true;
-			}
-		}
-		
-		return false;
+		return this.parameters.containsKey(name);
 	}
 	
 	public int getIndex(String name)
 	{
-		for (int i = 0; i < this.parameters.size(); i++)
-		{
-			Token token = this.parameters.get(i);
-			
-			if (token.lexeme.equals(name))
-			{
-				return i;
-			}
-		}
+		Integer result = this.parameters.get(name);
 		
-		return -1;
+		return (result != null) ? result : -1;
 	}
 }

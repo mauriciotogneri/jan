@@ -31,7 +31,7 @@ public class FunctionParameterStartState extends State
 		}
 		else if (token.type == Type.SYMBOL)
 		{
-			this.function.addParameter(token);
+			this.function.addParameter(token.lexeme);
 			
 			return new FunctionParameterEndState(getProgram(), this.function);
 		}

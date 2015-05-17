@@ -8,10 +8,15 @@ import java.util.List;
 
 public class LexicalAnalyzer
 {
-	public List<Token> analyze(String sourcePath)
+	public List<Token> getTokens(String sourcePath)
 	{
 		char[] characters = getCharacters(sourcePath);
 		
+		return getTokens(characters);
+	}
+	
+	public List<Token> getTokens(char[] characters)
+	{
 		StateMachine stateMachine = new StateMachine();
 		
 		return stateMachine.getTokens(characters);

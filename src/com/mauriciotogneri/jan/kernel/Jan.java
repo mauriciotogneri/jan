@@ -16,8 +16,14 @@ public class Jan
 			
 			if (program.hasEntryPoint())
 			{
+				// long start = System.nanoTime();
+				
 				Value result = program.run();
 				printResult(result);
+				
+				// long end = System.nanoTime();
+				
+				// System.out.println(((end - start) / 1000) + " us");
 			}
 			
 			Scanner scanner = new Scanner(System.in);
@@ -31,7 +37,7 @@ public class Jan
 				{
 					try
 					{
-						Function function = compiler.getAnonymousFunction(line);
+						Function function = compiler.getAnonymousFunction(program, line);
 						Value output = program.evaluate(function);
 						printResult(output);
 					}

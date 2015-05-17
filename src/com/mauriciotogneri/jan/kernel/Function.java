@@ -47,7 +47,7 @@ public class Function
 		return this.expressions.isEmpty();
 	}
 	
-	public void addParameter(Token name)
+	public void addParameter(String name)
 	{
 		this.parameters.add(name);
 	}

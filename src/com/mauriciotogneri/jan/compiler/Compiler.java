@@ -13,10 +13,10 @@ public class Compiler
 	public Program compile(String sourcePath)
 	{
 		LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
-		List<Token> tokens = lexicalAnalyzer.analyze(sourcePath);
+		List<Token> tokens = lexicalAnalyzer.getTokens(sourcePath);
 		
 		SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzer();
-		Program program = syntacticAnalyzer.analyze(tokens);
+		Program program = syntacticAnalyzer.getProgram(tokens);
 		
 		SemanticAnalyzer semanticAnalyzer = new SemanticAnalyzer();
 		semanticAnalyzer.analyze(program);
@@ -24,8 +24,18 @@ public class Compiler
 		return program;
 	}
 	
-	public Function getAnonymousFunction(String line)
+	public Function getAnonymousFunction(Program program, String line)
 	{
-		return null;
+		char[] characters = line.toCharArray();
+		
+		LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
+		List<Token> tokens = lexicalAnalyzer.getTokens(characters);
+		
+		SyntacticAnalyzer syntacticAnalyzer = new SyntacticAnalyzer();
+		Function function = syntacticAnalyzer.getFunction(tokens);
+		
+		function.setTree(program);
+		
+		return function;
 	}
 }
