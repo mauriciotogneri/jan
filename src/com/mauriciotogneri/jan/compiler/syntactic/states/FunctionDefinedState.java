@@ -1,12 +1,12 @@
 package com.mauriciotogneri.jan.compiler.syntactic.states;
 
+import com.mauriciotogneri.jan.compiler.definitions.ExpressionDefinition;
+import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
+import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.syntactic.State;
 import com.mauriciotogneri.jan.compiler.syntactic.SyntacticException;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.ExpressionDefinition;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.FunctionDefinition;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 
 public class FunctionDefinedState extends State
 {
@@ -49,6 +49,11 @@ public class FunctionDefinedState extends State
 		if (this.function.isEmpty())
 		{
 			throw new SyntacticException("Function is empty", this.function.getName());
+		}
+		
+		if (containsFunction(this.function))
+		{
+			throw new SyntacticException("Function already defined", this.function.getName());
 		}
 		
 		addFunction(this.function);

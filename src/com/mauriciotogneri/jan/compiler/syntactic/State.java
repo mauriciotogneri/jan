@@ -1,8 +1,8 @@
 package com.mauriciotogneri.jan.compiler.syntactic;
 
+import com.mauriciotogneri.jan.compiler.definitions.FunctionDefinition;
+import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.FunctionDefinition;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 
 public abstract class State
 {
@@ -26,6 +26,11 @@ public abstract class State
 	protected void addFunction(FunctionDefinition function)
 	{
 		this.program.addFunction(function);
+	}
+	
+	protected boolean containsFunction(FunctionDefinition function)
+	{
+		return this.program.containsFunction(function);
 	}
 	
 	public abstract State process(Token token);

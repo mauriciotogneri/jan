@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jan.compiler.syntactic.definitions;
+package com.mauriciotogneri.jan.compiler.definitions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import com.mauriciotogneri.jan.compiler.lexical.Token;
 public class FunctionDefinition
 {
 	private final Token name;
-	private final List<Token> parameters = new ArrayList<>();
+	private final ParametersDefinition parameters = new ParametersDefinition();
 	private final List<ExpressionDefinition> expressions = new ArrayList<>();
 	
 	public FunctionDefinition(Token name)
@@ -18,6 +18,14 @@ public class FunctionDefinition
 	public Token getName()
 	{
 		return this.name;
+	}
+	
+	public void setTree(ProgramDefinition program)
+	{
+		for (ExpressionDefinition expression : this.expressions)
+		{
+			expression.setTree(this.parameters, program);
+		}
 	}
 	
 	public boolean isEmpty()

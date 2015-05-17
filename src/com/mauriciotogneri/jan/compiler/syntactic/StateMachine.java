@@ -1,8 +1,8 @@
 package com.mauriciotogneri.jan.compiler.syntactic;
 
 import java.util.List;
+import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.syntactic.states.InitialState;
 
 public class StateMachine

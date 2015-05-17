@@ -1,10 +1,10 @@
 package com.mauriciotogneri.jan.compiler.syntactic.states;
 
+import com.mauriciotogneri.jan.compiler.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.syntactic.State;
 import com.mauriciotogneri.jan.compiler.syntactic.SyntacticException;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 
 public class ImportEndState extends State
 {
