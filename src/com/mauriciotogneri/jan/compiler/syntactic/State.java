@@ -3,7 +3,6 @@ package com.mauriciotogneri.jan.compiler.syntactic;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.FunctionDefinition;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
-import com.mauriciotogneri.jan.compiler.syntactic.states.InitialState;
 
 public abstract class State
 {
@@ -19,16 +18,14 @@ public abstract class State
 		return this.program;
 	}
 	
+	protected void addImport(String path)
+	{
+		this.program.addImport(path);
+	}
+	
 	protected void addFunction(FunctionDefinition function)
 	{
 		this.program.addFunction(function);
-	}
-	
-	protected State createFunction(FunctionDefinition function)
-	{
-		addFunction(function);
-		
-		return new InitialState(this.program);
 	}
 	
 	public abstract State process(Token token);

@@ -7,31 +7,33 @@ import com.mauriciotogneri.jan.compiler.syntactic.SyntacticException;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.FunctionDefinition;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 
-public class InitialState extends State
+public class FunctionParameterStartState extends State
 {
-	public InitialState(ProgramDefinition program)
+	private final FunctionDefinition function;
+	
+	public FunctionParameterStartState(ProgramDefinition program, FunctionDefinition function)
 	{
 		super(program);
+		
+		this.function = function;
 	}
 	
 	@Override
 	public State process(Token token)
 	{
-		if (token.type == Type.NEW_LINE)
+		if (token.type.isSeparator())
 		{
 			return this;
 		}
-		else if (token.type == Type.IMPORT)
+		else if (token.type == Type.NEW_LINE)
 		{
-			return new ImportState(getProgram());
+			return new FunctionDefinedState(getProgram(), this.function);
 		}
 		else if (token.type == Type.SYMBOL)
 		{
-			return new FunctionDefinitionState(getProgram(), new FunctionDefinition(token));
-		}
-		else if (token.type == Type.ANONYMOUS_FUNCTION)
-		{
-			return new AnonymousFunctionState(getProgram(), new FunctionDefinition(token));
+			this.function.addParameter(token);
+			
+			return new FunctionParameterEndState(getProgram(), this.function);
 		}
 		else
 		{

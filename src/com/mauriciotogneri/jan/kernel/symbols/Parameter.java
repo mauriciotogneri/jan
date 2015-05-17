@@ -1,6 +1,5 @@
 package com.mauriciotogneri.jan.kernel.symbols;
 
-
 public class Parameter implements Symbol
 {
 	public final String name;

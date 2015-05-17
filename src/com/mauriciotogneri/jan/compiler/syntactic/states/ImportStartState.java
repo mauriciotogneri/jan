@@ -4,12 +4,11 @@ import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.syntactic.State;
 import com.mauriciotogneri.jan.compiler.syntactic.SyntacticException;
-import com.mauriciotogneri.jan.compiler.syntactic.definitions.FunctionDefinition;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 
-public class InitialState extends State
+public class ImportStartState extends State
 {
-	public InitialState(ProgramDefinition program)
+	public ImportStartState(ProgramDefinition program)
 	{
 		super(program);
 	}
@@ -17,21 +16,13 @@ public class InitialState extends State
 	@Override
 	public State process(Token token)
 	{
-		if (token.type == Type.NEW_LINE)
+		if (token.type.isSeparator())
 		{
 			return this;
 		}
-		else if (token.type == Type.IMPORT)
+		else if (token.type == Type.STRING)
 		{
-			return new ImportState(getProgram());
-		}
-		else if (token.type == Type.SYMBOL)
-		{
-			return new FunctionDefinitionState(getProgram(), new FunctionDefinition(token));
-		}
-		else if (token.type == Type.ANONYMOUS_FUNCTION)
-		{
-			return new AnonymousFunctionState(getProgram(), new FunctionDefinition(token));
+			return new ImportEndState(getProgram(), token.lexeme);
 		}
 		else
 		{

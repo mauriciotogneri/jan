@@ -53,7 +53,58 @@ public class Token
 		ARRAY_INDEX, //
 		ARRAY_LENGTH, //
 		ARRAY_OPEN, //
-		ARRAY_CLOSE, //
+		ARRAY_CLOSE;
+		
+		public boolean isSeparator()
+		{
+			return (this == SPACE) || (this == TAB);
+		}
+		
+		public boolean isLiteral()
+		{
+			return (this == INTEGER) || //
+				(this == FLOAT) || //
+				(this == STRING) || //
+				(this == BOOLEAN);
+		}
+		
+		public boolean isArithmeticToken()
+		{
+			return (this == ARITHMETIC_ADD) || //
+				(this == ARITHMETIC_SUBSTRACT) || //
+				(this == ARITHMETIC_MULTIPLICATION) || //
+				(this == ARITHMETIC_DIVISION) || //
+				(this == ARITHMETIC_POWER) || //
+				(this == ARITHMETIC_MODULE) || //
+				(this == ARITHMETIC_INCREMENT) || //
+				(this == ARITHMETIC_DECREMENT);
+		}
+		
+		public boolean isLogicToken()
+		{
+			return (this == LOGIC_EQUAL) || //
+				(this == LOGIC_NOT_EQUAL) || //
+				(this == LOGIC_GREATER) || //
+				(this == LOGIC_GREATER_EQUAL) || //
+				(this == LOGIC_LESS) || //
+				(this == LOGIC_LESS_EQUAL) || //
+				(this == LOGIC_AND) || //
+				(this == LOGIC_OR) || //
+				(this == LOGIC_NEGATION);
+		}
+		
+		public boolean isArrayToken()
+		{
+			return (this == ARRAY_INDEX) || //
+				(this == ARRAY_LENGTH) || //
+				(this == ARRAY_OPEN) || //
+				(this == ARRAY_CLOSE);
+		}
+		
+		public boolean isExpressionToken()
+		{
+			return (this == SYMBOL) || (this == CONDITIONAL_IF) || isLiteral() || isArithmeticToken() || isLogicToken() || isArrayToken();
+		}
 	}
 	
 	public Token(String lexeme, Type type, int line, int column)

@@ -7,7 +7,7 @@ import com.mauriciotogneri.jan.compiler.lexical.states.InitialState;
 public class StateMachine
 {
 	private int line = 1;
-	private int column = 1;
+	private int column = 0;
 	
 	public List<Token> getTokens(char[] characters)
 	{
@@ -23,7 +23,7 @@ public class StateMachine
 				if (character == Character.NEW_LINE)
 				{
 					this.line++;
-					this.column = 1;
+					this.column = 0;
 				}
 				
 				if (character == Character.TAB)

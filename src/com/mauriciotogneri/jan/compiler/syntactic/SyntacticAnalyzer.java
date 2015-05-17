@@ -3,6 +3,7 @@ package com.mauriciotogneri.jan.compiler.syntactic;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.google.gson.Gson;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.syntactic.definitions.ProgramDefinition;
 import com.mauriciotogneri.jan.kernel.Expression;
@@ -19,6 +20,8 @@ public class SyntacticAnalyzer
 	{
 		StateMachine stateMachine = new StateMachine();
 		ProgramDefinition program = stateMachine.getProgram(tokens);
+		
+		System.out.println(new Gson().toJson(program).toString());
 		
 		// TODO
 		return getFactorialProgram();
