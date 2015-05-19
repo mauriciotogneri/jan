@@ -1,14 +1,15 @@
 package com.mauriciotogneri.jan.kernel;
 
 import java.util.List;
-import java.util.Scanner;
 import com.mauriciotogneri.jan.compiler.Compiler;
+import com.mauriciotogneri.jan.execution.reader.DefaultReader;
+import com.mauriciotogneri.jan.execution.reader.Reader;
+import com.mauriciotogneri.jan.execution.writer.DefaultWriter;
+import com.mauriciotogneri.jan.execution.writer.Writer;
 
 public class Jan
 {
-	private static final String PROMPT = "> ";
-	
-	public void run(String sourcePath, boolean showPrompt)
+	public void run(String sourcePath, Writer writer, Reader reader)
 	{
 		try
 		{
@@ -20,61 +21,61 @@ public class Jan
 				// long start = System.nanoTime();
 				
 				Value result = program.run();
-				printResult(result);
+				printResult(result, writer);
 				
 				// long end = System.nanoTime();
 				
 				// System.out.println(((end - start) / 1000) + " us");
 			}
 			
-			if (showPrompt)
+			if (reader != null)
 			{
-				Scanner scanner = new Scanner(System.in);
+				String line = null;
 				
-				while (true)
+				do
 				{
-					System.out.print("\n" + PROMPT);
-					String line = scanner.nextLine();
+					line = reader.readExpression();
 					
-					if (!line.isEmpty())
+					if ((line != null) && (!line.isEmpty()))
 					{
 						try
 						{
 							Function function = compiler.getAnonymousFunction(program, line);
 							Value value = program.evaluate(function);
-							printResult(value);
+							printResult(value, writer);
 						}
 						catch (Exception e)
 						{
-							printException(e);
+							printException(e, writer);
 						}
 					}
-					else
-					{
-						break;
-					}
-				}
+				} while ((line != null) && (!line.isEmpty()));
 				
-				scanner.close();
+				reader.close();
 			}
 			
 		}
 		catch (Exception e)
 		{
-			printException(e);
+			printException(e, writer);
 		}
 	}
 	
-	private void printException(Exception e)
+	public void run(String sourcePath, Writer writer)
 	{
-		System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+		run(sourcePath, writer, null);
 	}
 	
-	private void printResult(Value value)
+	private void printException(Exception e, Writer writer)
+	{
+		writer.printError(e.getClass().getSimpleName() + ": " + e.getMessage());
+	}
+	
+	private void printResult(Value value, Writer writer)
 	{
 		StringBuilder builder = new StringBuilder();
 		printResult(value, builder);
-		System.out.print(builder);
+		writer.printValue(builder.toString());
 	}
 	
 	private void printResult(Value value, StringBuilder builder)
@@ -89,7 +90,7 @@ public class Jan
 		}
 		else if (value.isString())
 		{
-			builder.append(value.getString());
+			builder.append("\"" + value.getString() + "\"");
 		}
 		else if (value.isList())
 		{
@@ -117,10 +118,22 @@ public class Jan
 	{
 		if (args.length > 0)
 		{
+			Jan jan = new Jan();
+			
+			Writer writer = new DefaultWriter();
+			
 			boolean showPrompt = (args.length > 1) ? Boolean.parseBoolean(args[1]) : true;
 			
-			Jan jan = new Jan();
-			jan.run(args[0], showPrompt);
+			if (showPrompt)
+			{
+				Reader reader = new DefaultReader();
+				
+				jan.run(args[0], writer, reader);
+			}
+			else
+			{
+				jan.run(args[0], writer);
+			}
 		}
 		else
 		{
