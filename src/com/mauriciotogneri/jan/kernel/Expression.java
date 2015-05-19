@@ -7,6 +7,7 @@ import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.semantic.SemanticException;
 import com.mauriciotogneri.jan.kernel.nodes.FunctionNode;
+import com.mauriciotogneri.jan.kernel.nodes.ListNode;
 import com.mauriciotogneri.jan.kernel.nodes.LiteralNode;
 import com.mauriciotogneri.jan.kernel.nodes.OperatorNode;
 import com.mauriciotogneri.jan.kernel.nodes.ParameterNode;
@@ -81,7 +82,7 @@ public class Expression
 					{
 						List<Node> list = new ArrayList<>();
 						
-						LiteralNode listNode = null;
+						ListNode listNode = null;
 						
 						while (!stack.isEmpty())
 						{
@@ -89,7 +90,7 @@ public class Expression
 							
 							if (operand instanceof ListCloseNode)
 							{
-								listNode = new LiteralNode(token, list);
+								listNode = new ListNode(token, list);
 							}
 							else
 							{

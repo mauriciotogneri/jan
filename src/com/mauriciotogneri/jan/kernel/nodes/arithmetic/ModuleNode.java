@@ -15,6 +15,6 @@ public class ModuleNode extends BinaryNumericNode
 	@Override
 	public Value evaluate(BigDecimal operand1, BigDecimal operand2)
 	{
-		return Value.numberValue(operand1.remainder(operand2));
+		return Value.asNumber(operand1.remainder(operand2));
 	}
 }

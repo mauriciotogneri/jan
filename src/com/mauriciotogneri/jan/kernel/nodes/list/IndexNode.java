@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
-import com.mauriciotogneri.jan.kernel.Node;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 
@@ -24,11 +23,9 @@ public class IndexNode extends PrimitiveNode
 		if (operand1.isNumber() && operand2.isList())
 		{
 			BigDecimal value1 = operand1.getNumber();
-			List<Node> value2 = operand2.getList();
+			List<Value> value2 = operand2.getList();
 			
-			Node node = value2.get(value1.intValue());
-			
-			return node.evaluate(context);
+			return value2.get(value1.intValue());
 		}
 		
 		// TODO: explain more

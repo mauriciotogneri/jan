@@ -15,6 +15,6 @@ public class IncrementNode extends UnaryNumericNode
 	@Override
 	public Value evaluate(BigDecimal operand)
 	{
-		return Value.numberValue(operand.add(BigDecimal.ONE));
+		return Value.asNumber(operand.add(BigDecimal.ONE));
 	}
 }

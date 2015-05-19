@@ -14,6 +14,6 @@ public class OrNode extends BinaryBooleanNode
 	@Override
 	protected Value evaluate(Boolean operand1, Boolean operand2)
 	{
-		return Value.booleanValue(operand1 || operand2);
+		return Value.asBoolean(operand1 || operand2);
 	}
 }

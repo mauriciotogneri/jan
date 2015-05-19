@@ -1,5 +1,6 @@
 package com.mauriciotogneri.jan.kernel;
 
+import java.util.List;
 import java.util.Scanner;
 import com.mauriciotogneri.jan.compiler.Compiler;
 
@@ -7,7 +8,7 @@ public class Jan
 {
 	private static final String PROMPT = "> ";
 	
-	public void run(String sourcePath)
+	public void run(String sourcePath, boolean showPrompt)
 	{
 		try
 		{
@@ -26,54 +27,89 @@ public class Jan
 				// System.out.println(((end - start) / 1000) + " us");
 			}
 			
-			Scanner scanner = new Scanner(System.in);
-			
-			while (true)
+			if (showPrompt)
 			{
-				System.out.print("\n" + PROMPT);
-				String line = scanner.nextLine();
+				Scanner scanner = new Scanner(System.in);
 				
-				if (!line.isEmpty())
+				while (true)
 				{
-					try
+					System.out.print("\n" + PROMPT);
+					String line = scanner.nextLine();
+					
+					if (!line.isEmpty())
 					{
-						Function function = compiler.getAnonymousFunction(program, line);
-						Value output = program.evaluate(function);
-						printResult(output);
+						try
+						{
+							Function function = compiler.getAnonymousFunction(program, line);
+							Value value = program.evaluate(function);
+							printResult(value);
+						}
+						catch (Exception e)
+						{
+							printException(e);
+						}
 					}
-					catch (Exception e)
+					else
 					{
-						System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+						break;
 					}
 				}
-				else
-				{
-					break;
-				}
+				
+				scanner.close();
 			}
-			
-			scanner.close();
 			
 		}
 		catch (Exception e)
 		{
-			System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+			printException(e);
 		}
 	}
 	
-	private void printResult(Value operand)
+	private void printException(Exception e)
 	{
-		if (operand.isNumber())
+		System.err.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+	}
+	
+	private void printResult(Value value)
+	{
+		StringBuilder builder = new StringBuilder();
+		printResult(value, builder);
+		System.out.print(builder);
+	}
+	
+	private void printResult(Value value, StringBuilder builder)
+	{
+		if (value.isNumber())
 		{
-			System.out.println(operand.getNumber());
+			builder.append(value.getNumber());
 		}
-		else if (operand.isBoolean())
+		else if (value.isBoolean())
 		{
-			System.out.println(operand.getBoolean());
+			builder.append(value.getBoolean());
 		}
-		else if (operand.isString())
+		else if (value.isString())
 		{
-			System.out.println(operand.getString());
+			builder.append(value.getString());
+		}
+		else if (value.isList())
+		{
+			List<Value> list = value.getList();
+			
+			builder.append("[");
+			
+			for (int i = 0; i < list.size(); i++)
+			{
+				Value element = list.get(i);
+				
+				if (i != 0)
+				{
+					builder.append(", ");
+				}
+				
+				printResult(element, builder);
+			}
+			
+			builder.append("]");
 		}
 	}
 	
@@ -81,12 +117,14 @@ public class Jan
 	{
 		if (args.length > 0)
 		{
+			boolean showPrompt = (args.length > 1) ? Boolean.parseBoolean(args[1]) : true;
+			
 			Jan jan = new Jan();
-			jan.run(args[0]);
+			jan.run(args[0], showPrompt);
 		}
 		else
 		{
-			System.err.println("Usage: java -jar jan.jar [SOURCE_PATH]");
+			System.err.println("Usage: java -jar jan.jar [SOURCE_PATH] [SHOW_PROMPT]");
 		}
 	}
 }

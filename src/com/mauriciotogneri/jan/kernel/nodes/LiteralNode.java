@@ -1,7 +1,6 @@
 package com.mauriciotogneri.jan.kernel.nodes;
 
 import java.math.BigDecimal;
-import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Node;
@@ -17,27 +16,20 @@ public class LiteralNode extends Node
 		
 		if ((token.type == Token.Type.INTEGER) || (token.type == Token.Type.FLOAT))
 		{
-			this.value = Value.numberValue(new BigDecimal(token.lexeme));
+			this.value = Value.asNumber(new BigDecimal(token.lexeme));
 		}
 		else if (token.type == Token.Type.STRING)
 		{
-			this.value = Value.stringValue(token.lexeme);
+			this.value = Value.asString(token.lexeme);
 		}
 		else if (token.type == Token.Type.BOOLEAN)
 		{
-			this.value = Value.booleanValue(Boolean.valueOf(token.lexeme.equals(".")));
+			this.value = Value.asBoolean(Boolean.valueOf(token.lexeme.equals(".")));
 		}
 		else
 		{
 			this.value = null;
 		}
-	}
-	
-	public LiteralNode(Token token, List<Node> value)
-	{
-		super(token);
-		
-		this.value = Value.listValue(value);
 	}
 	
 	@Override

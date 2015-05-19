@@ -15,6 +15,6 @@ public class MultiplicationNode extends BinaryNumericNode
 	@Override
 	public Value evaluate(BigDecimal operand1, BigDecimal operand2)
 	{
-		return Value.numberValue(operand1.multiply(operand2));
+		return Value.asNumber(operand1.multiply(operand2));
 	}
 }

@@ -19,22 +19,22 @@ public class Value
 		this.value = value;
 	}
 	
-	public static Value numberValue(BigDecimal value)
+	public static Value asNumber(BigDecimal value)
 	{
 		return new Value(Type.NUMBER, value);
 	}
 	
-	public static Value stringValue(String value)
+	public static Value asString(String value)
 	{
 		return new Value(Type.STRING, value);
 	}
 	
-	public static Value booleanValue(Boolean value)
+	public static Value asBoolean(Boolean value)
 	{
 		return new Value(Type.BOOLEAN, value);
 	}
 	
-	public static Value listValue(List<Node> value)
+	public static Value asList(List<Value> value)
 	{
 		return new Value(Type.LIST, value);
 	}
@@ -75,8 +75,8 @@ public class Value
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Node> getList()
+	public List<Value> getList()
 	{
-		return (List<Node>)this.value;
+		return (List<Value>)this.value;
 	}
 }

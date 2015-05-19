@@ -15,6 +15,6 @@ public class PowerNode extends BinaryNumericNode
 	@Override
 	public Value evaluate(BigDecimal operand1, BigDecimal operand2)
 	{
-		return Value.numberValue(operand1.pow(operand2.intValue()));
+		return Value.asNumber(operand1.pow(operand2.intValue()));
 	}
 }

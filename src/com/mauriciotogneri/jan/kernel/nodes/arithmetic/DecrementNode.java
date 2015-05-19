@@ -15,6 +15,6 @@ public class DecrementNode extends UnaryNumericNode
 	@Override
 	public Value evaluate(BigDecimal operand)
 	{
-		return Value.numberValue(operand.subtract(BigDecimal.ONE));
+		return Value.asNumber(operand.subtract(BigDecimal.ONE));
 	}
 }

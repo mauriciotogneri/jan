@@ -14,6 +14,6 @@ public class NegationNode extends UnaryBooleanNode
 	@Override
 	protected Value evaluate(Boolean operand)
 	{
-		return Value.booleanValue(!operand);
+		return Value.asBoolean(!operand);
 	}
 }

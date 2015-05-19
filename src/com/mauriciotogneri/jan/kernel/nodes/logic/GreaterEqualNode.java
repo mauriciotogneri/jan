@@ -15,6 +15,6 @@ public class GreaterEqualNode extends BinaryNumericNode
 	@Override
 	protected Value evaluate(BigDecimal operand1, BigDecimal operand2)
 	{
-		return Value.booleanValue(operand1.compareTo(operand2) >= 0);
+		return Value.asBoolean(operand1.compareTo(operand2) >= 0);
 	}
 }

@@ -21,12 +21,13 @@ pi
 	-3.1415
 
 name
-	"Arthur Vandelay"
+	+ + "Arthur" " " "Vandelay"
 
-test
+list_empty
 	[ ]
 
-list
-	[ 1 2 3 factorial 4 ]
+list_filled
+	[ 1 2 3 ]
 
-\ factorial 5
+;\ factorial 5
+\ list_filled
