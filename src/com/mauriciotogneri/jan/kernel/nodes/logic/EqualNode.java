@@ -23,4 +23,10 @@ public class EqualNode extends BinaryNode
 	{
 		return Value.asBoolean(operand1.booleanValue() == operand2.booleanValue());
 	}
+	
+	@Override
+	protected Value evaluate(String operand1, String operand2)
+	{
+		return Value.asBoolean(operand1.equals(operand2));
+	}
 }

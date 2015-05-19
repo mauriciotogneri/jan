@@ -33,6 +33,13 @@ public abstract class BinaryNode extends PrimitiveNode
 			
 			return evaluate(value1, value2);
 		}
+		else if (operand1.isString() && operand2.isString())
+		{
+			String value1 = operand1.getString();
+			String value2 = operand2.getString();
+			
+			return evaluate(value1, value2);
+		}
 		
 		// TODO: explain more
 		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");
@@ -41,4 +48,6 @@ public abstract class BinaryNode extends PrimitiveNode
 	protected abstract Value evaluate(BigDecimal operand1, BigDecimal operand2);
 	
 	protected abstract Value evaluate(Boolean operand1, Boolean operand2);
+	
+	protected abstract Value evaluate(String operand1, String operand2);
 }
