@@ -27,6 +27,13 @@ public class IndexNode extends PrimitiveNode
 			
 			return value2.get(value1.intValue());
 		}
+		else if (operand1.isNumber() && operand2.isString())
+		{
+			BigDecimal value1 = operand1.getNumber();
+			String value2 = operand2.getString();
+			
+			return Value.asString(String.valueOf(value2.charAt(value1.intValue())));
+		}
 		
 		// TODO: explain more
 		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");

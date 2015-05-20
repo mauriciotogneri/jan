@@ -8,10 +8,15 @@ factorial n
 
 ; this is line comment
 
-fibonacci n ; returns the n-th number in the fibonacci sequence
-	? = n 0 0
-	? = n 1 1
-	+ fibonacci -- n fibonacci - n 2
+fibo index limit list
+	? >= index limit list
+	? = 0 index fibo 1 limit [ 1 ]
+	? = 1 index fibo 2 limit [ 1 1 ]
+	fibo ++ index limit + + @ - index 1 list @ - index 2 list list
+
+; returns the list of the 'n' first numbers in the Fibonacci sequence
+fibonacci n
+	fibo 0 n [ ]
 
 even n
 	; returns true if n is an even number
@@ -29,5 +34,4 @@ list_empty
 list_filled
 	[ 1 2 3 ]
 
-;\ factorial 5
-\ list_filled
+\ fibonacci 10

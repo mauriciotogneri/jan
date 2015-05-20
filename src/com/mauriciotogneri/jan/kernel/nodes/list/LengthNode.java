@@ -25,6 +25,12 @@ public class LengthNode extends PrimitiveNode
 			
 			return Value.asNumber(BigDecimal.valueOf(value.size()));
 		}
+		else if (operand.isString())
+		{
+			String value = operand.getString();
+			
+			return Value.asNumber(BigDecimal.valueOf(value.length()));
+		}
 		
 		// TODO: explain more
 		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");

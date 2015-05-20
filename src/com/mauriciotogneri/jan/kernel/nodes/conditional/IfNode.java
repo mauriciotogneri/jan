@@ -16,13 +16,17 @@ public class IfNode extends PrimitiveNode
 	public Value evaluate(Context context)
 	{
 		Value operand1 = get(0, context);
-		Value operand2 = get(1, context);
 		
 		if (operand1.isBoolean())
 		{
-			Boolean value = operand1.getBoolean();
-			
-			return (value) ? operand2 : null;
+			if (operand1.getBoolean())
+			{
+				return get(1, context);
+			}
+			else
+			{
+				return null;
+			}
 		}
 		
 		// TODO: explain more
