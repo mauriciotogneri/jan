@@ -62,6 +62,10 @@ public class InitialState extends State
 					state = new LessState(getTokens(), line, column);
 					break;
 				
+				case QUESTION:
+					state = new IfState(getTokens(), line, column);
+					break;
+				
 				case SEMICOLON:
 					state = new CommentState(getTokens(), line, column);
 					break;
@@ -74,7 +78,6 @@ public class InitialState extends State
 				case EQUAL:
 				case AMPERSAND:
 				case VERTICAL_BAR:
-				case QUESTION:
 				case DOLLAR:
 				case BACK_SLASH:
 				case OPEN_BRACKETS:

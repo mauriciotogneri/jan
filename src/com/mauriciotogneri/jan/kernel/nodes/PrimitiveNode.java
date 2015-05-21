@@ -10,6 +10,7 @@ import com.mauriciotogneri.jan.kernel.nodes.arithmetic.ModuleNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.MultiplicationNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.PowerNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.SubstractNode;
+import com.mauriciotogneri.jan.kernel.nodes.conditional.IfElseNode;
 import com.mauriciotogneri.jan.kernel.nodes.conditional.IfNode;
 import com.mauriciotogneri.jan.kernel.nodes.list.IndexNode;
 import com.mauriciotogneri.jan.kernel.nodes.list.LengthNode;
@@ -105,6 +106,10 @@ public abstract class PrimitiveNode extends OperatorNode
 		else if (token.type == Type.CONDITIONAL_IF)
 		{
 			return new IfNode(token);
+		}
+		else if (token.type == Type.CONDITIONAL_IF_ELSE)
+		{
+			return new IfElseNode(token);
 		}
 		else if (token.type == Type.LIST_INDEX)
 		{

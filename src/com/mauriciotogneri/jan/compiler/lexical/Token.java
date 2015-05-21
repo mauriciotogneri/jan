@@ -48,6 +48,7 @@ public class Token
 		
 		// conditional
 		CONDITIONAL_IF, //
+		CONDITIONAL_IF_ELSE, //
 		
 		// lists
 		LIST_INDEX, //
@@ -93,6 +94,12 @@ public class Token
 				(this == LOGIC_NEGATION);
 		}
 		
+		public boolean isConditionalToken()
+		{
+			return (this == CONDITIONAL_IF) || //
+				(this == CONDITIONAL_IF_ELSE);
+		}
+		
 		public boolean isListToken()
 		{
 			return (this == LIST_INDEX) || //
@@ -103,7 +110,7 @@ public class Token
 		
 		public boolean isPrimitive()
 		{
-			return (this == CONDITIONAL_IF) || //
+			return isConditionalToken() || //
 				isArithmeticToken() || //
 				isLogicToken() || //
 				isListToken();
@@ -112,7 +119,7 @@ public class Token
 		public boolean isExpressionToken()
 		{
 			return (this == SYMBOL) || //
-				(this == CONDITIONAL_IF) || //
+				isConditionalToken() || //
 				isLiteral() || //
 				isArithmeticToken() || //
 				isLogicToken() || //

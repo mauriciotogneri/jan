@@ -91,6 +91,7 @@ public class Expression
 							if (operand instanceof ListCloseNode)
 							{
 								listNode = new ListNode(token, list);
+								break;
 							}
 							else
 							{
@@ -141,7 +142,7 @@ public class Expression
 			throw new SemanticException("Invalid expression. It should return only one value", this.elements.get(0));
 		}
 		
-		return isConditional();
+		return (this.root instanceof IfNode);
 	}
 	
 	private void applyOperator(Token token, OperatorNode node, Stack<Node> stack)
@@ -160,11 +161,6 @@ public class Expression
 		}
 		
 		stack.push(node);
-	}
-	
-	private boolean isConditional()
-	{
-		return (this.root instanceof IfNode);
 	}
 	
 	public Value evaluate(Context context)

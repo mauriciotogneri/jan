@@ -258,10 +258,6 @@ public enum Character
 		{
 			return Type.LOGIC_OR;
 		}
-		else if (this == QUESTION)
-		{
-			return Type.CONDITIONAL_IF;
-		}
 		else if (this == DOLLAR)
 		{
 			return Type.IMPORT;
