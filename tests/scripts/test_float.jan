@@ -1,0 +1,26 @@
+sum a b
+	+ a b
+
+diff a b
+	- a b
+
+mul a b
+	* a b
+
+div a b
+	/ a b
+
+pow a b
+	^ a b
+
+mod a b
+	% a b
+
+inc a
+	++ a
+
+dec a
+	-- a
+
+\ [ sum 1.1 2.9 diff 4 7.3 mul 2 3.6 div 8 3 pow 2 4.7 mod 12 2.4 inc 10.4 dec 0.1 ]
+; [4.0, -3.3, 7.2, 2.6666666667, 16, 0.0, 11.4, -0.9]

@@ -1,0 +1,26 @@
+sum a b
+	+ a b
+
+diff a b
+	- a b
+
+mul a b
+	* a b
+
+div a b
+	/ a b
+
+pow a b
+	^ a b
+
+mod a b
+	% a b
+
+inc a
+	++ a
+
+dec a
+	-- a
+
+\ [ sum 1 2 diff 4 9 mul 2 3 div 8 2 pow 3 4 mod 12 5 inc 10 dec 0 ]
+; [3, -5, 6, 4, 81, 2, 11, -1]
