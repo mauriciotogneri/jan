@@ -3,7 +3,7 @@ $ "math.jan"
 $ "list.jan"
 
 factorial n
-	? < n 2 1 ; if (n < 2) return 1
+	? = n 0 1 ; if (n == 0) return 1
 	* n factorial -- n
 
 ; this is line comment
