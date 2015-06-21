@@ -1,4 +1,6 @@
-package com.mauriciotogneri.jan.kernel;
+package com.mauriciotogneri.jan.tests;
+
+import com.mauriciotogneri.jan.kernel.Jan;
 
 import org.junit.Assert;
 import org.junit.Test;

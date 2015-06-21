@@ -1,6 +1,7 @@
-package com.mauriciotogneri.jan.kernel;
+package com.mauriciotogneri.jan.tests;
 
 import com.mauriciotogneri.jan.execution.output.ProgramOutput;
+import com.mauriciotogneri.jan.kernel.Value;
 
 public class CustomProgramOutput implements ProgramOutput
 {
