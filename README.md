@@ -2,7 +2,7 @@
 
 <img align="right" src="http://i.imgur.com/Q4fvRk0.png">
 
-**Jan** is a purely functional programming language. It is named after **Jan Łukasiewicz**, a Polish logician and philosopher creator of the **Polish notation**, also known as **Prefix notation**, which is a form of notation for logic, arithmetic, and algebra. The distinguishing feature of this notation is that it places operators to the left of their operands. Given that the arity of the operators and functions in the language is fixed, the result is a syntax lacking parentheses or other brackets that can still be parsed without ambiguity. Although **Jan** is a general purpose language, it is intended as a language to learn.
+**Jan** is a purely functional programming language. It is named after **Jan Łukasiewicz**, a Polish logician and philosopher creator of the **Polish notation**, also known as **Prefix notation**, which is a form of notation for logic, arithmetic and algebra. The distinguishing feature of this notation is that it places operators to the left of their operands. Given that the arity of the operators and functions in the language is fixed, the result is a syntax lacking parentheses or other brackets that can still be parsed without ambiguity. Although **Jan** is a general purpose language, it is intended as a language to learn.
 
 ## Characteristics
 
@@ -16,6 +16,9 @@ The language has the following characteristics:
 ## Syntax
 
 A program written in **Jan** consists of a set of functions. A function consists of a set of expressions that are evaluated sequentially. An expression is a combination of explicit constants, parameters, operators and functions that are evaluated to return a value (or an empty result).
+
+**Jan** uses whitespace to delimit program blocks, following the off-side rule.
+https://en.wikipedia.org/wiki/Off-side_rule
 
 ### Expressions
 
@@ -81,3 +84,64 @@ Notice that floats should be expressed like this ``0.123`` instead of ``.123``
 ## Operators
 
 ### Arithmetic
+
+``+ - * / ^ % ++ --``
+
++ 1 2		3
+* 1.5 -5	7.5
+
+### Comparison
+
+``= != < > <= >=``
+
+.			true
+:			false
+! > 2 3		true
+
+### Logical
+
+``& && | || !``
+
+### Conditional
+
+``? ??``
+
+### List
+
+``[] @ # +``
+
+[] 					    empty list
+@ 1 [ "A" "B" "C" ] 	"B"
+# [ . : . ]			    3
++ 7 [ 1 3 5 ] 			[ 1 3 5 7 ]
+
+### String
+
+``"" @ # +``
+
++ "foo" "123"       "foo123"
+
+### Import
+
+``$``
+
+### Comments
+
+``;``
+
+### Anonymous expression
+
+``\``
+
+# TODO
+
+* Lazy evaluation for @ or # (don't evaluate all list)
+* Exit with error { “ERROR” }
+* Print value for debug ( n )
+* Implement let, cache values and use lazy evaluation _ foo + 1 2
+* Finish semantic validation
+* Finish lazy evaluation
+* Differentiate & && | ||
+* Accept numbers in scientific notation 0.123e+10
+* Curryfication
+* Pass functions as parameters
