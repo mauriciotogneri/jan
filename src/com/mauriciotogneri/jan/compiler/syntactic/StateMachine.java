@@ -1,6 +1,5 @@
 package com.mauriciotogneri.jan.compiler.syntactic;
 
-import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.syntactic.states.AnonymousExpressionStartState;
@@ -9,7 +8,9 @@ import com.mauriciotogneri.jan.kernel.Expression;
 import com.mauriciotogneri.jan.kernel.Function;
 import com.mauriciotogneri.jan.kernel.Program;
 
-public class StateMachine
+import java.util.List;
+
+class StateMachine
 {
 	public Program getProgram(List<Token> tokens)
 	{

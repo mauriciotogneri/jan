@@ -1,8 +1,5 @@
 package com.mauriciotogneri.jan.kernel;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.semantic.SemanticException;
@@ -15,6 +12,10 @@ import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 import com.mauriciotogneri.jan.kernel.nodes.conditional.IfNode;
 import com.mauriciotogneri.jan.kernel.nodes.list.ListCloseNode;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 public class Expression
 {
 	private final List<Token> elements = new ArrayList<>();
@@ -22,19 +23,19 @@ public class Expression
 	
 	public void addElement(Token token)
 	{
-		this.elements.add(0, token);
+		elements.add(0, token);
 	}
 	
 	public boolean isEmpty()
 	{
-		return this.elements.isEmpty();
+		return elements.isEmpty();
 	}
 	
 	public boolean setTree(Parameters parameters, Program program)
 	{
 		Stack<Node> stack = new Stack<>();
 		
-		for (Token token : this.elements)
+		for (Token token : elements)
 		{
 			if (token.type.isLiteral())
 			{
@@ -130,19 +131,19 @@ public class Expression
 			
 			if (node instanceof ListCloseNode)
 			{
-				throw new SemanticException("Invalid list definition", this.elements.get(0));
+				throw new SemanticException("Invalid list definition", elements.get(0));
 			}
 			else
 			{
-				this.root = node;
+				root = node;
 			}
 		}
 		else
 		{
-			throw new SemanticException("Invalid expression. It should return only one value", this.elements.get(0));
+			throw new SemanticException("Invalid expression. It should return only one value", elements.get(0));
 		}
 		
-		return (this.root instanceof IfNode);
+		return (root instanceof IfNode);
 	}
 	
 	private void applyOperator(Token token, OperatorNode node, Stack<Node> stack)
@@ -165,6 +166,6 @@ public class Expression
 	
 	public Value evaluate(Context context)
 	{
-		return this.root.evaluate(context);
+		return root.evaluate(context);
 	}
 }

@@ -1,8 +1,9 @@
 package com.mauriciotogneri.jan.compiler.lexical;
 
-import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token.Type;
 import com.mauriciotogneri.jan.compiler.lexical.states.InitialState;
+
+import java.util.List;
 
 public abstract class State
 {
@@ -10,8 +11,8 @@ public abstract class State
 	private final int column;
 	private final StringBuilder lexeme = new StringBuilder();
 	private final List<Token> tokens;
-	
-	public State(List<Token> tokens, int line, int column)
+
+	protected State(List<Token> tokens, int line, int column)
 	{
 		this.tokens = tokens;
 		this.line = line;
@@ -20,50 +21,50 @@ public abstract class State
 	
 	protected int getLine()
 	{
-		return this.line;
+		return line;
 	}
 	
 	protected int getColumn()
 	{
-		return this.column;
+		return column;
 	}
 	
 	protected void addCharacter(Character character)
 	{
-		this.lexeme.append(character.toString());
+		lexeme.append(character.toString());
 	}
 	
-	protected void setLexeme(String lexeme)
+	protected void setLexeme(String newLexeme)
 	{
-		this.lexeme.setLength(0);
-		this.lexeme.append(lexeme);
+		lexeme.setLength(0);
+		lexeme.append(newLexeme);
 	}
 	
 	protected String getLexeme()
 	{
-		return this.lexeme.toString();
+		return lexeme.toString();
 	}
 	
 	protected List<Token> getTokens()
 	{
-		return this.tokens;
+		return tokens;
 	}
 	
-	protected void addToken(Type type, Character character, int line, int column)
+	private void addToken(Type type, Character character, int line, int column)
 	{
-		this.tokens.add(new Token(character.toString(), type, line, column));
+		tokens.add(new Token(character.toString(), type, line, column));
 	}
 	
 	protected void addToken(Type type)
 	{
-		this.tokens.add(new Token(getLexeme(), type, this.line, this.column));
+		tokens.add(new Token(getLexeme(), type, line, column));
 	}
 	
 	protected State createToken(Character character, int line, int column)
 	{
 		addToken(character.getDelimiterType(), character, line, column);
 		
-		return new InitialState(this.tokens, line, column);
+		return new InitialState(tokens, line, column);
 	}
 	
 	protected State createToken(Character character, Type type, int line, int column)
@@ -71,7 +72,7 @@ public abstract class State
 		addToken(type);
 		addToken(character.getDelimiterType(), character, line, column);
 		
-		return new InitialState(this.tokens, line, column);
+		return new InitialState(tokens, line, column);
 	}
 	
 	public abstract State process(Character character, int line, int column);

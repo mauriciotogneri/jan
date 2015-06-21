@@ -30,6 +30,6 @@ public class IfElseNode extends PrimitiveNode
 		}
 		
 		// TODO: explain more
-		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");
+		throw new RuntimeException("Cannot perform operation '" + token.lexeme + "' at: [" + token.line + ", " + token.column + "]");
 	}
 }

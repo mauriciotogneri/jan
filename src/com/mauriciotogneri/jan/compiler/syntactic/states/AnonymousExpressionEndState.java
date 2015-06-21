@@ -26,12 +26,12 @@ public class AnonymousExpressionEndState extends State
 	{
 		if (token.type.isSeparator())
 		{
-			return new AnonymousExpressionStartState(getProgram(), this.function, this.expression);
+			return new AnonymousExpressionStartState(getProgram(), function, expression);
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			this.function.addExpression(this.expression);
-			addFunction(this.function);
+			function.addExpression(expression);
+			addFunction(function);
 			
 			return new InitialState(getProgram());
 		}

@@ -108,7 +108,7 @@ public enum Character
 	
 	private final char character;
 	
-	private Character(char character)
+	Character(char character)
 	{
 		this.character = character;
 	}
@@ -116,7 +116,7 @@ public enum Character
 	@Override
 	public String toString()
 	{
-		return String.valueOf(this.character);
+		return String.valueOf(character);
 	}
 	
 	public boolean isNewLine()
@@ -148,7 +148,7 @@ public enum Character
 		return isLowercaseLetter() || isUppercaseLetter();
 	}
 	
-	public boolean isUppercaseLetter()
+	private boolean isUppercaseLetter()
 	{
 		return (this == A) || //
 			(this == B) || //
@@ -178,7 +178,7 @@ public enum Character
 			(this == Z);
 	}
 	
-	public boolean isLowercaseLetter()
+	private boolean isLowercaseLetter()
 	{
 		return (this == a) || //
 			(this == b) || //

@@ -7,7 +7,7 @@ import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 
 public abstract class BinaryBooleanNode extends PrimitiveNode
 {
-	public BinaryBooleanNode(Token token)
+	protected BinaryBooleanNode(Token token)
 	{
 		super(token, 2);
 	}
@@ -27,7 +27,7 @@ public abstract class BinaryBooleanNode extends PrimitiveNode
 		}
 		
 		// TODO: explain more
-		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");
+		throw new RuntimeException("Cannot perform operation '" + token.lexeme + "' at: [" + token.line + ", " + token.column + "]");
 	}
 	
 	protected abstract Value evaluate(Boolean operand1, Boolean operand2);

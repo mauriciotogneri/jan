@@ -24,17 +24,17 @@ public class FunctionDefinedState extends State
 	{
 		if (token.type == Type.TAB)
 		{
-			return new ExpressionStartState(getProgram(), this.function, new Expression());
+			return new ExpressionStartState(getProgram(), function, new Expression());
 		}
 		else if (token.type == Type.SYMBOL)
 		{
-			addFunction(this.function);
+			addFunction(function);
 			
 			return new FunctionDefinitionState(getProgram(), new Function(token));
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			addFunction(this.function);
+			addFunction(function);
 			
 			return new InitialState(getProgram());
 		}

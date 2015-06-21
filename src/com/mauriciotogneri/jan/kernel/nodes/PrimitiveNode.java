@@ -9,7 +9,7 @@ import com.mauriciotogneri.jan.kernel.nodes.arithmetic.IncrementNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.ModuleNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.MultiplicationNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.PowerNode;
-import com.mauriciotogneri.jan.kernel.nodes.arithmetic.SubstractNode;
+import com.mauriciotogneri.jan.kernel.nodes.arithmetic.SubtractNode;
 import com.mauriciotogneri.jan.kernel.nodes.conditional.IfElseNode;
 import com.mauriciotogneri.jan.kernel.nodes.conditional.IfNode;
 import com.mauriciotogneri.jan.kernel.nodes.list.IndexNode;
@@ -28,7 +28,7 @@ import com.mauriciotogneri.jan.kernel.nodes.logic.OrNode;
 
 public abstract class PrimitiveNode extends OperatorNode
 {
-	public PrimitiveNode(Token token, int numberOfOperands)
+	protected PrimitiveNode(Token token, int numberOfOperands)
 	{
 		super(token, numberOfOperands);
 	}
@@ -39,9 +39,9 @@ public abstract class PrimitiveNode extends OperatorNode
 		{
 			return new AddNode(token);
 		}
-		else if (token.type == Type.ARITHMETIC_SUBSTRACT)
+		else if (token.type == Type.ARITHMETIC_SUBTRACT)
 		{
-			return new SubstractNode(token);
+			return new SubtractNode(token);
 		}
 		else if (token.type == Type.ARITHMETIC_MULTIPLICATION)
 		{

@@ -1,9 +1,10 @@
 package com.mauriciotogneri.jan.kernel;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.compiler.semantic.SemanticException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Function
 {
@@ -18,48 +19,48 @@ public class Function
 	
 	public Token getName()
 	{
-		return this.name;
+		return name;
 	}
 	
 	public int getNumberOfParameters()
 	{
-		return this.parameters.getSize();
+		return parameters.getSize();
 	}
 	
 	public void setTree(Program program)
 	{
-		for (int i = 0; i < this.expressions.size(); i++)
+		for (int i = 0; i < expressions.size(); i++)
 		{
-			Expression expression = this.expressions.get(i);
+			Expression expression = expressions.get(i);
 			
-			boolean isLastExpression = (i == (this.expressions.size() - 1));
-			boolean conditional = expression.setTree(this.parameters, program);
+			boolean isLastExpression = (i == (expressions.size() - 1));
+			boolean conditional = expression.setTree(parameters, program);
 			
 			if (isLastExpression == conditional)
 			{
-				throw new SemanticException("Function '" + this.name.lexeme + "' must end with a non conditional expression");
+				throw new SemanticException("Function '" + name.lexeme + "' must end with a non conditional expression");
 			}
 		}
 	}
 	
 	public boolean isEmpty()
 	{
-		return this.expressions.isEmpty();
+		return expressions.isEmpty();
 	}
 	
 	public void addParameter(String name)
 	{
-		this.parameters.add(name);
+		parameters.add(name);
 	}
 	
 	public void addExpression(Expression expression)
 	{
-		this.expressions.add(expression);
+		expressions.add(expression);
 	}
 	
 	public Value evaluate(Context context)
 	{
-		for (Expression expression : this.expressions)
+		for (Expression expression : expressions)
 		{
 			Value result = expression.evaluate(context);
 			
@@ -69,6 +70,6 @@ public class Function
 			}
 		}
 		
-		throw new RuntimeException("Function '" + this.name.lexeme + "' didn't return any value");
+		throw new RuntimeException("Function '" + name.lexeme + "' didn't return any value");
 	}
 }

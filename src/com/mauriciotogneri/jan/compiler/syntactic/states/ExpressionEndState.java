@@ -26,13 +26,13 @@ public class ExpressionEndState extends State
 	{
 		if (token.type.isSeparator())
 		{
-			return new ExpressionStartState(getProgram(), this.function, this.expression);
+			return new ExpressionStartState(getProgram(), function, expression);
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			this.function.addExpression(this.expression);
+			function.addExpression(expression);
 			
-			return new FunctionDefinedState(getProgram(), this.function);
+			return new FunctionDefinedState(getProgram(), function);
 		}
 		else
 		{

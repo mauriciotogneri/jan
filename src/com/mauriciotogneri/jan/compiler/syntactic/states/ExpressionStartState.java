@@ -30,18 +30,18 @@ public class ExpressionStartState extends State
 		}
 		else if (token.type.isExpressionToken())
 		{
-			this.expression.addElement(token);
+			expression.addElement(token);
 			
-			return new ExpressionEndState(getProgram(), this.function, this.expression);
+			return new ExpressionEndState(getProgram(), function, expression);
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			if (!this.expression.isEmpty())
+			if (!expression.isEmpty())
 			{
-				this.function.addExpression(this.expression);
+				function.addExpression(expression);
 			}
 			
-			return new FunctionDefinedState(getProgram(), this.function);
+			return new FunctionDefinedState(getProgram(), function);
 		}
 		else
 		{

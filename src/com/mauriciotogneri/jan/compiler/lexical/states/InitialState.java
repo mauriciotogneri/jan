@@ -43,7 +43,7 @@ public class InitialState extends State
 					break;
 				
 				case MINUS:
-					state = new SubstractState(getTokens(), line, column);
+					state = new SubtractState(getTokens(), line, column);
 					break;
 				
 				case DOUBLE_QUOTES:

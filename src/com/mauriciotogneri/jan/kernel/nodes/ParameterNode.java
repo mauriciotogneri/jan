@@ -7,18 +7,18 @@ import com.mauriciotogneri.jan.kernel.Value;
 
 public class ParameterNode extends Node
 {
-	public final int index;
-	
-	public ParameterNode(Token token, int index)
-	{
-		super(token);
-		
-		this.index = index;
-	}
-	
-	@Override
-	public Value evaluate(Context context)
-	{
-		return context.get(this.index);
-	}
+    private final int index;
+
+    public ParameterNode(Token token, int index)
+    {
+        super(token);
+
+        this.index = index;
+    }
+
+    @Override
+    public Value evaluate(Context context)
+    {
+        return context.get(index);
+    }
 }

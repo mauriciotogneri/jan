@@ -23,11 +23,11 @@ public class FunctionParameterEndState extends State
 	{
 		if (token.type.isSeparator())
 		{
-			return new FunctionParameterStartState(getProgram(), this.function);
+			return new FunctionParameterStartState(getProgram(), function);
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			return new FunctionDefinedState(getProgram(), this.function);
+			return new FunctionDefinedState(getProgram(), function);
 		}
 		else
 		{

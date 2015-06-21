@@ -27,13 +27,13 @@ public class FunctionParameterStartState extends State
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			return new FunctionDefinedState(getProgram(), this.function);
+			return new FunctionDefinedState(getProgram(), function);
 		}
 		else if (token.type == Type.SYMBOL)
 		{
-			this.function.addParameter(token.lexeme);
+			function.addParameter(token.lexeme);
 			
-			return new FunctionParameterEndState(getProgram(), this.function);
+			return new FunctionParameterEndState(getProgram(), function);
 		}
 		else
 		{

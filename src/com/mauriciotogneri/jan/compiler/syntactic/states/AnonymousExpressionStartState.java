@@ -30,19 +30,19 @@ public class AnonymousExpressionStartState extends State
 		}
 		else if (token.type.isExpressionToken())
 		{
-			this.expression.addElement(token);
+			expression.addElement(token);
 			
-			return new AnonymousExpressionEndState(getProgram(), this.function, this.expression);
+			return new AnonymousExpressionEndState(getProgram(), function, expression);
 		}
 		else if (token.type == Type.NEW_LINE)
 		{
-			if (this.expression.isEmpty())
+			if (expression.isEmpty())
 			{
 				throw new SyntacticException("Anonymous function is empty", token);
 			}
 			
-			this.function.addExpression(this.expression);
-			addFunction(this.function);
+			function.addExpression(expression);
+			addFunction(function);
 			
 			return new InitialState(getProgram());
 		}

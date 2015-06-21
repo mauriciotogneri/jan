@@ -1,14 +1,15 @@
 package com.mauriciotogneri.jan.kernel.nodes.operations;
 
-import java.math.BigDecimal;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
 
+import java.math.BigDecimal;
+
 public abstract class UnaryNumericNode extends PrimitiveNode
 {
-	public UnaryNumericNode(Token token)
+	protected UnaryNumericNode(Token token)
 	{
 		super(token, 1);
 	}
@@ -26,7 +27,7 @@ public abstract class UnaryNumericNode extends PrimitiveNode
 		}
 		
 		// TODO: explain more
-		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");
+		throw new RuntimeException("Cannot perform operation '" + token.lexeme + "' at: [" + token.line + ", " + token.column + "]");
 	}
 	
 	protected abstract Value evaluate(BigDecimal operand);

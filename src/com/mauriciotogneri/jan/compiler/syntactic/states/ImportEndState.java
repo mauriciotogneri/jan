@@ -22,7 +22,7 @@ public class ImportEndState extends State
 	{
 		if (token.type == Type.NEW_LINE)
 		{
-			addImport(this.path);
+			addImport(path);
 			
 			return new InitialState(getProgram());
 		}

@@ -1,11 +1,12 @@
 package com.mauriciotogneri.jan.kernel.nodes.list;
 
-import java.math.BigDecimal;
-import java.util.List;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.PrimitiveNode;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 public class LengthNode extends PrimitiveNode
 {
@@ -33,6 +34,6 @@ public class LengthNode extends PrimitiveNode
 		}
 		
 		// TODO: explain more
-		throw new RuntimeException("Cannot perform operation '" + this.token.lexeme + "' at: [" + this.token.line + ", " + this.token.column + "]");
+		throw new RuntimeException("Cannot perform operation '" + token.lexeme + "' at: [" + token.line + ", " + token.column + "]");
 	}
 }

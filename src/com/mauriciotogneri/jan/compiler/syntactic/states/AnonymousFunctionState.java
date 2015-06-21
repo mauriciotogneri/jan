@@ -23,7 +23,7 @@ public class AnonymousFunctionState extends State
 	{
 		if (token.type.isSeparator())
 		{
-			return new AnonymousExpressionStartState(getProgram(), this.function, new Expression());
+			return new AnonymousExpressionStartState(getProgram(), function, new Expression());
 		}
 		else
 		{
