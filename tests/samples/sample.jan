@@ -2,6 +2,11 @@ $ "logic.jan"
 $ "math.jan"
 $ "list.jan"
 
+compare a b
+	? > a b "A is bigger than B"
+	? > b a "B is bigger than A"
+	"A and B are equal"
+
 factorial n
 	? = n 0 1 ; if (n == 0) return 1
 	* n factorial - n 1

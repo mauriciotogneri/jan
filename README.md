@@ -16,16 +16,16 @@ The language has the following characteristics:
 
 ## Syntax
 
-A _program_ written in **Jan** consists of a set of functions. A _function_ consists of a set of expressions that are evaluated sequentially. An _expression_ is a combination of explicit constants, parameters, operators and functions that are evaluated to return a value (or an empty result). **Jan** follows the off-side rule to define its syntax (i.e., blocks in the language are expressed by its indentation).
+A _program_ written in **Jan** consists of a set of functions. A _function_ consists of a set of expressions that are evaluated sequentially. An _expression_ is a combination of explicit constants, parameters, operators and functions that are evaluated to return a value (or an empty result). The language follows the off-side rule to define its syntax (i.e., blocks are expressed by indentation marks).
 
 ### Functions
 
-Functions in **Jan** have a name, a list of parameters (if any) and a list of expressions that will be evaluated sequentially. When a function is called, the interpreter will evaluate the expressions in the order that they were defined. If an expression returns a value (i.e., it doesn't return an empty result), the functions finishes and the result of that expression is returned.
+Functions in **Jan** have a name, a list of parameters (if any) and a list of expressions that will be evaluated sequentially. Functions must have unique names. When a function is called, the interpreter will evaluate the expressions in the order that they were defined. If an expression returns a value (i.e., it doesn't return an empty result), the functions finishes and the result of that expression is returned.
 
 Template:
 
 ```common-lisp
-FUNCTION_NAME [PARAMETER_1 PARAMETER_2 PARAMETER_3 ...]
+FUNCTION_NAME PARAMETER_1 PARAMETER_2 PARAMETER_3...
     EXPRESSION_1
     EXPRESSION_2
     EXPRESSION_3
@@ -46,13 +46,14 @@ compare a b
 In pseudocode it could be written as:
 
 ```pascal
-function max (a, b)
+function compare (a, b)
     if (a > b)
         return "A is bigger than B"
     else if (b > a)
         return "B is bigger than A"
     else
         return "A and B are equal"
+    end if
 end
 ```
 
@@ -101,13 +102,12 @@ else
 end if
 ```
 
-All functions in **Jan** must contain at least one expression and the last (and only the last) expression in the list must be:.
+All functions must contain at least one expression and the last (and only the last) expression in the list must be:
 
 * A non-conditional expression
 * A complex conditional expression
-* An error expression
 
-Expressions must be written in **prefix notation** (i.e., operators are placed to the left of the operands).
+Expressions must be written in **prefix notation** (i.e., operators are placed to the left of the operands) and there must be at least one whitespace between operators and operands.
 
 ## Operators
 
@@ -153,7 +153,7 @@ The language supports the following comparison operators:
 * Not equal: ``!=``
     * Example: ``!= a b``
 
-These two comparison operators receive either two numbers, two booleans or two strings as input and return a boolean as a result.
+These two comparison operators receive either two numbers, two booleans, two strings or two lists as input and return a boolean as a result.
 
 * Less: ``<``
     * Example: ``< a b``
@@ -188,8 +188,6 @@ All logical operators receive booleans as input and return a boolean as a result
 
 The language supports the following conditional operators:
 
-``? ??``
-
 * Simple conditional: ``?``
     * Example: ``? a b`` (_if a then b_)
 
@@ -206,7 +204,7 @@ The language supports the following string operators:
     * Example: ``"This is an example"``
 
 * Indexation: ``@``
-    * Example: ``@ 4 "Hello, world!"`` (it returns the 5rd character in the string, in the example: **o**)
+    * Example: ``@ 4 "Hello, world!"`` (it returns the 5th character in the string, in the example: **o**)
 
 * Length: ``#``
     * Example: ``# "The cake is a lie"`` (it returns the length of the string, in the example: **17**)
@@ -219,16 +217,16 @@ The language supports the following string operators:
 The language supports the following list operators:
 
 * Definition: ``[]``
-    * Example: ``[ 1 2 3 ]`` (notice that there must be a space between the brackets and the first and last element)
+    * Example: ``[ 1 2 3 ]`` (notice that there must be a whitespace between the brackets and the first and last element)
 
 * Indexation: ``@``
-    * Example: ``@ 2 [ a b c d e]`` (it returns the 3rd element of the list, in the example: **c**)
+    * Example: ``@ 2 [ a b c d e ]`` (it returns the 3rd element of the list, in the example: **c**)
 
 * Length: ``#``
     * Example: ``# [ a b c ]`` (it returns the length of the list, in the example: **3**)
 
 * Concatenation: ``+``
-    * Example: ``+ z [ x y ]`` (it concatenates to the end the element in to list, in the example: **[ x y z ]**)
+    * Example: ``+ z [ x y ]`` (it concatenates the element to the end of the list, in the example: **[ x y z ]**)
 
 ### Import
 
@@ -244,7 +242,7 @@ The language supports the following list operators:
 
 ## Types
 
-Jan has the following data types:
+The language has the following data types:
 
 ### Numbers
 
@@ -270,12 +268,11 @@ Notice that floats should be expressed like this ``0.123`` instead of ``.123``
 
 # TODO
 
-* Lazy evaluation for @ or # (don't evaluate all list)
 * Exit with error { “ERROR” }
-* Print value for debug ( n )
+* Print value for debug ( + "N: " n )
 * Implement let, cache values and use lazy evaluation _ foo + 1 2
 * Finish semantic validation
-* Finish lazy evaluation
+* Finish lazy evaluation (when @ or # don't evaluate all list)
 * Accept numbers in scientific notation 0.123e+10
 * Curryfication
 * Pass functions as parameters

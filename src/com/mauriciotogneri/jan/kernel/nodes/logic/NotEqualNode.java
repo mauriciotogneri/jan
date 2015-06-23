@@ -1,32 +1,40 @@
 package com.mauriciotogneri.jan.kernel.nodes.logic;
 
-import java.math.BigDecimal;
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Value;
 import com.mauriciotogneri.jan.kernel.nodes.operations.BinaryNode;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 public class NotEqualNode extends BinaryNode
 {
-	public NotEqualNode(Token token)
-	{
-		super(token);
-	}
-	
-	@Override
-	protected Value evaluate(BigDecimal operand1, BigDecimal operand2)
-	{
-		return Value.asBoolean(operand1.compareTo(operand2) != 0);
-	}
-	
-	@Override
-	protected Value evaluate(Boolean operand1, Boolean operand2)
-	{
-		return Value.asBoolean(operand1.booleanValue() != operand2.booleanValue());
-	}
-	
-	@Override
-	protected Value evaluate(String operand1, String operand2)
-	{
-		return Value.asBoolean(!operand1.equals(operand2));
-	}
+    public NotEqualNode(Token token)
+    {
+        super(token);
+    }
+
+    @Override
+    protected boolean evaluate(BigDecimal operand1, BigDecimal operand2)
+    {
+        return !equalNumbers(operand1, operand2);
+    }
+
+    @Override
+    protected boolean evaluate(Boolean operand1, Boolean operand2)
+    {
+        return !equalBooleans(operand1, operand2);
+    }
+
+    @Override
+    protected boolean evaluate(String operand1, String operand2)
+    {
+        return !equalStrings(operand1, operand2);
+    }
+
+    @Override
+    protected boolean evaluate(List<Value> operand1, List<Value> operand2)
+    {
+        return !equalLists(operand1, operand2);
+    }
 }

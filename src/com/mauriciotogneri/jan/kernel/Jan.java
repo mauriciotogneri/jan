@@ -52,7 +52,6 @@ public class Jan
 
                 programInput.close();
             }
-
         }
         catch (Exception e)
         {
