@@ -260,7 +260,7 @@ The language supports the following list operators:
     * Example: ``+ z [ x y ]`` (it concatenates the element to the end of the list, in the example: **[ x y z ]**)
 
 ### Import
-
+<span style="color:red">NOT IMPLEMENTED</span>
 A program can import another program located in a file using the ``$`` symbol. For example:
 
 ```
@@ -328,6 +328,29 @@ Lists are fixed-length arrays that can contain zero or more elements. Lists are 
 ## Execution
 
 ## Examples
+
+Here are some sample scripts written in **Jan**:
+
+```common-lisp
+factorial n
+	? = n 0 1
+	* n factorial - n 1
+
+\ factorial 5
+```
+
+```common-lisp
+fibonacci n
+	fibo 0 n [ ]
+
+fibo index limit list
+	? >= index limit list
+	? = 0 index fibo 1 limit [ 1 ]
+	? = 1 index fibo 2 limit [ 1 1 ]
+	fibo ++ index limit + + @ - index 1 list @ - index 2 list list
+
+\ fibonacci 10
+```
 
 # TODO
 
