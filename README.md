@@ -7,11 +7,11 @@
 ## Table of Contents
 
 - [Jan](#)
-	- [Characteristics](#)
-	- [Syntax](#)
-		- [Functions](#)
-		- [Expressions](#)
-	- [Operators](#)
+	- [Characteristics](#characteristics)
+	- [Syntax](#syntax)
+		- [Functions](#functions)
+		- [Expressions](#expressions)
+	- [Operators](#operators)
 		- [Arithmetic](#)
 		- [Comparison](#)
 		- [Logical](#)
