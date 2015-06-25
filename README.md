@@ -259,7 +259,7 @@ The language supports the following list operators:
 * Concatenation: ``+``
     * Example: ``+ z [ x y ]`` (it concatenates the element to the end of the list, in the example: **[ x y z ]**)
 
-### Import ``NOT IMPLEMENTED``
+### Import ``(not implemented yet)``
 A program can import another program located in a file using the ``$`` symbol. For example:
 
 ```
@@ -353,13 +353,13 @@ fibo index limit list
 
 # TODO
 
-* Exit with error { “ERROR” }
-* Print value for debug ( + "N: " n )
-* Implement let, cache values and use lazy evaluation _ foo + 1 2
+* Exit with error ``{ “Function sqrt: ” n }``
+* Print value for debug ``( + "N: " n )``
+* Implement let (cache values and use lazy evaluation): ``_ foo + 1 2``
 * Implement imports
-* Implement list range:  .. 1 4 [ a b c d e f g h ] (from 1 take 4 elements)  =>   [ b c d e ]
+* Implement list range: ``.. 1 4 [ a b c d e f g h ]`` (from 1 take 4 elements) => ``[ b c d e ]``
 * Finish semantic validation
-* Finish lazy evaluation (when @ or # do not evaluate all list)
-* Accept numbers in scientific notation 0.123e+10
+* Finish lazy evaluation (when ``@`` or ``#`` do not evaluate all list)
+* Accept numbers in scientific notation ``0.123e+10``
 * Curryfication
 * Pass functions as parameters
