@@ -1,6 +1,6 @@
 # Jan
 
-<img align="right" src="http://i.imgur.com/Q4fvRk0.png">
+<img align="right" src="http://i.imgur.com/Q4fvRk0.png" />
 
 **Jan** is a purely functional programming language with an ultra minimalist syntax. It is named after **Jan Łukasiewicz**, a Polish logician and philosopher creator of the **Polish notation**, also known as **Prefix notation**, which is a form of notation for logic, arithmetic and algebra. The distinguishing feature of this language is that it places operators to the left of their operands. Given that the arity of the operators and functions in the language is fixed, the result is a syntax lacking parentheses or other brackets that can still be parsed without ambiguity. Although **Jan** is a general purpose language, it is mostly intended to be used as a tool for learning functional programming.
 
@@ -259,8 +259,7 @@ The language supports the following list operators:
 * Concatenation: ``+``
     * Example: ``+ z [ x y ]`` (it concatenates the element to the end of the list, in the example: **[ x y z ]**)
 
-### Import
-<span style="color:red">NOT IMPLEMENTED</span>
+### Import ``NOT IMPLEMENTED``
 A program can import another program located in a file using the ``$`` symbol. For example:
 
 ```
