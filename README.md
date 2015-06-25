@@ -4,6 +4,31 @@
 
 **Jan** is a purely functional programming language with an ultra minimalist syntax. It is named after **Jan Łukasiewicz**, a Polish logician and philosopher creator of the **Polish notation**, also known as **Prefix notation**, which is a form of notation for logic, arithmetic and algebra. The distinguishing feature of this language is that it places operators to the left of their operands. Given that the arity of the operators and functions in the language is fixed, the result is a syntax lacking parentheses or other brackets that can still be parsed without ambiguity. Although **Jan** is a general purpose language, it is mostly intended to be used as a tool for learning functional programming.
 
+## Table of Contents
+
+- [Jan](#)
+	- [Characteristics](#)
+	- [Syntax](#)
+		- [Functions](#)
+		- [Expressions](#)
+	- [Operators](#)
+		- [Arithmetic](#)
+		- [Comparison](#)
+		- [Logical](#)
+		- [Conditional](#)
+		- [String](#)
+		- [List](#)
+		- [Import](#)
+		- [Comments](#)
+		- [Anonymous expression](#)
+	- [Types](#)
+		- [Numbers](#)
+		- [Booleans](#)
+		- [Strings](#)
+		- [Lists](#)
+    - [Execution](#)
+    - [TODO](#)
+
 ## Characteristics
 
 The language has the following characteristics:
@@ -255,9 +280,9 @@ even n ; returns true if n is an even number
 	= 0 % n 2
 ```
 
-### Anonymous expression
+### Anonymous function
 
-The language allows to define one (and only one) anonymous function. This function will be called after the script is completely parsed. The anonymous function does not have a name or parameters and it must contain one (and only one) expression (non-conditional or complex). For example:
+The language allows to define one (and only one) anonymous function and in case of exist, it  will be called after the script is completely parsed. The anonymous function does not have a name or parameters and it must contain one (and only one) expression (non-conditional or complex). For example:
 
 ```common-lisp
 \ + "Result: " compute 10
@@ -300,7 +325,9 @@ Lists are fixed-length arrays that can contain zero or more elements. Lists are 
 
 ``[ 1 2 3 4 5 ]``
 
-# Execution
+## Execution
+
+## Examples
 
 # TODO
 
