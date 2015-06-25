@@ -225,7 +225,7 @@ The language supports the following list operators:
 * Indexation: ``@``
     * Example: ``@ 2 [ a b c d e ]`` (it returns the 3rd element of the list, in the example: **c**)
 
-* Indexation: ``~``
+* Removal: ``~``
     * Example: ``~ 3 [ a b c d e ]`` (it removes the 4th element of the list, in the example: **[ a b c e ]**)
 
 * Length: ``#``
