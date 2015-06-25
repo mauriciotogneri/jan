@@ -260,7 +260,6 @@ The language supports the following list operators:
     * Example: ``+ z [ x y ]`` (it concatenates the element to the end of the list, in the example: **[ x y z ]**)
 
 ### Import
-``(not implemented yet)``
 A program can import another program located in a file using the ``$`` symbol. For example:
 
 ```
@@ -269,7 +268,7 @@ $ "utils/vectors.jan"
 $ "physics.jan"
 ```
 
-The path of the files can be expressed as relative (to the current program) or absolute.
+The path of the files can be expressed as relative (to the current program) or absolute. **This feature is not implemented yet**.
 
 ### Comments
 
