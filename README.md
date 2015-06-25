@@ -207,7 +207,7 @@ The language supports the following string operators:
     * Example: ``@ 7 "Hello, world!"`` (it returns the 8th character in the string, in the example: **w**)
 
 * Removal: ``~``
-        * Example: ``~ 5 "Do not test me"`` (it removes the 6th character in the string, in the example: **"Do no test me"**)
+    * Example: ``~ 5 "Do not test me"`` (it removes the 6th character in the string, in the example: **"Do no test me"**)
 
 * Length: ``#``
     * Example: ``# "The cake is a lie"`` (it returns the length of the string, in the example: **17**)
@@ -226,7 +226,7 @@ The language supports the following list operators:
     * Example: ``@ 2 [ a b c d e ]`` (it returns the 3rd element of the list, in the example: **c**)
 
 * Indexation: ``~``
-        * Example: ``~ 3 [ a b c d e ]`` (it removes the 4th element of the list, in the example: **[ a b c e ]**)
+    * Example: ``~ 3 [ a b c d e ]`` (it removes the 4th element of the list, in the example: **[ a b c e ]**)
 
 * Length: ``#``
     * Example: ``# [ a b c ]`` (it returns the length of the list, in the example: **3**)
