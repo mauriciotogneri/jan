@@ -2,6 +2,9 @@ $ "logic.jan"
 $ "math.jan"
 $ "list.jan"
 
+even n ; returns true if n is an even number
+	= 0 % n 2
+
 compare a b
 	? > a b "A is bigger than B"
 	? > b a "B is bigger than A"
@@ -27,10 +30,6 @@ show_error n
 	;? < n 0 { "'n' is less than zero: " n } ; it concatenates all elements between {}
 	* 2 n
 
-even n
-	; returns true if n is an even number
-	= 0 % n 2
-
 pi
 	-3.1415
 
@@ -47,4 +46,5 @@ test_ifs n
 	? < n 0 "less than zero"
 	?? > n 0 "greater than zero" "equal to zero"
 
-\ fibonacci 10
+; \ fibonacci 10
+\ ~ 3 [ 1 2 3 4 5 6 7 ]

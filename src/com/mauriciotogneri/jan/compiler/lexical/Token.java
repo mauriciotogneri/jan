@@ -50,9 +50,12 @@ public class Token
         CONDITIONAL_IF, //
         CONDITIONAL_IF_ELSE, //
 
+        // arrays (lists and strings)
+        ARRAY_INDEX, //
+        ARRAY_REMOVE, //
+        ARRAY_LENGTH, //
+
         // lists
-        LIST_INDEX, //
-        LIST_LENGTH, //
         LIST_OPEN, //
         LIST_CLOSE;
 
@@ -69,7 +72,7 @@ public class Token
                     (this == BOOLEAN);
         }
 
-        public boolean isArithmeticToken()
+        private boolean isArithmeticToken()
         {
             return (this == ARITHMETIC_ADD) || //
                     (this == ARITHMETIC_SUBTRACT) || //
@@ -81,7 +84,7 @@ public class Token
                     (this == ARITHMETIC_DECREMENT);
         }
 
-        public boolean isLogicToken()
+        private boolean isLogicToken()
         {
             return (this == LOGIC_EQUAL) || //
                     (this == LOGIC_NOT_EQUAL) || //
@@ -94,17 +97,22 @@ public class Token
                     (this == LOGIC_NEGATION);
         }
 
-        public boolean isConditionalToken()
+        private boolean isConditionalToken()
         {
             return (this == CONDITIONAL_IF) || //
                     (this == CONDITIONAL_IF_ELSE);
         }
 
-        public boolean isListToken()
+        private boolean isArrayToken()
         {
-            return (this == LIST_INDEX) || //
-                    (this == LIST_LENGTH) || //
-                    (this == LIST_OPEN) || //
+            return (this == ARRAY_INDEX) || //
+                    (this == ARRAY_REMOVE) || //
+                    (this == ARRAY_LENGTH);
+        }
+
+        private boolean isListToken()
+        {
+            return (this == LIST_OPEN) || //
                     (this == LIST_CLOSE);
         }
 
@@ -113,6 +121,7 @@ public class Token
             return isConditionalToken() || //
                     isArithmeticToken() || //
                     isLogicToken() || //
+                    isArrayToken() || //
                     isListToken();
         }
 
@@ -123,6 +132,7 @@ public class Token
                     isLiteral() || //
                     isArithmeticToken() || //
                     isLogicToken() || //
+                    isArrayToken() || //
                     isListToken();
         }
     }

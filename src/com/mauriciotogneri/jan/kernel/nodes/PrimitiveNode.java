@@ -10,10 +10,11 @@ import com.mauriciotogneri.jan.kernel.nodes.arithmetic.ModuleNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.MultiplicationNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.PowerNode;
 import com.mauriciotogneri.jan.kernel.nodes.arithmetic.SubtractNode;
+import com.mauriciotogneri.jan.kernel.nodes.array.IndexNode;
+import com.mauriciotogneri.jan.kernel.nodes.array.LengthNode;
+import com.mauriciotogneri.jan.kernel.nodes.array.RemoveNode;
 import com.mauriciotogneri.jan.kernel.nodes.conditional.IfElseNode;
 import com.mauriciotogneri.jan.kernel.nodes.conditional.IfNode;
-import com.mauriciotogneri.jan.kernel.nodes.list.IndexNode;
-import com.mauriciotogneri.jan.kernel.nodes.list.LengthNode;
 import com.mauriciotogneri.jan.kernel.nodes.list.ListCloseNode;
 import com.mauriciotogneri.jan.kernel.nodes.list.ListOpenNode;
 import com.mauriciotogneri.jan.kernel.nodes.logic.AndNode;
@@ -28,106 +29,110 @@ import com.mauriciotogneri.jan.kernel.nodes.logic.OrNode;
 
 public abstract class PrimitiveNode extends OperatorNode
 {
-	protected PrimitiveNode(Token token, int numberOfOperands)
-	{
-		super(token, numberOfOperands);
-	}
-	
-	public static PrimitiveNode get(Token token)
-	{
-		if (token.type == Type.ARITHMETIC_ADD)
-		{
-			return new AddNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_SUBTRACT)
-		{
-			return new SubtractNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_MULTIPLICATION)
-		{
-			return new MultiplicationNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_DIVISION)
-		{
-			return new DivisionNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_POWER)
-		{
-			return new PowerNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_MODULE)
-		{
-			return new ModuleNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_INCREMENT)
-		{
-			return new IncrementNode(token);
-		}
-		else if (token.type == Type.ARITHMETIC_DECREMENT)
-		{
-			return new DecrementNode(token);
-		}
-		else if (token.type == Type.LOGIC_EQUAL)
-		{
-			return new EqualNode(token);
-		}
-		else if (token.type == Type.LOGIC_NOT_EQUAL)
-		{
-			return new NotEqualNode(token);
-		}
-		else if (token.type == Type.LOGIC_GREATER)
-		{
-			return new GreaterNode(token);
-		}
-		else if (token.type == Type.LOGIC_GREATER_EQUAL)
-		{
-			return new GreaterEqualNode(token);
-		}
-		else if (token.type == Type.LOGIC_LESS)
-		{
-			return new LessNode(token);
-		}
-		else if (token.type == Type.LOGIC_LESS_EQUAL)
-		{
-			return new LessEqualNode(token);
-		}
-		else if (token.type == Type.LOGIC_AND)
-		{
-			return new AndNode(token);
-		}
-		else if (token.type == Type.LOGIC_OR)
-		{
-			return new OrNode(token);
-		}
-		else if (token.type == Type.LOGIC_NEGATION)
-		{
-			return new NegationNode(token);
-		}
-		else if (token.type == Type.CONDITIONAL_IF)
-		{
-			return new IfNode(token);
-		}
-		else if (token.type == Type.CONDITIONAL_IF_ELSE)
-		{
-			return new IfElseNode(token);
-		}
-		else if (token.type == Type.LIST_INDEX)
-		{
-			return new IndexNode(token);
-		}
-		else if (token.type == Type.LIST_LENGTH)
-		{
-			return new LengthNode(token);
-		}
-		else if (token.type == Type.LIST_OPEN)
-		{
-			return new ListOpenNode(token);
-		}
-		else if (token.type == Type.LIST_CLOSE)
-		{
-			return new ListCloseNode(token);
-		}
-		
-		return null;
-	}
+    protected PrimitiveNode(Token token, int numberOfOperands)
+    {
+        super(token, numberOfOperands);
+    }
+
+    public static PrimitiveNode get(Token token)
+    {
+        if (token.type == Type.ARITHMETIC_ADD)
+        {
+            return new AddNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_SUBTRACT)
+        {
+            return new SubtractNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_MULTIPLICATION)
+        {
+            return new MultiplicationNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_DIVISION)
+        {
+            return new DivisionNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_POWER)
+        {
+            return new PowerNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_MODULE)
+        {
+            return new ModuleNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_INCREMENT)
+        {
+            return new IncrementNode(token);
+        }
+        else if (token.type == Type.ARITHMETIC_DECREMENT)
+        {
+            return new DecrementNode(token);
+        }
+        else if (token.type == Type.LOGIC_EQUAL)
+        {
+            return new EqualNode(token);
+        }
+        else if (token.type == Type.LOGIC_NOT_EQUAL)
+        {
+            return new NotEqualNode(token);
+        }
+        else if (token.type == Type.LOGIC_GREATER)
+        {
+            return new GreaterNode(token);
+        }
+        else if (token.type == Type.LOGIC_GREATER_EQUAL)
+        {
+            return new GreaterEqualNode(token);
+        }
+        else if (token.type == Type.LOGIC_LESS)
+        {
+            return new LessNode(token);
+        }
+        else if (token.type == Type.LOGIC_LESS_EQUAL)
+        {
+            return new LessEqualNode(token);
+        }
+        else if (token.type == Type.LOGIC_AND)
+        {
+            return new AndNode(token);
+        }
+        else if (token.type == Type.LOGIC_OR)
+        {
+            return new OrNode(token);
+        }
+        else if (token.type == Type.LOGIC_NEGATION)
+        {
+            return new NegationNode(token);
+        }
+        else if (token.type == Type.CONDITIONAL_IF)
+        {
+            return new IfNode(token);
+        }
+        else if (token.type == Type.CONDITIONAL_IF_ELSE)
+        {
+            return new IfElseNode(token);
+        }
+        else if (token.type == Type.ARRAY_INDEX)
+        {
+            return new IndexNode(token);
+        }
+        else if (token.type == Type.ARRAY_REMOVE)
+        {
+            return new RemoveNode(token);
+        }
+        else if (token.type == Type.ARRAY_LENGTH)
+        {
+            return new LengthNode(token);
+        }
+        else if (token.type == Type.LIST_OPEN)
+        {
+            return new ListOpenNode(token);
+        }
+        else if (token.type == Type.LIST_CLOSE)
+        {
+            return new ListCloseNode(token);
+        }
+
+        return null;
+    }
 }

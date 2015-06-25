@@ -16,15 +16,15 @@ The language has the following characteristics:
 
 ## Syntax
 
-A _program_ written in **Jan** consists of a set of functions. A _function_ consists of a set of expressions that are evaluated sequentially. An _expression_ is a combination of explicit constants, parameters, operators and functions that are evaluated to return a value (or an empty result). The language follows the off-side rule to define its syntax (i.e., blocks are expressed by indentation marks).
+A _program_ written in **Jan** consists of a set of functions. A _function_ consists of a set of expressions that are evaluated sequentially. An _expression_ is a combination of explicit constants, parameters, operators and functions that are evaluated to return a value (or an empty result). The language follows the _off-side_ rule to define its syntax (i.e., blocks are expressed by indentation marks). A **Jan** script should have a **.jan** extension.
 
 ### Functions
 
-Functions in **Jan** have a name, a list of parameters (if any) and a list of expressions that will be evaluated sequentially. Functions must have unique names. When a function is called, the interpreter will evaluate the expressions in the order that they were defined. If an expression returns a value (i.e., it doesn't return an empty result), the functions finishes and the result of that expression is returned.
+Functions in **Jan** have a name (unique within the program), a list of parameters (if any) and a list of expressions that will be evaluated sequentially. When a function is called, the interpreter evaluates the expressions in the order that they were defined. If an expression returns a value (i.e., it does not return an empty result), the function finishes and the result of that expression is returned.
 
-Template:
+Function template:
 
-```common-lisp
+```
 FUNCTION_NAME PARAMETER_1 PARAMETER_2 PARAMETER_3...
     EXPRESSION_1
     EXPRESSION_2
@@ -32,7 +32,7 @@ FUNCTION_NAME PARAMETER_1 PARAMETER_2 PARAMETER_3...
     ...
 ```
 
-Notice that the expressions are indented using the tab character and the formal parameters are not separated by commas.
+Notice that the expressions are indented using the tab character and the formal parameters are not separated by commas but by a whitespace.
 
 Here is an example function that compares 2 numbers:
 
@@ -47,9 +47,9 @@ In pseudocode it could be written as:
 
 ```pascal
 function compare (a, b)
-    if (a > b)
+    if (a > b) then
         return "A is bigger than B"
-    else if (b > a)
+    else if (b > a) then
         return "B is bigger than A"
     else
         return "A and B are equal"
@@ -61,10 +61,10 @@ end
 
 There are two types of expressions:
 
-* Non-Conditional: these expressions are evaluated and returned as a result.
-* Conditional: these expressions evaluate a condition in order to determine if a value is returned or not. There are two types of conditional expressions:
+* _Non-Conditional_: these expressions are evaluated and returned as a result.
+* _Conditional_: these expressions evaluate a condition in order to determine if a value is returned or not. There are two types of conditional expressions:
 
-Simple: the condition is evaluated and if it's true, the expression returns a value, otherwise the execution continues to the next expression.
+_Simple_: the condition is evaluated and if it is true, the expression returns a value, otherwise the execution continues to the next expression.
 
 Example:
 
@@ -82,7 +82,7 @@ if (n == 0) then
 end if
 ```
 
-Complex: the condition is evaluated and if it's true, the expression returns the result of the consequent value, otherwise it returns the result of the alternative value.
+_Complex_: the condition is evaluated and if it is true, the expression returns the result of the consequent value, otherwise it returns the result of the alternative value.
 
 Example:
 
@@ -107,7 +107,7 @@ All functions must contain at least one expression and the last (and only the la
 * A non-conditional expression
 * A complex conditional expression
 
-Expressions must be written in **prefix notation** (i.e., operators are placed to the left of the operands) and there must be at least one whitespace between operators and operands.
+Expressions must be written using **prefix notation** (i.e., operators are placed to the left of the operands) and there must be at least one whitespace between operators and operands.
 
 ## Operators
 
@@ -158,13 +158,13 @@ These two comparison operators receive either two numbers, two booleans, two str
 * Less: ``<``
     * Example: ``< a b``
 
-* Less equal: ``<=``
+* Less or equal: ``<=``
     * Example: ``<= a b``
 
 * Greater: ``>``
     * Example: ``> a b``
 
-* Greater equal: ``>=``
+* Greater or equal: ``>=``
     * Example: ``>= a b``
 
 The rest of comparison operators receive two numbers as input an return a boolean as a result.
@@ -189,10 +189,10 @@ All logical operators receive booleans as input and return a boolean as a result
 The language supports the following conditional operators:
 
 * Simple conditional: ``?``
-    * Example: ``? a b`` (_if a then b_)
+    * Example: ``? a b`` (_if **a** then **b**_)
 
 * Complex conditional: ``??``
-    * Example: ``?? a b c`` (_if a then b else c_)
+    * Example: ``?? a b c`` (_if **a** then **b** else **c**_)
 
 In both conditional operators, the result of evaluating the first expression (in the examples: **a**) must be a boolean value.
 
@@ -204,7 +204,10 @@ The language supports the following string operators:
     * Example: ``"This is an example"``
 
 * Indexation: ``@``
-    * Example: ``@ 4 "Hello, world!"`` (it returns the 5th character in the string, in the example: **o**)
+    * Example: ``@ 7 "Hello, world!"`` (it returns the 8th character in the string, in the example: **w**)
+
+* Removal: ``~``
+        * Example: ``~ 5 "Do not test me"`` (it removes the 6th character in the string, in the example: **"Do no test me"**)
 
 * Length: ``#``
     * Example: ``# "The cake is a lie"`` (it returns the length of the string, in the example: **17**)
@@ -222,6 +225,9 @@ The language supports the following list operators:
 * Indexation: ``@``
     * Example: ``@ 2 [ a b c d e ]`` (it returns the 3rd element of the list, in the example: **c**)
 
+* Indexation: ``~``
+        * Example: ``~ 3 [ a b c d e ]`` (it removes the 4th element of the list, in the example: **[ a b c e ]**)
+
 * Length: ``#``
     * Example: ``# [ a b c ]`` (it returns the length of the list, in the example: **3**)
 
@@ -230,15 +236,32 @@ The language supports the following list operators:
 
 ### Import
 
-``$``
+A program can import another program located in a file using the ``$`` symbol. For example:
+
+```
+$ "libs/math.jan"
+$ "utils/vectors.jan"
+$ "physics.jan"
+```
+
+The path of the files can be expressed as relative (to the current program) or absolute.
 
 ### Comments
 
-``;``
+The language allows in-line comments using the ``;`` symbol. For example:
+
+```common-lisp
+even n ; returns true if n is an even number
+	= 0 % n 2
+```
 
 ### Anonymous expression
 
-``\``
+The language allows to define one (and only one) anonymous function. This function will be called after the script is completely parsed. The anonymous function does not have a name or parameters and it must contain one (and only one) expression (non-conditional or complex). For example:
+
+```common-lisp
+\ + "Result: " compute 10
+```
 
 ## Types
 
@@ -246,33 +269,48 @@ The language has the following data types:
 
 ### Numbers
 
-Integers: whole numbers expressed in base 10, for example:
+There are two types of numbers:
 
-``42     -8     250    0     -67``
+_Integers_: whole numbers expressed in base 10, for example:
 
-Floats: decimal numbers expressed in base 10, for example:
+``42``   ``-8``   ``250``   ``0``   ``-67``
 
-``12.34     -0.001     2.0     99.90     -50.71``
+_Floats_: decimal numbers expressed in base 10, for example:
+
+``12.34``   ``-0.001``   ``2.0``   ``99.90``   ``-50.71``
 
 Notice that floats should be expressed like this ``0.123`` instead of ``.123``
 
 ### Booleans
 
-.			true
-:			false
-! > 2 3		true
+Boolean constants are defined as:
+
+* True: ``.`` (dot)
+* False: ``:`` (semicolon)
 
 ### Strings
 
+String constants are defined using double quotes, for example:
+
+``"First, solve the problem. Then, write the code."``
+
 ### Lists
+
+Lists are fixed-length arrays that can contain zero or more elements. Lists can contain elements of different types and are defined using the brackets symbols: ``[`` ``]``. For example:
+
+``[ 1 2 3 4 5 ]``
+
+# Execution
 
 # TODO
 
 * Exit with error { “ERROR” }
 * Print value for debug ( + "N: " n )
 * Implement let, cache values and use lazy evaluation _ foo + 1 2
+* Implement imports
+* Implement list range:  .. 1 4 [ a b c d e f g h ] (from 1 take 4 elements)  =>   [ b c d e ]
 * Finish semantic validation
-* Finish lazy evaluation (when @ or # don't evaluate all list)
+* Finish lazy evaluation (when @ or # do not evaluate all list)
 * Accept numbers in scientific notation 0.123e+10
 * Curryfication
 * Pass functions as parameters

@@ -1,4 +1,4 @@
-package com.mauriciotogneri.jan.kernel.nodes.list;
+package com.mauriciotogneri.jan.kernel.nodes.array;
 
 import com.mauriciotogneri.jan.compiler.lexical.Token;
 import com.mauriciotogneri.jan.kernel.Context;
