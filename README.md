@@ -19,7 +19,7 @@
     - [List](#list)
     - [Import](#import)
     - [Comments](#comments)
-    - [Anonymous expression](#anonymous expression)
+    - [Anonymous function](#anonymous-function)
 - [Types](#types)
     - [Numbers](#numbers)
     - [Booleans](#booleans)
