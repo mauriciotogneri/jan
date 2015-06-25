@@ -290,13 +290,13 @@ Boolean constants are defined as:
 
 ### Strings
 
-String constants are defined using double quotes, for example:
+Strings are immutable sequences of characters and therefore, operations such as _removal_ and _concatenation_ do not affect the given string but return a new one as a consequence of applying the operator. String constants are defined using double quotes, for example:
 
 ``"First, solve the problem. Then, write the code."``
 
 ### Lists
 
-Lists are fixed-length arrays that can contain zero or more elements. Lists can contain elements of different types and are defined using the brackets symbols: ``[`` ``]``. For example:
+Lists are fixed-length arrays that can contain zero or more elements. Lists are immutable elements and therefore, operations such as _removal_ and _concatenation_ do not affect the given list but return a new one as a consequence of applying the operator. Lists can contain elements of different types and are defined using the brackets symbols: ``[`` ``]``. For example:
 
 ``[ 1 2 3 4 5 ]``
 
