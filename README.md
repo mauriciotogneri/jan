@@ -259,7 +259,8 @@ The language supports the following list operators:
 * Concatenation: ``+``
     * Example: ``+ z [ x y ]`` (it concatenates the element to the end of the list, in the example: **[ x y z ]**)
 
-### Import ``(not implemented yet)``
+### Import
+``(not implemented yet)``
 A program can import another program located in a file using the ``$`` symbol. For example:
 
 ```
