@@ -26,6 +26,7 @@
     - [Strings](#strings)
     - [Lists](#lists)
 - [Execution](#execution)
+- [Standard Library](#standard-library)
 - [Examples](#examples)
 - [TODO](#todo)
 
@@ -325,6 +326,8 @@ Lists are fixed-length arrays that can contain zero or more elements. Lists are 
 ``[ 1 2 3 4 5 ]``
 
 ## Execution
+
+## Standard Library
 
 ## Examples
 
