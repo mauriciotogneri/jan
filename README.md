@@ -327,6 +327,8 @@ Lists are fixed-length arrays that can contain zero or more elements. Lists are 
 
 ## Execution
 
+``java -jar jan.jar SCRIPT_PATH``
+
 ## Standard Library
 
 ## Examples
