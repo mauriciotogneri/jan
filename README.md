@@ -75,11 +75,13 @@ In pseudocode it could be written as:
 function compare (a, b)
     if (a > b) then
         return "A is bigger than B"
-    else if (b > a) then
-        return "B is bigger than A"
-    else
-        return "A and B are equal"
     end if
+
+    if (b > a) then
+        return "B is bigger than A"
+    end if
+
+    return "A and B are equal"
 end
 ```
 
