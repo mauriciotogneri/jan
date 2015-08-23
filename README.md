@@ -313,7 +313,7 @@ Notice that floats should be expressed like this ``0.123`` instead of ``.123``
 Boolean constants are defined as:
 
 * True: ``.`` (dot)
-* False: ``:`` (semicolon)
+* False: ``:`` (colon)
 
 ### Strings
 
