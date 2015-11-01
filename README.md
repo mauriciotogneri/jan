@@ -28,7 +28,6 @@
 - [Execution](#execution)
 - [Standard Library](#standard-library)
 - [Examples](#examples)
-- [TODO](#todo)
 
 ## Characteristics
 
@@ -357,19 +356,6 @@ fibo index limit list
 
 \ fibonacci 10
 ```
-
-# TODO
-
-* Exit with error ``{ “Function sqrt: ” n }``
-* Print value for debug ``( + "N: " n )``
-* Implement let (cache values and use lazy evaluation): ``_ foo + 1 2``
-* Implement imports
-* Implement list range: ``.. 1 4 [ a b c d e f g h ]`` (from 1 take 4 elements) => ``[ b c d e ]``
-* Finish semantic validation
-* Finish lazy evaluation (when ``@`` or ``#`` do not evaluate all list)
-* Accept numbers in scientific notation ``0.123e+10``
-* Curryfication
-* Pass functions as parameters
 
 ## License
 
