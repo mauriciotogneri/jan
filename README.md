@@ -1,4 +1,4 @@
-# <img src="http://zeronest.com/web/images/jan.png" width="200"/>
+# JAN
 
 <img align="right" src="http://i.imgur.com/Q4fvRk0.png" />
 
